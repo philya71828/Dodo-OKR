@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="DodOKR.Views.Controls.TaskEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DodOKR.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="1280"
+             Visibility="{Binding Path=Visibility,UpdateSourceTrigger=PropertyChanged}">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>        
+    </UserControl.Resources>
+    <Grid Background="Transparent">
+        <Border Width="640" Height="720" Background="#fef0e5" CornerRadius="20" HorizontalAlignment="Right">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0.5"/>
+                    <Setter Property="CornerRadius" Value="10"/>
+                    <Setter Property="Width" Value="600"/>
+                </Style>
+            </Border.Resources>
+            <StackPanel>
+                <TextBlock Text="Редактирование" Style="{StaticResource HeaderText}" HorizontalAlignment="Center"/>
+                <Border Height="80">
+                    <StackPanel>
+                        <TextBox Text="{Binding Task.Name}"/>
+                        <TextBox Text="{Binding Task.Comment}"/>
+                    </StackPanel>
+                </Border>
+                <Separator Height="20" Visibility="Hidden"/>
+                <Border Height="80">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Цель: "/>
+                            <TextBox Text="{Binding Task.Target}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="На текущий момент: "/>
+                            <TextBox Text="{Binding Task.Current}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Прогресс: "/>
+                            <ProgressBar Value="{Binding Task.Progress}" Width="60"/>
+                            <TextBlock Text="{Binding Task.Progress}"/>
+                            <TextBlock Text="%"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Separator Height="20" Visibility="Hidden"/>
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Сроки: "/>
+                        <DatePicker SelectedDate="{Binding Task.StartDate}"/>
+                        <TextBlock Text=" - "/>
+                        <DatePicker SelectedDate="{Binding Task.FinishDate}"/>
+                    </StackPanel>
+                </Border>
+                <Separator Height="20" Visibility="Hidden"/>
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Приоритет: "/>
+                        <ComboBox>
+                            <ComboBoxItem IsSelected="{Binding IsLowPriority}">
+                                <Border Style="{StaticResource PriorityBorder}" Background="#fed01d">
+                                    <TextBlock Style="{StaticResource PriorityText}" Text="Низкий"/>
+                                </Border>
+                            </ComboBoxItem>
+                            <ComboBoxItem IsSelected="{Binding IsMiddlePriority}">
+                                <Border Style="{StaticResource PriorityBorder}" Background="#ee9016">
+                                    <TextBlock Style="{StaticResource PriorityText}" Text="Средний"/>
+                                </Border>
+                            </ComboBoxItem>
+                            <ComboBoxItem IsSelected="{Binding IsHighPriority}">
+                                <Border Style="{StaticResource PriorityBorder}" Background="#bd3933">
+                                    <TextBlock Style="{StaticResource PriorityText}" Text="Высокий"/>
+                                </Border>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+                <Separator Height="20" Visibility="Hidden"/>
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Статус: "/>
+                        <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding Task.StatusColor}" 
+                                StrokeThickness="0.5" 
+                                Stroke="Black"/>
+                        <Separator Visibility="Hidden" Width="5"/>
+                        <TextBlock Text="{Binding Task.StatusStr}"/>
+                    </StackPanel>
+                </Border>
+                <Separator Height="20" Visibility="Hidden"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Назад" Command="{Binding CloseControl}"/>
+                    <Button Content="Удалить" Command="{Binding DeleteTask}"/>
+                    <Button Content="Сохранить" Command="{Binding EditTask}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>    
+</UserControl>

@@ -1,0 +1,81 @@
+﻿<Page x:Class="DodOKR.JoinPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DodOKR"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Height="695" Width="1280"
+      Title="JoinPage">
+    <Grid>
+        <StackPanel Orientation="Vertical" 
+                    HorizontalAlignment="Center"
+                    Margin="50">
+            <Image Source="Images/DodoLogo.png"
+                   Width="300"/>
+            <Separator Opacity="0" Height="50"/>
+            <TextBlock Text="Почта"/>
+            <TextBox Style="{StaticResource TextBoxStyle}"/>
+            <Separator Opacity="0" Height="20"/>
+            <TextBlock Text="Пароль"/>
+            <PasswordBox Style="{StaticResource PasswordBoxStyle}"/>
+            <Separator Opacity="0" Height="20"/>
+            <Button Width="170" Click="Join">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="10" Height="30">
+                            <TextBlock Text="Войти" Style="{StaticResource ButtonText}"/>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#ff6900"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Orange"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Separator Opacity="0" Height="10"/>
+            <Button Content="Забыл пароль?">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="White">
+                            <TextBlock Text="Забыли пароль?" 
+                                       Foreground="Black" 
+                                       FontSize="14" 
+                                       HorizontalAlignment="Center"
+                                       TextDecorations="Underline"
+                                       Cursor="Hand"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Separator Opacity="0" Height="100"/>
+            <Button Width="170" Click="OpenRegistrationWindow">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="10"  Height="30">
+                            <TextBlock Text="Регистрация" Style="{StaticResource ButtonText}" Foreground="#cdae8d"/>
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="Wheat"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#fef0e5"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        <local:RegistrationControl x:Name="panel" Visibility="Hidden"/>
+    </Grid>
+</Page>

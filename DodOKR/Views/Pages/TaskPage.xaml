@@ -1,0 +1,288 @@
+﻿<Page x:Class="DodOKR.TaskPage"
+      x:Name="taskPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DodOKR"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Height="685" Width="1280"
+      Title="TaskPage">
+    <Page.Resources>
+        
+    </Page.Resources>
+    <Grid x:Name="grid">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
+                <StackPanel>
+                    <Button Click="ShowTaskMenu">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="30"/>
+                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="2"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="2"/>
+                    <Border Background="#fbcb1a" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="2"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="270"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="2"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
+                    <Separator Opacity="0" Width="10"/>
+                    <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
+                    <Separator Opacity="0" Width="5"/>
+                    <Label Content="{Binding Progress}" FontSize="45"/>
+                    <Label Content="%" FontSize="45"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="600"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Click="AddNewObjective" Margin="10">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Width="160" HorizontalAlignment="Left" Height="30" CornerRadius="15">
+                                    <Label Content="Добавить цель" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           Foreground="White"
+                                           FontSize="16"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#ff6900"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Orange"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </ControlTemplate>                            
+                        </Button.Template>                        
+                    </Button>
+                    <TextBlock Grid.Column="1" Text="Статус" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Grid.Column="2" Text="Прогресс" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Grid.Column="3" Text="Даты" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Grid.Column="4" Text="Приоритет" Style="{StaticResource HeaderText}"/>
+                </Grid>
+                <Border Grid.Row="2" CornerRadius="20">
+                    <ItemsControl ItemsSource="{Binding Objectives}" x:Name="objectiveGrid">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander>
+                                    <Expander.Header>
+                                        <DataGrid ItemsSource="{Binding Obj}" 
+                                                  AutoGenerateColumns="False" 
+                                                  HeadersVisibility="None"
+                                                  GridLinesVisibility="None"
+                                                  BorderThickness="0"
+                                                  ColumnWidth="150"
+                                                  x:Name="currentGrid"
+                                                  IsReadOnly="True">
+                                            <DataGrid.ItemContainerStyle>
+                                                <Style TargetType="DataGridRow">
+                                                    <EventSetter Event="MouseDoubleClick" Handler="EditObjective"/>
+                                                </Style>
+                                            </DataGrid.ItemContainerStyle>
+                                            <DataGrid.Columns>
+                                                <DataGridTemplateColumn Width="535">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Vertical">
+                                                                <TextBlock Text="{Binding Name}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           FontSize="14"/>
+                                                                <TextBlock Text="{Binding Comment}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           Foreground="#9b9da2"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn Width="40">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>                                                            
+                                                            <Button Click="AddNewTask">
+                                                                <Button.Template>
+                                                                    <ControlTemplate>
+                                                                        <Border HorizontalAlignment="Left"
+                                                                                CornerRadius="10"
+                                                                                Width="35">
+                                                                            <Label Content="+" 
+                                                                                   HorizontalAlignment="Center" 
+                                                                                   VerticalAlignment="Center"
+                                                                                   Foreground="White"
+                                                                                   FontSize="16"/>
+                                                                            <Border.Style>
+                                                                                <Style TargetType="Border">
+                                                                                    <Setter Property="Background" Value="#ff6900"/>
+                                                                                    <Style.Triggers>
+                                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                                            <Setter Property="Background" Value="Orange"/>
+                                                                                        </Trigger>
+                                                                                    </Style.Triggers>
+                                                                                </Style>
+                                                                            </Border.Style>
+                                                                        </Border>
+                                                                    </ControlTemplate>
+                                                                </Button.Template>
+                                                            </Button>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding StatusColor}" 
+                                                                         StrokeThickness="0.5" 
+                                                                         Stroke="Black"/>
+                                                                <Separator Visibility="Hidden" Width="5"/>
+                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}"/>
+                                                            </StackPanel>                                                            
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ProgressBar Height="20" Width="100" Value="{Binding Progress}"/>
+                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}"/>
+                                                                <Separator Visibility="Hidden" Width="5"/>
+                                                                <TextBlock Text="%" Style="{StaticResource BodyText}"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>                                                
+                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
+                                                <DataGridTemplateColumn Width="*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="Black" BorderThickness="0.5" 
+                                                                    Background="{Binding PriorityColor}"
+                                                                    CornerRadius="20"
+                                                                    Width="80"
+                                                                    Height="30">
+                                                                <TextBlock Text="{Binding PriorityStr}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>                                                
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Expander.Header>
+                                    <Expander.Content>
+                                        <DataGrid ItemsSource="{Binding Tasks}" 
+                                                  AutoGenerateColumns="False" 
+                                                  HeadersVisibility="None"
+                                                  CanUserAddRows="False"
+                                                  GridLinesVisibility="None"
+                                                  BorderThickness="0"
+                                                  ColumnWidth="150"
+                                                  IsReadOnly="True">
+                                            <DataGrid.ItemContainerStyle>
+                                                <Style TargetType="DataGridRow">
+                                                    <EventSetter Event="MouseDoubleClick" Handler="EditTask"/>
+                                                </Style>
+                                            </DataGrid.ItemContainerStyle>
+                                            <DataGrid.Columns>
+                                                <DataGridTemplateColumn Width="600">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Name}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           FontSize="14"/>
+                                                                <TextBlock Text=": " Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="{Binding Comment}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           Foreground="#9b9da2"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding StatusColor}" 
+                                                                         StrokeThickness="0.5" 
+                                                                         Stroke="Black"/>
+                                                                <Separator Visibility="Hidden" Width="5"/>
+                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTemplateColumn>
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <ProgressBar Height="20" Width="100" Value="{Binding Progress}"/>
+                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}"/>
+                                                                <Separator Visibility="Hidden" Width="5"/>
+                                                                <TextBlock Text="%" Style="{StaticResource BodyText}"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
+                                                <DataGridTemplateColumn Width="*">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Border BorderBrush="Black" BorderThickness="0.5" 
+                                                                    Background="{Binding PriorityColor}"
+                                                                    CornerRadius="20"
+                                                                    Width="80"
+                                                                    Height="30">
+                                                                <TextBlock Text="{Binding PriorityStr}" 
+                                                                           Style="{StaticResource BodyText}"
+                                                                           HorizontalAlignment="Center"/>
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Expander.Content>
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+
+
