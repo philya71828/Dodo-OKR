@@ -76,7 +76,7 @@
                                 </Button.Template>
                             </Button>
                             <Separator Opacity="0" Height="40"/>
-                            <Button>
+                            <Button Click="OpenTree">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">

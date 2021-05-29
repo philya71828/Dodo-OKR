@@ -35,21 +35,36 @@ namespace DodOKR
         {
             var element = new TaskMenuControl((DataContext as TaskPageViewModel));
             grid.Children.Add(element);
-            element.IsEnabledChanged += OpenJoinPage;
             element.IsVisibleChanged += CloseTaskMenu;
         }
 
         private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
         {
+            var element = grid.Children[grid.Children.Count - 1] as TaskMenuControl;
             grid.Children.RemoveAt(grid.Children.Count - 1);
+            if (element.IsJoinPage) OpenJoinPage();
+            if (element.IsTreeOpened) OpenTree();
+
         }
 
-        private void OpenJoinPage(object sender, DependencyPropertyChangedEventArgs e)
+        private void OpenJoinPage()
         {
             if (this.NavigationService.CanGoBack)
             {
                 this.NavigationService.GoBack();
             }
+        }
+
+        private void OpenTree()
+        {
+            var element = new GlobalTree();
+            grid.Children.Add(element);
+            element.IsVisibleChanged += CloseTree;
+        }
+
+        private void CloseTree(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            grid.Children.RemoveAt(grid.Children.Count - 1);
         }
 
         private void AddNewObjective(object sender, RoutedEventArgs e)
