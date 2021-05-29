@@ -94,3 +94,4 @@ C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\ref\DodOKR.dll
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.pdb
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.genruntimeconfig.cache
+C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\Views\Pages\GlobalTree.g.cs

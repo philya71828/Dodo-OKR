@@ -36,6 +36,9 @@
     <Page Update="Buttons.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\GraphStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\PriorityStyle.xaml">
       <SubType>Designer</SubType>
     </Page>

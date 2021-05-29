@@ -9,9 +9,6 @@
       d:DesignHeight="685" d:DesignWidth="1280"
       Height="685" Width="1280"
       Title="TaskPage">
-    <Page.Resources>
-        
-    </Page.Resources>
     <Grid x:Name="grid">
         <Grid>
             <Grid.ColumnDefinitions>
