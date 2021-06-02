@@ -61,7 +61,7 @@ namespace DodOKR.Views.Controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DodOKR;component/views/controls/taskeditorcontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DodOKR;V1.0.0.0;component/views/controls/taskeditorcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Controls\TaskEditorControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

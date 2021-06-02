@@ -93,7 +93,7 @@ C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\ref\DodOKR.dll
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.pdb
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.genruntimeconfig.cache
-C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\Styles\GraphStyle.baml
-C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.csprojAssemblyReference.cache
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\Views\Controls\GlobalTree.g.cs
 C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\Views\Controls\GlobalTree.baml
+C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\Styles\GraphStyle.baml
+C:\Documents\Programming\C#\WPF\Dodo-OKR\DodOKR\obj\Debug\net5.0-windows\DodOKR.csprojAssemblyReference.cache

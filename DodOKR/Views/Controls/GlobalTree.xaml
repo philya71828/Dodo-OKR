@@ -3,27 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DodOKR.Views.Controls"
+             xmlns:local="clr-namespace:DodOKR"
              mc:Ignorable="d" 
+             Loaded="OnLoaded" 
              d:DesignHeight="685" d:DesignWidth="1280"
              Height="685" Width="1280">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <XmlDataProvider x:Key="nodes" Source=".\nodes.xml" XPath="Node"/>
-
-            <HierarchicalDataTemplate DataType="Node" 
-									  ItemsSource="{Binding XPath=Children/Node}">
-
-                <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
-						BorderBrush="Blue" Width="Auto" Height="50" MinWidth="50">
-                    <TextBlock Text="{Binding XPath=@Name}" 
-							   HorizontalAlignment="Center" 
-							   VerticalAlignment="Center"/>
-                </Border>
-            </HierarchicalDataTemplate>
-
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Border Height="685" Width="1280" Background="White">
         <Grid>
             <Grid x:Name="grid">
@@ -72,8 +56,35 @@
                             <Label Content="{Binding Progress}" FontSize="45"/>
                             <Label Content="%" FontSize="45"/>
                         </StackPanel>
-                        <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource GraphStyle}" 
-                              ItemsSource="{Binding Source={StaticResource nodes}}"/>
+                        <ScrollViewer Grid.Row="1" 
+                                      HorizontalScrollBarVisibility="Auto" 
+                                      VerticalScrollBarVisibility="Auto"
+                                      Width="1200"
+                                      Height="615"
+                                      MouseRightButtonDown="PressButton"
+                                      MouseRightButtonUp="ButtonUp"
+                                      MouseMove="MoveScroll"
+                                      x:Name="scroll">
+                            <TreeView Name="tree" ItemContainerStyle="{StaticResource GraphStyle}" >
+                                <TreeView.Resources>
+                                    <ResourceDictionary>
+                                        <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNodes}">
+                                            <Border Name="bdr" CornerRadius="360" BorderThickness="3"
+                                            BorderBrush="Blue" Width="Auto" Height="50" MinWidth="50">
+                                                <TextBlock Text="{Binding Text}" 
+                                                   HorizontalAlignment="Center" 
+                                                   VerticalAlignment="Center"/>
+                                            </Border>
+                                        </HierarchicalDataTemplate>
+                                    </ResourceDictionary>
+                                </TreeView.Resources>
+                                <TreeView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid HorizontalAlignment="Center" IsItemsHost="True" />
+                                    </ItemsPanelTemplate>
+                                </TreeView.ItemsPanel>
+                            </TreeView>
+                        </ScrollViewer>                        
                     </Grid>
                 </Grid>
             </Grid>
