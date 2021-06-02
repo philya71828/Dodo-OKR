@@ -42,32 +42,16 @@ namespace DodOKR.Views.Controls
 
         private void PopulateTreeView()
         {
-            var root = new Node("1");
-            root.ChildNodes.Add(new Node("1.1"));
-            root.ChildNodes.Add(new Node("1.2"));
-            root.ChildNodes.Add(new Node("1.3"));
-            root.ChildNodes[0].ChildNodes.Add(new Node("1.1.1"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("1.2.1"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("1.2.2"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("1.2.3"));
-            root.ChildNodes[2].ChildNodes.Add(new Node("1.3.1"));
-            root.ChildNodes[2].ChildNodes.Add(new Node("1.3.2"));
-            for (var i = 0; i < 20; i++)
-                root.ChildNodes.Add(new Node("1."+(i+3)));
-
-            var node = root.ChildNodes[0].ChildNodes;
-            for (var i = 0; i < 20; i++)
-            {
-                node.Add(new Node("test"));
-                node = node[0].ChildNodes;
-            }
-
-            node = root.ChildNodes[15].ChildNodes;
-            for (var i = 0; i < 20; i++)
-            {
-                node.Add(new Node("test"));
-                node = node[0].ChildNodes;
-            }
+            var root = new Node("Цель Команды");
+            root.ChildNodes.Add(new Node("Проект 1"));
+            root.ChildNodes.Add(new Node("Проект 2"));
+            root.ChildNodes.Add(new Node("Проект 3"));
+            root.ChildNodes[0].ChildNodes.Add(new Node("Команда 1"));
+            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 2"));
+            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 3"));
+            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 4"));
+            root.ChildNodes[2].ChildNodes.Add(new Node("Команда 5"));
+            root.ChildNodes[2].ChildNodes.Add(new Node("Команда 6"));
 
             Node dummy = new Node();
             dummy.ChildNodes.Add(root);
@@ -84,7 +68,7 @@ namespace DodOKR.Views.Controls
             }
         }
 
-        private void PressButton(object sender, MouseEventArgs e)
+        private void PressRightButton(object sender, MouseEventArgs e)
         {
             scrollMousePoint = e.GetPosition(scroll);
             hOff = scroll.HorizontalOffset;
