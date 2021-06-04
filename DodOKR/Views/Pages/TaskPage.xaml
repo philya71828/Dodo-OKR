@@ -6,12 +6,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DodOKR"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
+      d:DesignHeight="685" d:DesignWidth="1280"
       Height="685" Width="1280"
       Title="TaskPage">
-    <Page.Resources>
-        
-    </Page.Resources>
     <Grid x:Name="grid">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -32,10 +29,12 @@
                     <Separator Opacity="0" Height="2"/>
                     <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
                     <Separator Opacity="0" Height="2"/>
-                    <Border Background="#fbcb1a" CornerRadius="15" Width="50" Height="35"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
                     <Separator Opacity="0" Height="2"/>
                     <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                    <Separator Opacity="0" Height="270"/>
+                    <Separator Opacity="0" Height="40"/>
+                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="250"/>
                     <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
                     <Separator Opacity="0" Height="2"/>
                     <Border Background="White" CornerRadius="15" Width="50" Height="35"/>

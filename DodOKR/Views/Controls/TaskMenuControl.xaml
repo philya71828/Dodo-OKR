@@ -74,8 +74,18 @@
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
-                            </Button>                            
-                            <Separator Opacity="0" Height="270"/>
+                            </Button>
+                            <Separator Opacity="0" Height="40"/>
+                            <Button Click="OpenTree">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Дерево" Style="{StaticResource TextStyle}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <Separator Opacity="0" Height="250"/>
                             <Border Style="{StaticResource ButtonStyle}">
                                 <Label Content="Настройки" Style="{StaticResource TextStyle}"/>
                             </Border>

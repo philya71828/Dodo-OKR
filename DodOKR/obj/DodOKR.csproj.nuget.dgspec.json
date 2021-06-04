@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Documents\\Programming\\C#\\WPF\\DodOKR\\DodOKR\\DodOKR.csproj": {}
+    "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj": {}
   },
   "projects": {
-    "C:\\Documents\\Programming\\C#\\WPF\\DodOKR\\DodOKR\\DodOKR.csproj": {
+    "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Documents\\Programming\\C#\\WPF\\DodOKR\\DodOKR\\DodOKR.csproj",
+        "projectUniqueName": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
         "projectName": "DodOKR",
-        "projectPath": "C:\\Documents\\Programming\\C#\\WPF\\DodOKR\\DodOKR\\DodOKR.csproj",
+        "projectPath": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
         "packagesPath": "C:\\Users\\Lesha\\.nuget\\packages\\",
-        "outputPath": "C:\\Documents\\Programming\\C#\\WPF\\DodOKR\\DodOKR\\obj\\",
+        "outputPath": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

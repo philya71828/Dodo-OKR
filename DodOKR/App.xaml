@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Styles/JoinStyles.xaml"/>
                 <ResourceDictionary Source="Styles/ProgressBarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/PriorityStyle.xaml"/>
+                <ResourceDictionary Source="Styles/GraphStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
