@@ -24,10 +24,12 @@ namespace DodOKR.Views.Controls
         private Point scrollMousePoint = new Point();
         private double hOff = 1;
         private double vOff = 1;
+        private TaskPageViewModel tvm;
 
-        public GlobalTree()
+        public GlobalTree(TaskPageViewModel tvm)
         {
             InitializeComponent();
+            this.tvm = tvm;
             DataContext = new GlobalTreeViewModel(tree, scroll);
         }
 
@@ -51,6 +53,18 @@ namespace DodOKR.Views.Controls
         private void ButtonUp(object sender, MouseButtonEventArgs e)
         {
             scroll.ReleaseMouseCapture();
+        }
+
+        private void ShowTaskMenu(object sender, RoutedEventArgs e)
+        {
+            var element = new TaskMenuControl(tvm);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += CloseTaskMenu;
+        }
+
+        private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

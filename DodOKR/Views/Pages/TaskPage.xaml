@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DodOKR"
+      xmlns:controls="clr-namespace:DodOKR.Views.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="685" d:DesignWidth="1280"
       Height="685" Width="1280"
@@ -83,8 +84,8 @@
                                         </Style>
                                     </Border.Style>
                                 </Border>
-                            </ControlTemplate>                            
-                        </Button.Template>                        
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
                     <TextBlock Grid.Column="1" Text="Статус" Style="{StaticResource HeaderText}"/>
                     <TextBlock Grid.Column="2" Text="Прогресс" Style="{StaticResource HeaderText}"/>
@@ -127,7 +128,7 @@
                                                 </DataGridTemplateColumn>
                                                 <DataGridTemplateColumn Width="40">
                                                     <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>                                                            
+                                                        <DataTemplate>
                                                             <Button Click="AddNewTask">
                                                                 <Button.Template>
                                                                     <ControlTemplate>
@@ -165,7 +166,7 @@
                                                                          Stroke="Black"/>
                                                                 <Separator Visibility="Hidden" Width="5"/>
                                                                 <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}"/>
-                                                            </StackPanel>                                                            
+                                                            </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
@@ -180,7 +181,7 @@
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>                                                
+                                                </DataGridTemplateColumn>
                                                 <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
                                                 <DataGridTemplateColumn Width="*">
                                                     <DataGridTemplateColumn.CellTemplate>
@@ -196,7 +197,7 @@
                                                             </Border>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>                                                
+                                                </DataGridTemplateColumn>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Expander.Header>

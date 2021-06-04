@@ -25,10 +25,14 @@ namespace DodOKR
     /// </summary>
     public partial class TaskPage : Page
     {
+        private GlobalTree tree;
         public TaskPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
             DataContext = new TaskPageViewModel();
+            tree = new GlobalTree(DataContext as TaskPageViewModel);
+            tree.Visibility = Visibility.Hidden;
+            grid.Children.Add(tree);
         }
 
         private void ShowTaskMenu(object sender, RoutedEventArgs e)
@@ -57,14 +61,7 @@ namespace DodOKR
 
         private void OpenTree()
         {
-            var element = new GlobalTree();
-            grid.Children.Add(element);
-            element.IsVisibleChanged += CloseTree;
-        }
-
-        private void CloseTree(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            grid.Children.RemoveAt(grid.Children.Count - 1);
+            tree.Visibility = Visibility.Visible;
         }
 
         private void AddNewObjective(object sender, RoutedEventArgs e)

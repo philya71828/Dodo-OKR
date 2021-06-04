@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
-    public class ObjectiveEditorViewModel : INotifyPropertyChanged
+    public class ObjectiveEditorViewModel :ViewModel
     {
         private Visibility visibility;
         private Priority priority;
@@ -87,13 +87,6 @@ namespace DodOKR.ViewModels
             objectives[Mask.Objective.Index] = Mask;
             Visibility = Visibility.Hidden;
         });
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
         private Status SetStatus(DateTime start, DateTime finish, int progress)
         {

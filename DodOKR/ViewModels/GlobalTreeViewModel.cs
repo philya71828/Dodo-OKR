@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
-    public class GlobalTreeViewModel : INotifyPropertyChanged
+    public class GlobalTreeViewModel : ViewModel
     {
         private TreeView tree;
         private ScrollViewer scroll;
@@ -84,13 +84,6 @@ namespace DodOKR.ViewModels
             Progress /= projects.Count;
 
             this.tree.ItemsSource = dummy.ChildNodes;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

@@ -17,7 +17,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
                         <StackPanel>
-                            <Button>
+                            <Button Click="ShowTaskMenu">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>

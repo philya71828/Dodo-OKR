@@ -53,14 +53,15 @@ namespace DodOKR
 
         private void Turn(Data.PageType type)
         {
-            vm.Type = type;
+            if(vm.Type!=type)
+                vm.Type = type;
             this.Visibility = Visibility.Hidden;
         }
 
         private void OpenTree(object sender, RoutedEventArgs e)
         {
             isTreeOpened = true;
-            this.Visibility = Visibility.Hidden;
+            Turn(Data.PageType.Tree);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace DodOKR.Data
     {
         Personal,
         Team,
-        Company
+        Company,
+        Tree,
+        Options
     }
 }
