@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodOKR.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,36 +28,7 @@ namespace DodOKR.Views.Controls
         public GlobalTree()
         {
             InitializeComponent();
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            // Prevent the TreeView from responding to the keyboard.
-            // Since there's no sane way to set a TreeView's SelectedItem,
-            // we can't customize the keyboard navigation logic. :(
-            this.tree.PreviewKeyDown += delegate (object obj, KeyEventArgs args) { args.Handled = true; };
-
-            // Put some data into the TreeView.
-            this.PopulateTreeView();
-        }
-
-        private void PopulateTreeView()
-        {
-            var root = new Node("Цель Команды");
-            root.ChildNodes.Add(new Node("Проект 1"));
-            root.ChildNodes.Add(new Node("Проект 2"));
-            root.ChildNodes.Add(new Node("Проект 3"));
-            root.ChildNodes[0].ChildNodes.Add(new Node("Команда 1"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 2"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 3"));
-            root.ChildNodes[1].ChildNodes.Add(new Node("Команда 4"));
-            root.ChildNodes[2].ChildNodes.Add(new Node("Команда 5"));
-            root.ChildNodes[2].ChildNodes.Add(new Node("Команда 6"));
-
-            Node dummy = new Node();
-            dummy.ChildNodes.Add(root);
-
-            this.tree.ItemsSource = dummy.ChildNodes;
+            DataContext = new GlobalTreeViewModel(tree, scroll);
         }
 
         private void MoveScroll(object sender, MouseEventArgs e)

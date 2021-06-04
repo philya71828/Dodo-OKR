@@ -10,6 +10,8 @@ namespace DodOKR.Data
 {
     public class User
     {
+        public string FirstName { get; set; }
+        public string SurName { get; set; }
         public ObservableCollection<ObjectiveMask> Objectives { get; set; }
     }
 }

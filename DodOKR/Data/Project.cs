@@ -12,7 +12,16 @@ namespace DodOKR.Data
         public Company Company { get; set; }
         public List<Team> Teams { get; set; }
         public User Head { get; set; }
-        public int Progress { get; set; }
+        public int Progress
+        {
+            get
+            {
+                var result = 0;
+                foreach (var e in Teams)
+                    result += e.Progress;
+                return result / Teams.Count;
+            }
+        }
         public int Number { get; set; }
     }
 }
