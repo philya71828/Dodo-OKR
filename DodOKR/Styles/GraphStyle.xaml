@@ -47,8 +47,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="0" 
-                         Height="10" Stroke="Black" SnapsToDevicePixels="true">
+                            <Rectangle Grid.Row="0" Height="10" Stroke="Black" SnapsToDevicePixels="true">
                                 <Rectangle.Width>
                                     <Binding Mode="OneWay" 
                                              Converter="{StaticResource vertLineConv}" 
@@ -58,7 +57,8 @@
                             </Rectangle>
 
                             <ContentPresenter Grid.Row="1" ContentSource="Header" 
-                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              Margin="10,0"/>
 
                             <Rectangle Grid.Row="2"  Height="10" Stroke="Black" SnapsToDevicePixels="true">
                                 <Rectangle.Width>
@@ -80,7 +80,9 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel HorizontalAlignment="Center" IsItemsHost="True" Orientation="Horizontal"/>
+                    <StackPanel HorizontalAlignment="Center" 
+                                IsItemsHost="True" 
+                                Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>

@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
-    public class ObjectiveAdditionVM:INotifyPropertyChanged
+    public class ObjectiveAdditionVM : ViewModel
     {
         private string name;
         private string comment;
@@ -121,13 +121,6 @@ namespace DodOKR.ViewModels
         public ICommand AddObjective => new RelayCommand(() => CreateNewObjective());
 
         public ICommand CloseControl => new RelayCommand(() => Visibility=Visibility.Hidden);
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
         private void CreateNewObjective()
         {

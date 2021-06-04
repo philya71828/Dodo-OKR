@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
-    public class TaskPageViewModel : INotifyPropertyChanged
+    public class TaskPageViewModel : ViewModel
     {
         private Data.User currentUser;
         private Data.Team currentTeam;
@@ -50,6 +50,7 @@ namespace DodOKR.ViewModels
                     case Data.PageType.Personal: Objectives = currentUser.Objectives; break;
                     case Data.PageType.Team: Objectives = currentTeam.Objectives; break;
                     case Data.PageType.Company: Objectives = currentCompany.Objectives; break;
+                    default:break;
                     //Словарь!!!!
                 }
                 OnPropertyChanged("Type");
@@ -71,13 +72,6 @@ namespace DodOKR.ViewModels
             foreach (var obj in Objectives)
                 sum += obj.Objective.Progress;
             Progress = sum / Objectives.Count;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
         private void Create()

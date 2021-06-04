@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
-    public class TaskAdditionVM: INotifyPropertyChanged
+    public class TaskAdditionVM:ViewModel
     {
         private string name;
         private string comment;
@@ -144,13 +144,6 @@ namespace DodOKR.ViewModels
         public ICommand AddTask => new RelayCommand(() => CreateNewTask());
 
         public ICommand CloseControl => new RelayCommand(() => Visibility = Visibility.Hidden);
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
         private void CreateNewTask()
         {

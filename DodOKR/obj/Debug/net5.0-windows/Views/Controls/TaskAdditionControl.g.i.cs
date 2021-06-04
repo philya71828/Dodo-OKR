@@ -69,7 +69,7 @@ namespace DodOKR {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DodOKR;V1.0.0.0;component/views/controls/taskadditioncontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DodOKR;component/views/controls/taskadditioncontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Controls\TaskAdditionControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

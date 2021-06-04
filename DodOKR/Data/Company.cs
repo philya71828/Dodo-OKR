@@ -9,7 +9,8 @@ namespace DodOKR.Data
 {
     public class Company
     {
-        public List<Team> Teams { get; set; }
+        public string Name { get; set; }
+        public List<Project> Projects { get; set; }
         public ObservableCollection<ObjectiveMask> Objectives { get; set; }
     }
 }

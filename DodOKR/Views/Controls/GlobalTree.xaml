@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DodOKR"
              mc:Ignorable="d" 
-             Loaded="OnLoaded" 
              d:DesignHeight="685" d:DesignWidth="1280"
              Height="685" Width="1280">
     <Border Height="685" Width="1280" Background="White">
@@ -18,7 +17,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
                         <StackPanel>
-                            <Button>
+                            <Button Click="ShowTaskMenu">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
@@ -61,20 +60,85 @@
                                       VerticalScrollBarVisibility="Auto"
                                       Width="1200"
                                       Height="615"
-                                      MouseRightButtonDown="PressButton"
+                                      MouseRightButtonDown="PressRightButton"
                                       MouseRightButtonUp="ButtonUp"
                                       MouseMove="MoveScroll"
                                       x:Name="scroll">
                             <TreeView Name="tree" ItemContainerStyle="{StaticResource GraphStyle}" >
                                 <TreeView.Resources>
                                     <ResourceDictionary>
-                                        <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding ChildNodes}">
-                                            <Border Name="bdr" CornerRadius="360" BorderThickness="3"
-                                            BorderBrush="Blue" Width="Auto" Height="50" MinWidth="50">
+                                        <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
+                                                                  ItemsSource="{Binding ChildNodes}">
+                                            <Border CornerRadius="360" 
+                                                    BorderThickness="3" 
+                                                    Background="#fef0e5"
+                                                    BorderBrush="Orange" 
+                                                    MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                                    MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
                                                 <TextBlock Text="{Binding Text}" 
-                                                   HorizontalAlignment="Center" 
-                                                   VerticalAlignment="Center"/>
+                                                           HorizontalAlignment="Center" 
+                                                           VerticalAlignment="Center"
+                                                           Margin="5"/>
                                             </Border>
+                                            <HierarchicalDataTemplate.ItemTemplate>
+                                                <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
+                                                                          ItemsSource="{Binding ChildNodes}">
+                                                    <Border CornerRadius="10" 
+                                                            BorderThickness="3" 
+                                                            Background="#fef0e5"
+                                                            BorderBrush="Orange" 
+                                                            MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                                            MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
+                                                            </Grid.RowDefinitions>
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding Text}" 
+                                                                           HorizontalAlignment="Left" 
+                                                                           VerticalAlignment="Center"
+                                                                           Margin="5,5,0,0"/>
+                                                                <TextBlock Text="{Binding Head}" 
+                                                                           HorizontalAlignment="Left" 
+                                                                           VerticalAlignment="Center"
+                                                                           Margin="5,0"/>
+                                                            </StackPanel>                                                            
+                                                            <ProgressBar Height="25" Grid.Row="1"
+                                                                         Value="{Binding Progress}" 
+                                                                         VerticalAlignment="Bottom"
+                                                                         Margin="0,10,0,0"/>
+                                                        </Grid>                                                        
+                                                    </Border>
+                                                    <HierarchicalDataTemplate.ItemTemplate>
+                                                        <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
+                                                                                  ItemsSource="{Binding ChildNodes}">
+                                                            <Border CornerRadius="10" 
+                                                                    BorderThickness="3" 
+                                                                    Background="#c8c8c8"
+                                                                    BorderBrush="Gray" 
+                                                                    MinWidth="{Binding ActualHeight,
+                                                                RelativeSource={RelativeSource Self}}" 
+                                                                    MinHeight="{Binding ActualWidth,
+                                                                RelativeSource={RelativeSource Self}}">
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition/>
+                                                                        <RowDefinition/>
+                                                                    </Grid.RowDefinitions>
+                                                                    <TextBlock Grid.Row="0" Text="{Binding Text}" 
+                                                                   HorizontalAlignment="Center" 
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="5"/>
+                                                                    <ProgressBar Height="25" Grid.Row="1"
+                                                                                 Value="{Binding Progress}" 
+                                                                                 VerticalAlignment="Bottom"/>
+                                                                </Grid>
+                                                            </Border>
+                                                        </HierarchicalDataTemplate>
+                                                    </HierarchicalDataTemplate.ItemTemplate>
+                                                </HierarchicalDataTemplate>
+                                            </HierarchicalDataTemplate.ItemTemplate>
                                         </HierarchicalDataTemplate>
                                     </ResourceDictionary>
                                 </TreeView.Resources>
