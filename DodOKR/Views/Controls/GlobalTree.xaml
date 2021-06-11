@@ -27,17 +27,53 @@
                             <Separator Opacity="0" Height="30"/>
                             <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
                             <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <Separator Opacity="0" Height="40"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <Separator Opacity="0" Height="250"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                            <Button>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border Style="{StaticResource EdgeStyle}"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                         </StackPanel>
                     </Border>
 

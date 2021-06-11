@@ -36,6 +36,16 @@ namespace DodOKR.ViewModels
             this.PopulateTreeView();
         }
 
+        //public ICommand TurnPersonal => new RelayCommand(() => Turn(Data.PageType.Personal));
+        //public ICommand TurnTeam => new RelayCommand(() => Turn(Data.PageType.Team));
+        //public ICommand TurnCompany => new RelayCommand(() => Turn(Data.PageType.Company));
+
+        //private void Turn(Data.PageType type)
+        //{
+        //    if (this.Type != type)
+        //        this.Type = type;
+        //}
+
         private void PopulateTreeView()
         {
             var root = new Node("Цель Команды");

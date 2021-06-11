@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DodOKR.Views.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,12 +7,21 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DodOKR.ViewModels
 {
     public class TaskPageViewModel : ViewModel
     {
+        private TaskPage taskPage;
+        private Grid grid;
+        private GlobalTree tree;
+        
+        public Data.Task Objective { get; }
+        public Data.Task Task { get; }
+
         private Data.User currentUser;
         private Data.Team currentTeam;
         private Data.Company currentCompany;
@@ -19,6 +29,7 @@ namespace DodOKR.ViewModels
         private int progress;
         private ObservableCollection<Data.ObjectiveMask> objectives;
 
+        #region
         public ObservableCollection<Data.ObjectiveMask> Objectives 
         {
             get => objectives;
@@ -56,15 +67,82 @@ namespace DodOKR.ViewModels
                 OnPropertyChanged("Type");
             }
         }
+        #endregion
 
-        public TaskPageViewModel()
+        public TaskPageViewModel(TaskPage taskPage,Grid grid)
         {
+            this.taskPage = taskPage;
+            this.grid = grid;
+            tree = new GlobalTree(this);
+            tree.Visibility = Visibility.Hidden;
+            grid.Children.Add(tree);
+
             currentUser = new Data.User();
             currentTeam = new Data.Team();
             currentCompany = new Data.Company();
             Create();
             ChangeProgress();
         }
+
+        public ICommand ShowTaskMenu => new RelayCommand(() =>
+        {
+            var element = new TaskMenuControl(this);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += CloseTaskMenu;
+        });
+
+        public ICommand OpenTreeCommand => new RelayCommand(() => OpenTree());
+
+        public ICommand AddNewObjective => new RelayCommand(() =>
+        {
+            var element = new ObjectiveAdditionControl(this.Objectives);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += Destroy;
+        });
+
+        public ICommand AddNewTask => new RelayCommand(()=> 
+        {
+            var ind = Objective;
+            var objective = this.Objectives[ind.Index];
+            var element = new TaskAdditionControl(objective);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += Destroy;
+        });
+
+        public ICommand EditObjective => new RelayCommand(() =>
+        {
+            var objectives = this.Objectives;
+            var objective = new Data.ObjectiveMask();
+            var task = Objective;
+            var i = task.Index;
+            foreach (var obj in objectives)
+            {
+                if (obj.Tasks.Count >= i && obj.Tasks.Count > 0)
+                    if (obj.Tasks[i] == task)
+                    {
+                        objective = obj;
+                        break;
+                    }
+
+            }
+
+            var element = new TaskEditorControl(task, objective);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += Destroy;
+        });
+
+        public ICommand EditTask => new RelayCommand(() =>
+        {
+            var objectives = this.Objectives;
+            var objective = Task;
+            var element = new ObjectiveEditorControl(objective, objectives);
+            grid.Children.Add(element);
+            element.IsVisibleChanged += Destroy;
+        });
+
+        public ICommand TurnPersonal => new RelayCommand(() => Turn(Data.PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(() => Turn(Data.PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(() => Turn(Data.PageType.Company));
 
         private void ChangeProgress()
         {
@@ -73,6 +151,42 @@ namespace DodOKR.ViewModels
                 sum += obj.Objective.Progress;
             Progress = sum / Objectives.Count;
         }
+
+        private void Turn(Data.PageType type)
+        {
+            if (this.Type != type)
+                this.Type = type;
+        }
+
+        private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var element = grid.Children[grid.Children.Count - 1] as TaskMenuControl;
+            grid.Children.RemoveAt(grid.Children.Count - 1);
+            if (element.IsJoinPage) OpenJoinPage();
+            if (element.IsTreeOpened) OpenTree();
+        }
+
+        private void Destroy(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var element = this;
+            var objSum = 0;
+            foreach (var obj in element.Objectives)
+            {
+                var taskSum = 0;
+                foreach (var task in obj.Tasks)
+                {
+                    taskSum += task.Progress;
+                }
+                objSum += obj.Tasks.Count == 0 ? 0 : taskSum / obj.Tasks.Count;
+            }
+
+            var count = element.Objectives.Count;
+            element.Progress = count == 0 ? 0 : objSum / count;
+            grid.Children.RemoveAt(grid.Children.Count - 1);
+        }
+
+        private void OpenJoinPage() => taskPage.NavigationService.GoBack();
+        private void OpenTree() => tree.Visibility = Visibility.Visible;
 
         private void Create()
         {

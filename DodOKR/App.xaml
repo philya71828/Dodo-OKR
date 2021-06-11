@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Styles/ProgressBarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/PriorityStyle.xaml"/>
                 <ResourceDictionary Source="Styles/GraphStyle.xaml"/>
+                <ResourceDictionary Source="Styles/EdgeButtons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

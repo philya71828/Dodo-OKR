@@ -6,6 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DodOKR"
       xmlns:controls="clr-namespace:DodOKR.Views.Controls"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="685" d:DesignWidth="1280"
       Height="685" Width="1280"
@@ -18,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
                 <StackPanel>
-                    <Button Click="ShowTaskMenu">
+                    <Button Command="{Binding ShowTaskMenu}">
                         <Button.Template>
                             <ControlTemplate>
                                 <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
@@ -28,17 +29,63 @@
                     <Separator Opacity="0" Height="30"/>
                     <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
                     <Separator Opacity="0" Height="2"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button Command="{Binding TurnPersonal}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Personal.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>                    
                     <Separator Opacity="0" Height="2"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button Command="{Binding TurnTeam}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Team.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Separator Opacity="0" Height="2"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button Command="{Binding TurnCompany}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Company.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Separator Opacity="0" Height="40"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button Command="{Binding OpenTreeCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Tree.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Separator Opacity="0" Height="250"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                     <Separator Opacity="0" Height="2"/>
-                    <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
+                    <Button>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Exit.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </Border>
 
@@ -64,7 +111,7 @@
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Click="AddNewObjective" Margin="10">
+                    <Button Command="{Binding AddNewObjective}" Margin="10">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border Width="160" HorizontalAlignment="Left" Height="30" CornerRadius="15">
@@ -129,7 +176,8 @@
                                                 <DataGridTemplateColumn Width="40">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Click="AddNewTask">
+                                                            <Button Command="{Binding AddNewTask}"
+                                                                    CommandParameter="{Binding ElementName=btn,Path=Content}">
                                                                 <Button.Template>
                                                                     <ControlTemplate>
                                                                         <Border HorizontalAlignment="Left"
@@ -210,11 +258,22 @@
                                                   BorderThickness="0"
                                                   ColumnWidth="150"
                                                   IsReadOnly="True">
-                                            <DataGrid.ItemContainerStyle>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction Command="{Binding AddNewTask}"
+                                                                           CommandParameter="{Binding Objective}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <!--DataGrid.ItemContainerStyle>
                                                 <Style TargetType="DataGridRow">
-                                                    <EventSetter Event="MouseDoubleClick" Handler="EditTask"/>
+                                                    <Style.Triggers>
+                                                        <EventTrigger RoutedEvent="MouseDoubleClick">
+                                                            <Eve
+                                                        </EventTrigger>
+                                                    </Style.Triggers>
+                                                    <EventSetter Event="MouseDoubleClick" Handler="{Binding EditTask}"/>
                                                 </Style>
-                                            </DataGrid.ItemContainerStyle>
+                                            </-->
                                             <DataGrid.Columns>
                                                 <DataGridTemplateColumn Width="600">
                                                     <DataGridTemplateColumn.CellTemplate>
