@@ -153,13 +153,11 @@
                                                   ColumnWidth="150"
                                                   x:Name="currentGrid"
                                                   IsReadOnly="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
-                                                    <i:InvokeCommandAction Command="{Binding EditObjective}"
-                                                                           CommandParameter="{Binding Path=SelectedObjective, 
-                                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                            <DataGrid.ItemContainerStyle>
+                                                <Style TargetType="DataGridRow">
+                                                    <EventSetter Event="MouseDoubleClick" Handler="EditObjective"/>
+                                                </Style>
+                                            </DataGrid.ItemContainerStyle>
                                             <DataGrid.Columns>
                                                 <DataGridTemplateColumn Width="535">
                                                     <DataGridTemplateColumn.CellTemplate>
@@ -178,8 +176,7 @@
                                                 <DataGridTemplateColumn Width="40">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <Button Command="{Binding AddNewTask}"
-                                                                    CommandParameter="{Binding SelectedObjective}">
+                                                            <Button Click="AddNewTask">
                                                                 <Button.Template>
                                                                     <ControlTemplate>
                                                                         <Border HorizontalAlignment="Left"
@@ -260,21 +257,11 @@
                                                   BorderThickness="0"
                                                   ColumnWidth="150"
                                                   IsReadOnly="True">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
-                                                    <i:InvokeCommandAction Command="{Binding AddNewObjective}"/>
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <!--DataGrid.ItemContainerStyle>
+                                            <DataGrid.ItemContainerStyle>
                                                 <Style TargetType="DataGridRow">
-                                                    <Style.Triggers>
-                                                        <EventTrigger RoutedEvent="MouseDoubleClick">
-                                                            <Eve
-                                                        </EventTrigger>
-                                                    </Style.Triggers>
-                                                    <EventSetter Event="MouseDoubleClick" Handler="{Binding EditTask}"/>
+                                                    <EventSetter Event="MouseDoubleClick" Handler="EditTask"/>
                                                 </Style>
-                                            </-->
+                                            </DataGrid.ItemContainerStyle>
                                             <DataGrid.Columns>
                                                 <DataGridTemplateColumn Width="600">
                                                     <DataGridTemplateColumn.CellTemplate>

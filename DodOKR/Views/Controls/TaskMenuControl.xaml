@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:DodOKR"
              mc:Ignorable="d" 
              d:DesignHeight="685" d:DesignWidth="1280"
-             Height="685" Width="1280">
+             Height="685" Width="1280"
+             Visibility="{Binding Path=Visibility,UpdateSourceTrigger=PropertyChanged}">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
@@ -34,7 +35,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5" Height="685">
                         <StackPanel HorizontalAlignment="Center">
-                            <Button Click="HideTaskMenu">
+                            <Button Command="{Binding HideTaskMenu}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
@@ -46,7 +47,7 @@
                                 <Label Content="Задачи" Foreground="White" HorizontalContentAlignment="Center"/>
                             </Border>
                             <Separator Opacity="0" Height="2"/>
-                            <Button Click="TurnPersonal">
+                            <Button Command="{Binding TurnPersonal}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">
@@ -56,7 +57,7 @@
                                 </Button.Template>                                
                             </Button>                            
                             <Separator Opacity="0" Height="2"/>
-                            <Button Click="TurnTeam">
+                            <Button Command="{Binding TurnTeam}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">
@@ -66,7 +67,7 @@
                                 </Button.Template>
                             </Button>                            
                             <Separator Opacity="0" Height="2"/>
-                            <Button Click="TurnCompany">
+                            <Button Command="{Binding TurnCompany}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">
@@ -76,7 +77,7 @@
                                 </Button.Template>
                             </Button>
                             <Separator Opacity="0" Height="40"/>
-                            <Button Click="OpenTree">
+                            <Button Command="{Binding OpenTree}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">
@@ -90,7 +91,7 @@
                                 <Label Content="Настройки" Style="{StaticResource TextStyle}"/>
                             </Border>
                             <Separator Opacity="0" Height="2"/>
-                            <Button Click="OpenJoinPage">
+                            <Button Command="{Binding OpenJoinPage}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border Style="{StaticResource ButtonStyle}">

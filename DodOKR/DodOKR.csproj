@@ -11,6 +11,12 @@
 
   <ItemGroup>
     <None Remove="DodoLogo.png" />
+    <None Remove="Views\Controls\Images\Company.png" />
+    <None Remove="Views\Controls\Images\DodoLogo.png" />
+    <None Remove="Views\Controls\Images\Exit.png" />
+    <None Remove="Views\Controls\Images\Personal.png" />
+    <None Remove="Views\Controls\Images\Team.png" />
+    <None Remove="Views\Controls\Images\Tree.png" />
     <None Remove="Views\Pages\Images\Company.png" />
     <None Remove="Views\Pages\Images\Exit.png" />
     <None Remove="Views\Pages\Images\Personal.png" />
@@ -24,6 +30,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\Controls\Images\Company.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Controls\Images\DodoLogo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Controls\Images\Exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Controls\Images\Personal.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Controls\Images\Team.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Controls\Images\Tree.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Pages\Images\Company.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

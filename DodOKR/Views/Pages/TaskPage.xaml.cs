@@ -30,5 +30,14 @@ namespace DodOKR
             InitializeComponent();            
             DataContext = new TaskPageViewModel(this, grid);        
         }
+
+        private void EditObjective(object sender, MouseButtonEventArgs e) 
+            => (DataContext as TaskPageViewModel).EditObjective((Data.Task)((DataGridRow)e.Source).DataContext);
+
+        private void AddNewTask(object sender, RoutedEventArgs e) 
+            => (DataContext as TaskPageViewModel).AddNewTask((Data.Task)((Button)e.Source).DataContext);
+
+        private void EditTask(object sender, MouseButtonEventArgs e) 
+            => (DataContext as TaskPageViewModel).EditTask((Data.Task)((DataGridRow)e.Source).DataContext);
     }
 }

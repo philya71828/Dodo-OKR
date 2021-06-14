@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace DodOKR.Views.Controls
 {
-    /// <summary>
-    /// Interaction logic for GlobalTree.xaml
-    /// </summary>
     public partial class GlobalTree : UserControl
     {
         private Point scrollMousePoint = new Point();
@@ -30,7 +27,7 @@ namespace DodOKR.Views.Controls
         {
             InitializeComponent();
             this.tvm = tvm;
-            DataContext = new GlobalTreeViewModel(tree, scroll);
+            DataContext = new GlobalTreeViewModel(tree, tvm, grid);
         }
 
         private void MoveScroll(object sender, MouseEventArgs e)
@@ -53,18 +50,6 @@ namespace DodOKR.Views.Controls
         private void ButtonUp(object sender, MouseButtonEventArgs e)
         {
             scroll.ReleaseMouseCapture();
-        }
-
-        private void ShowTaskMenu(object sender, RoutedEventArgs e)
-        {
-            var element = new TaskMenuControl(tvm);
-            grid.Children.Add(element);
-            element.IsVisibleChanged += CloseTaskMenu;
-        }
-
-        private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
         }
     }
 }

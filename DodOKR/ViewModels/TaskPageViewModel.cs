@@ -17,7 +17,6 @@ namespace DodOKR.ViewModels
     {
         private TaskPage taskPage;
         private Grid grid;
-        private GlobalTree tree;
         
         public Data.Task SelectedObjective
         {
@@ -91,10 +90,7 @@ namespace DodOKR.ViewModels
         public TaskPageViewModel(TaskPage taskPage,Grid grid)
         {
             this.taskPage = taskPage;
-            this.grid = grid;
-            tree = new GlobalTree(this);
-            tree.Visibility = Visibility.Hidden;
-            grid.Children.Add(tree);
+            this.grid = grid;            
 
             currentUser = new Data.User();
             currentTeam = new Data.Team();
@@ -117,22 +113,24 @@ namespace DodOKR.ViewModels
             var element = new ObjectiveAdditionControl(this.Objectives);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
-        });
+        });        
 
-        public ICommand AddNewTask => new RelayCommand(obj => 
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+
+        public void AddNewTask(Data.Task task)
         {
-            var ind = obj as Data.Task;
-            var objective = this.Objectives[ind.Index];
+            var objective = this.Objectives[task.Index];
             var element = new TaskAdditionControl(objective);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
-        });
+        }
 
-        public ICommand EditObjective => new RelayCommand(obj =>
+        public void EditTask(Data.Task task)
         {
             var objectives = this.Objectives;
             var objective = new Data.ObjectiveMask();
-            var task = SelectedObjective;
             var i = task.Index;
             foreach (var e in objectives)
             {
@@ -148,20 +146,15 @@ namespace DodOKR.ViewModels
             var element = new TaskEditorControl(task, objective);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
-        });
+        }
 
-        public ICommand EditTask => new RelayCommand(obj =>
+        public void EditObjective(Data.Task obj)
         {
             var objectives = this.Objectives;
-            var objective = SelectedTask;
-            var element = new ObjectiveEditorControl(objective, objectives);
+            var element = new ObjectiveEditorControl(obj, objectives);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
-        });
-
-        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+        }
 
         private void ChangeProgress()
         {
@@ -205,7 +198,18 @@ namespace DodOKR.ViewModels
         }
 
         private void OpenJoinPage() => taskPage.NavigationService.GoBack();
-        private void OpenTree() => tree.Visibility = Visibility.Visible;
+        private void OpenTree()
+        {
+            var tree = new GlobalTree(this);
+            grid.Children.Add(tree);
+            this.Type = Data.PageType.Tree;
+            tree.IsVisibleChanged += CloseTree;
+        }
+
+        private void CloseTree(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            grid.Children.RemoveAt(grid.Children.Count - 1);
+        }
 
         private void Create()
         {

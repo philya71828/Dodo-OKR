@@ -21,47 +21,12 @@ namespace DodOKR
     /// </summary>
     public partial class TaskMenuControl : UserControl
     {
-        public bool IsJoinPage { get => isJoinPage; }        
-        public bool IsTreeOpened { get => isTreeOpened; }
-
-        private bool isJoinPage = false;
-        private bool isTreeOpened = false;
-
-        private TaskPageViewModel vm;
-        public TaskMenuControl(TaskPageViewModel vm)
+        public bool IsJoinPage { get => (DataContext as TaskMenuVM).IsJoinPage; }
+        public bool IsTreeOpened { get => (DataContext as TaskMenuVM).IsTreeOpened; }
+        public TaskMenuControl(TaskPageViewModel tvm)
         {
-            this.vm = vm;
             InitializeComponent();
-        }
-
-        private void HideTaskMenu(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
-        }
-
-        private void OpenJoinPage(object sender, RoutedEventArgs e)
-        {
-            isJoinPage = true;
-            this.Visibility = Visibility.Hidden;
-        }
-
-        private void TurnPersonal(object sender, RoutedEventArgs e) => Turn(Data.PageType.Personal);
-
-        private void TurnTeam(object sender, RoutedEventArgs e) => Turn(Data.PageType.Team);
-
-        private void TurnCompany(object sender, RoutedEventArgs e) => Turn(Data.PageType.Company);
-
-        private void Turn(Data.PageType type)
-        {
-            if(vm.Type!=type)
-                vm.Type = type;
-            this.Visibility = Visibility.Hidden;
-        }
-
-        private void OpenTree(object sender, RoutedEventArgs e)
-        {
-            isTreeOpened = true;
-            Turn(Data.PageType.Tree);
+            DataContext = new TaskMenuVM(tvm);
         }
     }
 }
