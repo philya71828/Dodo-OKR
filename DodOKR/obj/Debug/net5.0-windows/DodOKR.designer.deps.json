@@ -10,7 +10,7 @@
         "dependencies": {
           "Caliburn.Micro.Core": "4.0.173",
           "Microsoft.Windows.Compatibility": "5.0.0",
-          "Microsoft.Xaml.Behaviors.Wpf": "1.1.19"
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.31"
         },
         "runtime": {
           "lib/net5.0-windows7.0/Caliburn.Micro.Platform.Core.dll": {
@@ -142,11 +142,11 @@
           "System.Threading.AccessControl": "5.0.0"
         }
       },
-      "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.31": {
         "runtime": {
-          "lib/netcoreapp3.0/Microsoft.Xaml.Behaviors.dll": {
+          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
             "assemblyVersion": "1.1.0.0",
-            "fileVersion": "1.1.19.35512"
+            "fileVersion": "1.1.31.10800"
           }
         }
       },
@@ -1011,18 +1011,6 @@
             "fileVersion": "5.0.20.51904"
           }
         }
-      },
-      "System.Windows.Interactivity.WPF/2.0.20525": {
-        "runtime": {
-          "lib/net40/Microsoft.Expression.Interactions.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "2.0.20525.0"
-          },
-          "lib/net40/System.Windows.Interactivity.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "2.0.20525.0"
-          }
-        }
       }
     }
   },
@@ -1083,12 +1071,12 @@
       "path": "microsoft.windows.compatibility/5.0.0",
       "hashPath": "microsoft.windows.compatibility.5.0.0.nupkg.sha512"
     },
-    "Microsoft.Xaml.Behaviors.Wpf/1.1.19": {
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.31": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5sPWkbqImc2t1aQwIfJcKsUo7tOg1Tr8+6xVzZJB56Nzt4u9NlpcLofgdX/aRYpPKdWDA3U23Akw1KQzU5e82g==",
-      "path": "microsoft.xaml.behaviors.wpf/1.1.19",
-      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.19.nupkg.sha512"
+      "sha512": "sha512-LZpuf82ACZWldmfMuv3CTUMDh3o0xo0uHUaybR5HgqVLDBJJ9RZLykplQ/bTJd0/VDt3EhD4iDgUgbdIUAM+Kg==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.31",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512"
     },
     "runtime.linux-arm.runtime.native.System.IO.Ports/5.0.0-rtm.20519.4": {
       "type": "package",
@@ -1523,13 +1511,6 @@
       "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
-    },
-    "System.Windows.Interactivity.WPF/2.0.20525": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-0r+Le4E7hCm4zToUvBzjSUyTcuU3rFeoPa7JyTdWIzR/F7wH6+O/pWkjHIG40hIA0z1wvRdZayvoizA4wcK1dg==",
-      "path": "system.windows.interactivity.wpf/2.0.20525",
-      "hashPath": "system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
     }
   }
 }

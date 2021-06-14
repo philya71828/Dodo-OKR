@@ -19,8 +19,25 @@ namespace DodOKR.ViewModels
         private Grid grid;
         private GlobalTree tree;
         
-        public Data.Task Objective { get; }
-        public Data.Task Task { get; }
+        public Data.Task SelectedObjective
+        {
+            get => selectedObjective;
+            set
+            {
+                selectedObjective = value;
+                OnPropertyChanged("SelectedObjective");
+            }
+        }
+
+        public Data.Task SelectedTask
+        {
+            get => selectedTask;
+            set
+            {
+                selectedTask = value;
+                OnPropertyChanged("SelectedTask");
+            }
+        }
 
         private Data.User currentUser;
         private Data.Team currentTeam;
@@ -28,6 +45,8 @@ namespace DodOKR.ViewModels
         private Data.PageType type;
         private int progress;
         private ObservableCollection<Data.ObjectiveMask> objectives;
+        private Data.Task selectedObjective;
+        private Data.Task selectedTask;
 
         #region
         public ObservableCollection<Data.ObjectiveMask> Objectives 
@@ -84,43 +103,43 @@ namespace DodOKR.ViewModels
             ChangeProgress();
         }
 
-        public ICommand ShowTaskMenu => new RelayCommand(() =>
+        public ICommand ShowTaskMenu => new RelayCommand(obj =>
         {
             var element = new TaskMenuControl(this);
             grid.Children.Add(element);
             element.IsVisibleChanged += CloseTaskMenu;
         });
 
-        public ICommand OpenTreeCommand => new RelayCommand(() => OpenTree());
+        public ICommand OpenTreeCommand => new RelayCommand(obj => OpenTree());
 
-        public ICommand AddNewObjective => new RelayCommand(() =>
+        public ICommand AddNewObjective => new RelayCommand(obj =>
         {
             var element = new ObjectiveAdditionControl(this.Objectives);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
         });
 
-        public ICommand AddNewTask => new RelayCommand(()=> 
+        public ICommand AddNewTask => new RelayCommand(obj => 
         {
-            var ind = Objective;
+            var ind = obj as Data.Task;
             var objective = this.Objectives[ind.Index];
             var element = new TaskAdditionControl(objective);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
         });
 
-        public ICommand EditObjective => new RelayCommand(() =>
+        public ICommand EditObjective => new RelayCommand(obj =>
         {
             var objectives = this.Objectives;
             var objective = new Data.ObjectiveMask();
-            var task = Objective;
+            var task = SelectedObjective;
             var i = task.Index;
-            foreach (var obj in objectives)
+            foreach (var e in objectives)
             {
-                if (obj.Tasks.Count >= i && obj.Tasks.Count > 0)
-                    if (obj.Tasks[i] == task)
+                if (e.Tasks.Count >= i && e.Tasks.Count > 0)
+                    if (e.Tasks[i] == task)
                     {
-                        objective = obj;
+                        objective = e;
                         break;
                     }
 
@@ -131,18 +150,18 @@ namespace DodOKR.ViewModels
             element.IsVisibleChanged += Destroy;
         });
 
-        public ICommand EditTask => new RelayCommand(() =>
+        public ICommand EditTask => new RelayCommand(obj =>
         {
             var objectives = this.Objectives;
-            var objective = Task;
+            var objective = SelectedTask;
             var element = new ObjectiveEditorControl(objective, objectives);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
         });
 
-        public ICommand TurnPersonal => new RelayCommand(() => Turn(Data.PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(() => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(() => Turn(Data.PageType.Company));
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
 
         private void ChangeProgress()
         {

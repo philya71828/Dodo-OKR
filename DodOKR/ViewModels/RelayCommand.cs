@@ -14,14 +14,14 @@ namespace DodOKR
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
-        private readonly Action methodToExecute;
+        private readonly Action<object> methodToExecute;
         private readonly Func<bool> canExecuteEvaluator;
-        public RelayCommand(Action methodToExecute, Func<bool> canExecuteEvaluator)
+        public RelayCommand(Action<object> methodToExecute, Func<bool> canExecuteEvaluator)
         {
             this.methodToExecute = methodToExecute;
             this.canExecuteEvaluator = canExecuteEvaluator;
         }
-        public RelayCommand(Action methodToExecute)
+        public RelayCommand(Action<object> methodToExecute)
             : this(methodToExecute, null)
         {
         }
@@ -36,7 +36,7 @@ namespace DodOKR
         }
         public void Execute(object parameter)
         {
-            methodToExecute.Invoke();
+            methodToExecute.Invoke(parameter);
         }
     }
 }
