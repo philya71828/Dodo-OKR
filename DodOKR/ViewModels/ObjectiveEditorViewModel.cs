@@ -71,15 +71,15 @@ namespace DodOKR.ViewModels
             Priority = objective.Priority;
         }
 
-        public ICommand CloseControl => new RelayCommand(() => Visibility = Visibility.Hidden);
-        public ICommand DeleteObjective => new RelayCommand(() =>
+        public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
+        public ICommand DeleteObjective => new RelayCommand(obj =>
         {
             objectives.RemoveAt(Mask.Objective.Index);
             for (var i = Mask.Objective.Index; i < objectives.Count; i++)
                 objectives[i].Objective.Index--;
             Visibility = Visibility.Hidden;
         });
-        public ICommand EditObjective => new RelayCommand(() =>
+        public ICommand EditObjective => new RelayCommand(obj =>
         {
             Mask.Objective.Status = SetStatus(Mask.Objective.StartDate, Mask.Objective.FinishDate, Mask.Objective.Progress);
             Mask.Objective.Priority = Priority;

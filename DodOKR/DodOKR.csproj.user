@@ -39,6 +39,9 @@
     <Page Update="Buttons.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\EdgeButtons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Styles\PriorityStyle.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -6,152 +6,195 @@
              xmlns:local="clr-namespace:DodOKR"
              mc:Ignorable="d" 
              d:DesignHeight="685" d:DesignWidth="1280"
-             Height="685" Width="1280">
-    <Border Height="685" Width="1280" Background="White">
+             Height="685" Width="1280"
+             Visibility="{Binding Visibility, UpdateSourceTrigger=PropertyChanged}">
+    <Grid x:Name="grid" Height="685" Width="1280" Background="White">
         <Grid>
-            <Grid x:Name="grid">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
-                        <StackPanel>
-                            <Button Click="ShowTaskMenu">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Separator Opacity="0" Height="30"/>
-                            <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="40"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="250"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                            <Separator Opacity="0" Height="2"/>
-                            <Border Background="White" CornerRadius="15" Width="50" Height="35"/>
-                        </StackPanel>
-                    </Border>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
+                <StackPanel>
+                    <Button Command="{Binding ShowTaskMenu}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="30"/>
+                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
+                    <Separator Opacity="0" Height="2"/>
+                    <Button Command="{Binding TurnPersonal}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Personal.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="2"/>
+                    <Button Command="{Binding TurnTeam}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Team.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="2"/>
+                    <Button Command="{Binding TurnCompany}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Company.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="40"/>
+                    <Button Command="{Binding OpenTreeCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Tree.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="250"/>
+                    <Button>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Separator Opacity="0" Height="2"/>
+                    <Button>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Style="{StaticResource EdgeStyle}">
+                                    <Image Source="Images/Exit.png" Stretch="Fill"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
 
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Row="0">
-                            <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
-                            <Separator Opacity="0" Width="10"/>
-                            <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
-                            <Separator Opacity="0" Width="5"/>
-                            <Label Content="{Binding Progress}" FontSize="45"/>
-                            <Label Content="%" FontSize="45"/>
-                        </StackPanel>
-                        <ScrollViewer Grid.Row="1" 
-                                      HorizontalScrollBarVisibility="Auto" 
-                                      VerticalScrollBarVisibility="Auto"
-                                      Width="1200"
-                                      Height="615"
-                                      MouseRightButtonDown="PressRightButton"
-                                      MouseRightButtonUp="ButtonUp"
-                                      MouseMove="MoveScroll"
-                                      x:Name="scroll">
-                            <TreeView Name="tree" ItemContainerStyle="{StaticResource GraphStyle}" >
-                                <TreeView.Resources>
-                                    <ResourceDictionary>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
+                    <Separator Opacity="0" Width="10"/>
+                    <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
+                    <Separator Opacity="0" Width="5"/>
+                    <Label Content="{Binding Progress}" FontSize="45"/>
+                    <Label Content="%" FontSize="45"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" 
+                                    HorizontalScrollBarVisibility="Auto" 
+                                    VerticalScrollBarVisibility="Auto"
+                                    Width="1200"
+                                    Height="615"
+                                    MouseRightButtonDown="PressRightButton"
+                                    MouseRightButtonUp="ButtonUp"
+                                    MouseMove="MoveScroll"
+                                    x:Name="scroll">
+                    <TreeView Name="tree" ItemContainerStyle="{StaticResource GraphStyle}" >
+                        <TreeView.Resources>
+                            <ResourceDictionary>
+                                <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
+                                                                ItemsSource="{Binding ChildNodes}">
+                                    <Border CornerRadius="360" 
+                                                BorderThickness="3" 
+                                                Background="#fef0e5"
+                                                BorderBrush="Orange" 
+                                                MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                                MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+                                        <TextBlock Text="{Binding Text}" 
+                                                        HorizontalAlignment="Center" 
+                                                        VerticalAlignment="Center"
+                                                        Margin="5"/>
+                                    </Border>
+                                    <HierarchicalDataTemplate.ItemTemplate>
                                         <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
-                                                                  ItemsSource="{Binding ChildNodes}">
-                                            <Border CornerRadius="360" 
-                                                    BorderThickness="3" 
-                                                    Background="#fef0e5"
-                                                    BorderBrush="Orange" 
-                                                    MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
-                                                    MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
-                                                <TextBlock Text="{Binding Text}" 
-                                                           HorizontalAlignment="Center" 
-                                                           VerticalAlignment="Center"
-                                                           Margin="5"/>
+                                                                        ItemsSource="{Binding ChildNodes}">
+                                            <Border CornerRadius="10" 
+                                                        BorderThickness="3" 
+                                                        Background="#fef0e5"
+                                                        BorderBrush="Orange" 
+                                                        MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
+                                                        MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Text}" 
+                                                                        HorizontalAlignment="Left" 
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="5,5,0,0"/>
+                                                        <TextBlock Text="{Binding Head}" 
+                                                                        HorizontalAlignment="Left" 
+                                                                        VerticalAlignment="Center"
+                                                                        Margin="5,0"/>
+                                                    </StackPanel>
+                                                    <ProgressBar Height="25" Grid.Row="1"
+                                                                        Value="{Binding Progress}" 
+                                                                        VerticalAlignment="Bottom"
+                                                                        Margin="0,10,0,0"/>
+                                                </Grid>
                                             </Border>
                                             <HierarchicalDataTemplate.ItemTemplate>
                                                 <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
-                                                                          ItemsSource="{Binding ChildNodes}">
+                                                                                ItemsSource="{Binding ChildNodes}">
                                                     <Border CornerRadius="10" 
-                                                            BorderThickness="3" 
-                                                            Background="#fef0e5"
-                                                            BorderBrush="Orange" 
-                                                            MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}" 
-                                                            MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+                                                                BorderThickness="3" 
+                                                                Background="#c8c8c8"
+                                                                BorderBrush="Gray" 
+                                                                MinWidth="{Binding ActualHeight,
+                                                            RelativeSource={RelativeSource Self}}" 
+                                                                MinHeight="{Binding ActualWidth,
+                                                            RelativeSource={RelativeSource Self}}">
                                                         <Grid>
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition/>
                                                                 <RowDefinition/>
                                                             </Grid.RowDefinitions>
-                                                            <StackPanel>
-                                                                <TextBlock Text="{Binding Text}" 
-                                                                           HorizontalAlignment="Left" 
-                                                                           VerticalAlignment="Center"
-                                                                           Margin="5,5,0,0"/>
-                                                                <TextBlock Text="{Binding Head}" 
-                                                                           HorizontalAlignment="Left" 
-                                                                           VerticalAlignment="Center"
-                                                                           Margin="5,0"/>
-                                                            </StackPanel>                                                            
+                                                            <TextBlock Grid.Row="0" Text="{Binding Text}" 
+                                                                HorizontalAlignment="Center" 
+                                                                VerticalAlignment="Center"
+                                                                Margin="5"/>
                                                             <ProgressBar Height="25" Grid.Row="1"
-                                                                         Value="{Binding Progress}" 
-                                                                         VerticalAlignment="Bottom"
-                                                                         Margin="0,10,0,0"/>
-                                                        </Grid>                                                        
+                                                                                Value="{Binding Progress}" 
+                                                                                VerticalAlignment="Bottom"/>
+                                                        </Grid>
                                                     </Border>
-                                                    <HierarchicalDataTemplate.ItemTemplate>
-                                                        <HierarchicalDataTemplate DataType="{x:Type local:Node}" 
-                                                                                  ItemsSource="{Binding ChildNodes}">
-                                                            <Border CornerRadius="10" 
-                                                                    BorderThickness="3" 
-                                                                    Background="#c8c8c8"
-                                                                    BorderBrush="Gray" 
-                                                                    MinWidth="{Binding ActualHeight,
-                                                                RelativeSource={RelativeSource Self}}" 
-                                                                    MinHeight="{Binding ActualWidth,
-                                                                RelativeSource={RelativeSource Self}}">
-                                                                <Grid>
-                                                                    <Grid.RowDefinitions>
-                                                                        <RowDefinition/>
-                                                                        <RowDefinition/>
-                                                                    </Grid.RowDefinitions>
-                                                                    <TextBlock Grid.Row="0" Text="{Binding Text}" 
-                                                                   HorizontalAlignment="Center" 
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="5"/>
-                                                                    <ProgressBar Height="25" Grid.Row="1"
-                                                                                 Value="{Binding Progress}" 
-                                                                                 VerticalAlignment="Bottom"/>
-                                                                </Grid>
-                                                            </Border>
-                                                        </HierarchicalDataTemplate>
-                                                    </HierarchicalDataTemplate.ItemTemplate>
                                                 </HierarchicalDataTemplate>
                                             </HierarchicalDataTemplate.ItemTemplate>
                                         </HierarchicalDataTemplate>
-                                    </ResourceDictionary>
-                                </TreeView.Resources>
-                                <TreeView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <Grid HorizontalAlignment="Center" IsItemsHost="True" />
-                                    </ItemsPanelTemplate>
-                                </TreeView.ItemsPanel>
-                            </TreeView>
-                        </ScrollViewer>                        
-                    </Grid>
-                </Grid>
+                                    </HierarchicalDataTemplate.ItemTemplate>
+                                </HierarchicalDataTemplate>
+                            </ResourceDictionary>
+                        </TreeView.Resources>
+                        <TreeView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid HorizontalAlignment="Center" IsItemsHost="True" />
+                            </ItemsPanelTemplate>
+                        </TreeView.ItemsPanel>
+                    </TreeView>
+                </ScrollViewer>
             </Grid>
         </Grid>
-    </Border>    
+    </Grid>
 </UserControl>

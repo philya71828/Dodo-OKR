@@ -141,9 +141,9 @@ namespace DodOKR.ViewModels
             tasks = objective.Tasks;
         }
 
-        public ICommand AddTask => new RelayCommand(() => CreateNewTask());
+        public ICommand AddTask => new RelayCommand(obj => CreateNewTask());
 
-        public ICommand CloseControl => new RelayCommand(() => Visibility = Visibility.Hidden);
+        public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
 
         private void CreateNewTask()
         {

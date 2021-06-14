@@ -118,9 +118,9 @@ namespace DodOKR.ViewModels
             this.objectives = objectives;
         }
 
-        public ICommand AddObjective => new RelayCommand(() => CreateNewObjective());
+        public ICommand AddObjective => new RelayCommand(obj => CreateNewObjective());
 
-        public ICommand CloseControl => new RelayCommand(() => Visibility=Visibility.Hidden);
+        public ICommand CloseControl => new RelayCommand(obj => Visibility=Visibility.Hidden);
 
         private void CreateNewObjective()
         {

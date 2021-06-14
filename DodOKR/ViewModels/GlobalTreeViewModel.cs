@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -15,8 +16,11 @@ namespace DodOKR.ViewModels
     public class GlobalTreeViewModel : ViewModel
     {
         private TreeView tree;
-        private ScrollViewer scroll;
         private int progress;
+        private Visibility visibility;
+        private TaskPageViewModel tvm;
+        private TaskMenuControl taskMenu;
+        private Grid grid;
 
         public int Progress
         {
@@ -28,12 +32,49 @@ namespace DodOKR.ViewModels
             }
         }
 
-        public GlobalTreeViewModel(TreeView tree,ScrollViewer scroll)
+        public Visibility Visibility
         {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                OnPropertyChanged("Visibility");
+            }
+        }
+
+        public GlobalTreeViewModel(TreeView tree, TaskPageViewModel tvm, Grid grid)
+        {
+            this.tvm = tvm;
+            this.grid = grid;
             this.tree = tree;
-            this.scroll = scroll;
             this.tree.PreviewKeyDown += delegate (object obj, KeyEventArgs args) { args.Handled = true; };
             this.PopulateTreeView();
+        }
+
+        public ICommand ShowTaskMenu => new RelayCommand(obj =>
+        {
+            taskMenu = new TaskMenuControl(tvm);
+            grid.Children.Add(taskMenu);
+            taskMenu.IsVisibleChanged += CloseTaskMenu;
+        });
+
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+
+        private void Turn(Data.PageType type)
+        {
+            if (tvm.Type != type)
+            {
+                tvm.Type = type;
+                Visibility = Visibility.Hidden;
+            }                
+        }
+
+        private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(!(taskMenu.DataContext as TaskMenuVM).Turned)
+                Visibility = Visibility.Hidden;
         }
 
         private void PopulateTreeView()

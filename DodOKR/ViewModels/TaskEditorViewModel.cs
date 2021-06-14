@@ -80,26 +80,26 @@ namespace DodOKR.ViewModels
             Task.Index = task.Index;
         }
 
-        public ICommand CloseControl => new RelayCommand(() => Visibility = Visibility.Hidden);
-        public ICommand DeleteTask => new RelayCommand(() => 
+        public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
+        public ICommand DeleteTask => new RelayCommand(obj => 
         {
             objective.Tasks.RemoveAt(Task.Index);
             for (var i = Task.Index; i < objective.Tasks.Count; i++)
                 objective.Tasks[i].Index--;
-            var obj = objective.Objective;
-            obj.Progress = ChangeProgress();
-            obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            
+            var _obj = objective.Objective;
+            _obj.Progress = ChangeProgress();
+            _obj.Status = SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
             Visibility = Visibility.Hidden;
         });
-        public ICommand EditTask => new RelayCommand(() =>
+        public ICommand EditTask => new RelayCommand(obj =>
         {
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
             Task.Status = SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
             Task.Priority = Priority;
             objective.Tasks[Task.Index] = Task;
-            var obj = objective.Objective;
-            obj.Progress = ChangeProgress();
-            obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            
+            var _obj = objective.Objective;
+            _obj.Progress = ChangeProgress();
+            _obj.Status = SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
             Visibility = Visibility.Hidden;
         });
 
