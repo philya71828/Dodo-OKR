@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DodOKR.ViewModels
 {
@@ -17,7 +18,7 @@ namespace DodOKR.ViewModels
     {
         private TaskPage taskPage;
         private Grid grid;
-        
+
         public Data.Task SelectedObjective
         {
             get => selectedObjective;
@@ -90,7 +91,7 @@ namespace DodOKR.ViewModels
         public TaskPageViewModel(TaskPage taskPage,Grid grid)
         {
             this.taskPage = taskPage;
-            this.grid = grid;            
+            this.grid = grid;
 
             currentUser = new Data.User();
             currentTeam = new Data.Team();
@@ -117,7 +118,7 @@ namespace DodOKR.ViewModels
 
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
         public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));        
 
         public void AddNewTask(Data.Task task)
         {

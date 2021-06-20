@@ -7,53 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
              Visibility="{Binding Path=Visibility,UpdateSourceTrigger=PropertyChanged}">
-    <UserControl.Resources>
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-    </UserControl.Resources>
     <Grid Background="Transparent">
-        <Border Width="640" Height="720" Background="#fef0e5" CornerRadius="20" HorizontalAlignment="Right">
+        <Border Width="580" Height="680" Background="#fef0e5" CornerRadius="20" HorizontalAlignment="Right" BorderThickness="0">
             <Border.Resources>
                 <Style TargetType="Border">
                     <Setter Property="Background" Value="White"/>
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="BorderThickness" Value="0.5"/>
                     <Setter Property="CornerRadius" Value="10"/>
-                    <Setter Property="Width" Value="600"/>
+                    <Setter Property="Width" Value="500"/>
                 </Style>
             </Border.Resources>
             <StackPanel>
-                <TextBlock Text="Редактирование" Style="{StaticResource HeaderText}" HorizontalAlignment="Center"/>
-                <Border Height="80">
+                <TextBlock Text="Редактирование" Style="{StaticResource HeaderText}" HorizontalAlignment="Center"
+                           FontSize="30" Margin="10"/>
+                <Separator Height="100" Visibility="Hidden"/>
+                <Border Height="100">
                     <StackPanel>
-                        <TextBox Text="{Binding Mask.Objective.Name}"/>
-                        <TextBox Text="{Binding Mask.Objective.Comment}"/>
+                        <TextBox Text="{Binding Mask.Objective.Name}" Style="{StaticResource BodyTextBox}"/>
+                        <TextBox Text="{Binding Mask.Objective.Comment}" Style="{StaticResource BodyTextBox}" Foreground="#9b9da2"/>
                     </StackPanel>
                 </Border>
                 <Separator Height="20" Visibility="Hidden"/>
                 <Border>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Прогресс: "/>
-                        <ProgressBar Value="{Binding Mask.Objective.Progress}" Width="60"/>
-                        <TextBlock Text="{Binding Mask.Objective.Progress}"/>
-                        <TextBlock Text="%"/>
+                        <TextBlock Text="Прогресс: " Margin="5" Style="{StaticResource BodyText}"/>
+                        <ProgressBar Value="{Binding Mask.Objective.Progress}" Width="80"/>
+                        <TextBlock Text="{Binding Mask.Objective.Progress}" Style="{StaticResource BodyText}"/>
+                        <TextBlock Text="%" Style="{StaticResource BodyText}"/>
                     </StackPanel>
                 </Border>
                 <Separator Height="20" Visibility="Hidden"/>
                 <Border>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Сроки: "/>
+                        <TextBlock Text="Сроки: " Style="{StaticResource BodyText}" Margin="5"/>
                         <DatePicker SelectedDate="{Binding Mask.Objective.StartDate}"/>
-                        <TextBlock Text=" - "/>
+                        <TextBlock Text=" - " Style="{StaticResource BodyText}"/>
                         <DatePicker SelectedDate="{Binding Mask.Objective.FinishDate}"/>
                     </StackPanel>
                 </Border>
                 <Separator Height="20" Visibility="Hidden"/>
                 <Border>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Приоритет: "/>
+                        <TextBlock Text="Приоритет: " Style="{StaticResource BodyText}" Margin="5"/>
                         <ComboBox>
                             <ComboBoxItem IsSelected="{Binding IsLowPriority}">
                                 <Border Style="{StaticResource PriorityBorder}" Background="#fed01d">
@@ -76,20 +72,82 @@
                 <Separator Height="20" Visibility="Hidden"/>
                 <Border>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Статус: "/>
+                        <TextBlock Text="Статус: " Style="{StaticResource BodyText}" Margin="5"/>
                         <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding Mask.Objective.StatusColor}" 
                                 StrokeThickness="0.5" 
                                 Stroke="Black"/>
                         <Separator Visibility="Hidden" Width="5"/>
-                        <TextBlock Text="{Binding Mask.Objective.StatusStr}"/>
+                        <TextBlock Text="{Binding Mask.Objective.StatusStr}"  Style="{StaticResource BodyText}"/>
                     </StackPanel>
                 </Border>
                 <Separator Height="20" Visibility="Hidden"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Назад" Command="{Binding CloseControl}"/>
-                    <Button Content="Удалить" Command="{Binding DeleteObjective}"/>
-                    <Button Content="Сохранить" Command="{Binding EditObjective}"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Width="150" Command="{Binding CloseControl}" Grid.Column="0" HorizontalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="10" Height="30">
+                                    <TextBlock Text="Назад" Style="{StaticResource ButtonText}" Foreground="Gray"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#c8c8c8"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#cfcfcf"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Width="150" Command="{Binding DeleteObjective}" Grid.Column="1" HorizontalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="10" Height="30">
+                                    <TextBlock Text="Удалить" Style="{StaticResource ButtonText}" Foreground="Gray"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#c8c8c8"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#cfcfcf"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Width="150" Command="{Binding EditObjective}" Grid.Column="2" HorizontalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border CornerRadius="10" Height="30">
+                                    <TextBlock Text="Сохранить" Style="{StaticResource ButtonText}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="#ff6900"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Orange"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
             </StackPanel>
         </Border>
     </Grid>

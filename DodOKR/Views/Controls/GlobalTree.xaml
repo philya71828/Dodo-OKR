@@ -19,12 +19,18 @@
                     <Button Command="{Binding ShowTaskMenu}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                                <Ellipse VerticalAlignment="Top" Width="50" Height="50" Margin="10">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="Images/Avatar.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Separator Opacity="0" Height="30"/>
-                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
+                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35">
+                        <Image Source="Images/Tasks.png"/>
+                    </Border>
                     <Separator Opacity="0" Height="2"/>
                     <Button Command="{Binding TurnPersonal}">
                         <Button.Template>
@@ -59,7 +65,7 @@
                     <Button Command="{Binding OpenTreeCommand}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" Background="#bfbfbf">
                                     <Image Source="Images/Tree.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
@@ -93,22 +99,25 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
+                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10">
+                        <TextBlock Text="K1 2021" Style="{StaticResource ButtonText}"/>
+                    </Border>
                     <Separator Opacity="0" Width="10"/>
                     <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
                     <Separator Opacity="0" Width="5"/>
                     <Label Content="{Binding Progress}" FontSize="45"/>
                     <Label Content="%" FontSize="45"/>
                 </StackPanel>
-                <ScrollViewer Grid.Row="1" 
-                                    HorizontalScrollBarVisibility="Auto" 
-                                    VerticalScrollBarVisibility="Auto"
-                                    Width="1200"
-                                    Height="615"
-                                    MouseRightButtonDown="PressRightButton"
-                                    MouseRightButtonUp="ButtonUp"
-                                    MouseMove="MoveScroll"
-                                    x:Name="scroll">
+                <ScrollViewer Grid.Row="1"                                     
+                              HorizontalScrollBarVisibility="Auto"                                     
+                              VerticalScrollBarVisibility="Auto"                                   
+                              Width="1200"                                    
+                              Height="615"                                   
+                              MouseRightButtonDown="PressRightButton"                              
+                              MouseRightButtonUp="ButtonUp"                              
+                              MouseMove="MoveScroll"                              
+                              x:Name="scroll"
+                              BorderThickness="0">
                     <TreeView Name="tree" ItemContainerStyle="{StaticResource GraphStyle}" >
                         <TreeView.Resources>
                             <ResourceDictionary>

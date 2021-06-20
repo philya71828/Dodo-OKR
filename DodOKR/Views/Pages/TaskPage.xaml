@@ -22,12 +22,18 @@
                     <Button Command="{Binding ShowTaskMenu}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                                <Ellipse VerticalAlignment="Top" Width="50" Height="50" Margin="10">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="Images/Avatar.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Separator Opacity="0" Height="30"/>
-                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
+                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35">
+                        <Image Source="Images/Tasks.png"/>
+                    </Border>
                     <Separator Opacity="0" Height="2"/>
                     <Button Command="{Binding TurnPersonal}">
                         <Button.Template>
@@ -96,7 +102,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
+                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10">
+                        <TextBlock Text="K1 2021" Style="{StaticResource ButtonText}"/>
+                    </Border>
                     <Separator Opacity="0" Width="10"/>
                     <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
                     <Separator Opacity="0" Width="5"/>

@@ -38,7 +38,11 @@
                             <Button Command="{Binding HideTaskMenu}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                                        <Ellipse VerticalAlignment="Top" Width="50" Height="50" Margin="10">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="Images/Avatar.png"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>

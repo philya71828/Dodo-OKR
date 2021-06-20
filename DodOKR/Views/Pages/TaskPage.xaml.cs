@@ -28,7 +28,7 @@ namespace DodOKR
         public TaskPage()
         {
             InitializeComponent();            
-            DataContext = new TaskPageViewModel(this, grid);        
+            DataContext = new TaskPageViewModel(this, grid);
         }
 
         private void EditObjective(object sender, MouseButtonEventArgs e) 
