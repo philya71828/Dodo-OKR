@@ -12,8 +12,8 @@ namespace DodOKR
         private string text;
         private int progress;
         private string head;
-        private Data.Project project;
-        private Data.Team team;
+        private Project project;
+        private Team team;
 
         public Node()
         {
@@ -26,14 +26,14 @@ namespace DodOKR
             head = "Head";
         }
 
-        public Node(Data.Project project)
+        public Node(Project project)
         {
             text = project.Name;
             progress = project.Progress;
             head = project.Head.SurName + " " + project.Head.FirstName;
         }
 
-        public Node(Data.Team team)
+        public Node(Team team)
         {
             text = team.Name;
             progress = team.Progress;

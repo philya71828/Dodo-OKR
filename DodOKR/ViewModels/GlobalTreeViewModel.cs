@@ -1,5 +1,4 @@
-﻿using DodOKR.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class GlobalTreeViewModel : ViewModel
     {
@@ -58,11 +57,11 @@ namespace DodOKR.ViewModels
             taskMenu.IsVisibleChanged += CloseTaskMenu;
         });
 
-        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(PageType.Company));
 
-        private void Turn(Data.PageType type)
+        private void Turn(PageType type)
         {
             if (tvm.Type != type)
             {
@@ -97,7 +96,7 @@ namespace DodOKR.ViewModels
                     var objs = new ObservableCollection<ObjectiveMask>();
                     for (var i = 0; i < size; i++)
                     {
-                        var obj = new Data.Task() { Progress = rand.Next(100) };
+                        var obj = new Task() { Progress = rand.Next(100) };
                         objs.Add(new ObjectiveMask() { Obj = new[] { obj } });
                     }
                     team.Objectives = objs;

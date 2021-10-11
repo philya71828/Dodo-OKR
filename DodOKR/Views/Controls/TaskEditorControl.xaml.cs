@@ -1,5 +1,4 @@
-﻿using DodOKR.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodOKR.Views.Controls
+namespace DodOKR
 {
     /// <summary>
     /// Interaction logic for EditorControl.xaml
     /// </summary>
     public partial class TaskEditorControl : UserControl
     {
-        public TaskEditorControl(Data.Task task, Data.ObjectiveMask objective)
+        public TaskEditorControl(Task task, ObjectiveMask objective)
         {
             InitializeComponent();
             DataContext = new TaskEditorViewModel(task, objective);

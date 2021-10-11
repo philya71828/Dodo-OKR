@@ -1,5 +1,4 @@
-﻿using DodOKR.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class ObjectiveEditorViewModel :ViewModel
     {
@@ -64,7 +63,7 @@ namespace DodOKR.ViewModels
         private ObservableCollection<ObjectiveMask> objectives;
         
 
-        public ObjectiveEditorViewModel(Data.Task objective, ObservableCollection<ObjectiveMask> objectives)
+        public ObjectiveEditorViewModel(Task objective, ObservableCollection<ObjectiveMask> objectives)
         {
             this.objectives = objectives;
             Mask = new ObjectiveMask { Obj=new[] { objective} };

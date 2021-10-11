@@ -1,5 +1,4 @@
-﻿using DodOKR.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class TaskEditorViewModel:ViewModel
     {
@@ -60,12 +59,12 @@ namespace DodOKR.ViewModels
             }
         }
 
-        public Data.Task Task { get; private set; }
+        public Task Task { get; private set; }
         private ObjectiveMask objective;
 
-        public TaskEditorViewModel(Data.Task task, ObjectiveMask objective)
+        public TaskEditorViewModel(Task task, ObjectiveMask objective)
         {
-            Task = new Data.Task();
+            Task = new Task();
             this.objective = objective;            
             Task.Name = task.Name;
             Task.Comment = task.Comment;

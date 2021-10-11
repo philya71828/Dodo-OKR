@@ -1,6 +1,4 @@
-﻿using DodOKR.Data;
-using DodOKR.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodOKR.Views.Controls
+namespace DodOKR
 {
     /// <summary>
     /// Interaction logic for ObjectiveEditorControl.xaml
     /// </summary>
     public partial class ObjectiveEditorControl : UserControl
     {
-        public ObjectiveEditorControl(Data.Task objective,ObservableCollection<ObjectiveMask>objectives)
+        public ObjectiveEditorControl(Task objective,ObservableCollection<ObjectiveMask>objectives)
         {
             InitializeComponent();
             DataContext = new ObjectiveEditorViewModel(objective, objectives);

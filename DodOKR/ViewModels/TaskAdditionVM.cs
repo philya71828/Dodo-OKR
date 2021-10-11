@@ -1,5 +1,4 @@
-﻿using DodOKR.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class TaskAdditionVM:ViewModel
     {
@@ -127,8 +126,8 @@ namespace DodOKR.ViewModels
         }
         #endregion
 
-        public Data.Task Task { get; set; }
-        private ObservableCollection<Data.Task> tasks;
+        public Task Task { get; set; }
+        private ObservableCollection<Task> tasks;
         private ObjectiveMask objective;
 
         public TaskAdditionVM(ObjectiveMask objective)
@@ -149,7 +148,7 @@ namespace DodOKR.ViewModels
         {
             if (!CheckAllFields(name, comment, current, target, startDate, finishDate))
                 return;
-            Task = new Data.Task();
+            Task = new Task();
             Task.Name = name;
             Task.Comment = comment;
             Task.StartDate = startDate;

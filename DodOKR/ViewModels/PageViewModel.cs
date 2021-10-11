@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public abstract class PageViewModel : ViewModel
     {
-        public Data.PageType Type { get; set; }
+        public PageType Type { get; set; }
     }
 }

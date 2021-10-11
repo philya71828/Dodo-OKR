@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace DodOKR.Data
+namespace DodOKR
 {
     public class ObjectiveMask
     {        

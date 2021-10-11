@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using DodOKR.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class ObjectiveAdditionVM : ViewModel
     {
@@ -106,7 +105,7 @@ namespace DodOKR.ViewModels
         }
         #endregion
 
-        public Data.Task Objective { get; set; }        
+        public Task Objective { get; set; }        
         private ObservableCollection<ObjectiveMask> objectives;
 
         public ObjectiveAdditionVM(ObservableCollection<ObjectiveMask> objectives)
@@ -126,7 +125,7 @@ namespace DodOKR.ViewModels
         {
             if (!CheckAllFields(name, comment,startDate, finishDate))
                 return;
-            Objective = new Data.Task();
+            Objective = new Task();
             Objective.Name = name;
             Objective.Comment = comment;
             Objective.StartDate = startDate;
@@ -136,7 +135,7 @@ namespace DodOKR.ViewModels
             Objective.Index = objectives.Count;
             Objective.Status = Status.Good;
             objectives.Add(new ObjectiveMask() { Obj = new[] { Objective }});
-            objectives.Last().Tasks = new ObservableCollection<Data.Task>();
+            objectives.Last().Tasks = new ObservableCollection<Task>();
             Visibility = Visibility.Hidden;
         }
 

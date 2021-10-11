@@ -1,5 +1,4 @@
-﻿using DodOKR.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,7 +24,7 @@ namespace DodOKR
         public TaskAdditionControl(ObjectiveMask objective)
         {
             InitializeComponent();
-            DataContext = new ViewModels.TaskAdditionVM(objective);
+            DataContext = new TaskAdditionVM(objective);
         }
     }
 }

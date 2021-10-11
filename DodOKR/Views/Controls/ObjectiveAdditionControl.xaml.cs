@@ -14,8 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Caliburn.Micro;
-using DodOKR.Data;
-using DodOKR.ViewModels;
 
 namespace DodOKR
 {

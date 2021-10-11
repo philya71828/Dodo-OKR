@@ -1,5 +1,4 @@
-﻿using DodOKR.Views.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,14 +11,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class TaskPageViewModel : ViewModel
     {
         private TaskPage taskPage;
         private Grid grid;
 
-        public Data.Task SelectedObjective
+        public Task SelectedObjective
         {
             get => selectedObjective;
             set
@@ -29,7 +28,7 @@ namespace DodOKR.ViewModels
             }
         }
 
-        public Data.Task SelectedTask
+        public Task SelectedTask
         {
             get => selectedTask;
             set
@@ -39,17 +38,17 @@ namespace DodOKR.ViewModels
             }
         }
 
-        private Data.User currentUser;
-        private Data.Team currentTeam;
-        private Data.Company currentCompany;
-        private Data.PageType type;
+        private User currentUser;
+        private Team currentTeam;
+        private Company currentCompany;
+        private PageType type;
         private int progress;
-        private ObservableCollection<Data.ObjectiveMask> objectives;
-        private Data.Task selectedObjective;
-        private Data.Task selectedTask;
+        private ObservableCollection<ObjectiveMask> objectives;
+        private Task selectedObjective;
+        private Task selectedTask;
 
         #region
-        public ObservableCollection<Data.ObjectiveMask> Objectives 
+        public ObservableCollection<ObjectiveMask> Objectives 
         {
             get => objectives;
             set
@@ -69,7 +68,7 @@ namespace DodOKR.ViewModels
             }
         }
 
-        public Data.PageType Type
+        public PageType Type
         {
             get => type;
             set
@@ -77,9 +76,9 @@ namespace DodOKR.ViewModels
                 type = value;
                 switch (type)
                 {
-                    case Data.PageType.Personal: Objectives = currentUser.Objectives; break;
-                    case Data.PageType.Team: Objectives = currentTeam.Objectives; break;
-                    case Data.PageType.Company: Objectives = currentCompany.Objectives; break;
+                    case PageType.Personal: Objectives = currentUser.Objectives; break;
+                    case PageType.Team: Objectives = currentTeam.Objectives; break;
+                    case PageType.Company: Objectives = currentCompany.Objectives; break;
                     default:break;
                     //Словарь!!!!
                 }
@@ -93,9 +92,9 @@ namespace DodOKR.ViewModels
             this.taskPage = taskPage;
             this.grid = grid;
 
-            currentUser = new Data.User();
-            currentTeam = new Data.Team();
-            currentCompany = new Data.Company();
+            currentUser = new User();
+            currentTeam = new Team();
+            currentCompany = new Company();
             Create();
             ChangeProgress();
         }
@@ -116,11 +115,11 @@ namespace DodOKR.ViewModels
             element.IsVisibleChanged += Destroy;
         });        
 
-        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));        
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(PageType.Company));        
 
-        public void AddNewTask(Data.Task task)
+        public void AddNewTask(Task task)
         {
             var objective = this.Objectives[task.Index];
             var element = new TaskAdditionControl(objective);
@@ -128,10 +127,10 @@ namespace DodOKR.ViewModels
             element.IsVisibleChanged += Destroy;
         }
 
-        public void EditTask(Data.Task task)
+        public void EditTask(Task task)
         {
             var objectives = this.Objectives;
-            var objective = new Data.ObjectiveMask();
+            var objective = new ObjectiveMask();
             var i = task.Index;
             foreach (var e in objectives)
             {
@@ -149,7 +148,7 @@ namespace DodOKR.ViewModels
             element.IsVisibleChanged += Destroy;
         }
 
-        public void EditObjective(Data.Task obj)
+        public void EditObjective(Task obj)
         {
             var objectives = this.Objectives;
             var element = new ObjectiveEditorControl(obj, objectives);
@@ -165,7 +164,7 @@ namespace DodOKR.ViewModels
             Progress = sum / Objectives.Count;
         }
 
-        private void Turn(Data.PageType type)
+        private void Turn(PageType type)
         {
             if (this.Type != type)
                 this.Type = type;
@@ -203,7 +202,7 @@ namespace DodOKR.ViewModels
         {
             var tree = new GlobalTree(this);
             grid.Children.Add(tree);
-            this.Type = Data.PageType.Tree;
+            this.Type = PageType.Tree;
             tree.IsVisibleChanged += CloseTree;
         }
 
@@ -214,192 +213,192 @@ namespace DodOKR.ViewModels
 
         private void Create()
         {
-            currentUser.Objectives = new ObservableCollection<Data.ObjectiveMask>();
-            currentUser.Objectives.Add(new Data.ObjectiveMask()
+            currentUser.Objectives = new ObservableCollection<ObjectiveMask>();
+            currentUser.Objectives.Add(new ObjectiveMask()
             {
                 Obj = new[]
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Objective 1",
                         Comment = "Description 1",
-                        Status=Data.Status.Good,
+                        Status=Status.Good,
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.Low,
+                        Priority = Priority.Low,
                         Index = currentUser.Objectives.Count
                     }
                 },
-                Tasks = new ObservableCollection<Data.Task>
+                Tasks = new ObservableCollection<Task>
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.1",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=0
                     },
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.2",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=1
                     }
                 },
 
             });
-            currentUser.Objectives.Add(new Data.ObjectiveMask()
+            currentUser.Objectives.Add(new ObjectiveMask()
             {
                 Obj = new[]
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Objective 2",
                         Comment = "Description 2",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index = currentUser.Objectives.Count
                     }
                 },
-                Tasks = new ObservableCollection<Data.Task>
+                Tasks = new ObservableCollection<Task>
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 2.1",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=0
                     }
                 }
                 
             });
-            currentTeam.Objectives = new ObservableCollection<Data.ObjectiveMask>();
-            currentTeam.Objectives.Add(new Data.ObjectiveMask()
+            currentTeam.Objectives = new ObservableCollection<ObjectiveMask>();
+            currentTeam.Objectives.Add(new ObjectiveMask()
             {
                 Obj = new[]
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Team Objective 1",
                         Comment = "Description 1",
-                        Status=Data.Status.Good,
+                        Status=Status.Good,
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.Low,
+                        Priority = Priority.Low,
                         Index = currentTeam.Objectives.Count
                     }
                 },
-                Tasks = new ObservableCollection<Data.Task>
+                Tasks = new ObservableCollection<Task>
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.1",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=0
                     },
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.2",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index = 1
                     }
                 }                
             });
-            currentTeam.Objectives.Add(new Data.ObjectiveMask()
+            currentTeam.Objectives.Add(new ObjectiveMask()
             {
                 Obj = new[]
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Team Objective 2",
                         Comment = "Description 2",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=currentTeam.Objectives.Count
                     }
                 },
-                Tasks = new ObservableCollection<Data.Task>
+                Tasks = new ObservableCollection<Task>
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 2.1",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=0
                     }
                 }                
             });
-            currentCompany.Objectives = new ObservableCollection<Data.ObjectiveMask>();
-            currentCompany.Objectives.Add(new Data.ObjectiveMask()
+            currentCompany.Objectives = new ObservableCollection<ObjectiveMask>();
+            currentCompany.Objectives.Add(new ObjectiveMask()
             {
                 Obj = new[]
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Company Objective 1",
                         Comment = "Description 1",
-                        Status=Data.Status.Good,
+                        Status=Status.Good,
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.Low,
+                        Priority = Priority.Low,
                         Index = currentCompany.Objectives.Count
                     }
                 },
-                Tasks = new ObservableCollection<Data.Task>
+                Tasks = new ObservableCollection<Task>
                 {
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.1",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=0
                     },
-                    new Data.Task()
+                    new Task()
                     {
                         Name = "Task 1.2",
-                        Status = Data.Status.Bad,
+                        Status = Status.Bad,
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Data.Priority.High,
+                        Priority = Priority.High,
                         Index=1
                     }
                 }                
             });
-            Type = Data.PageType.Personal;
+            Type = PageType.Personal;
         }
     }
 }

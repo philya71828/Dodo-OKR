@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace DodOKR.ViewModels
+namespace DodOKR
 {
     public class TaskMenuVM: ViewModel
     {
@@ -34,16 +34,16 @@ namespace DodOKR.ViewModels
         public TaskMenuVM(TaskPageViewModel tvm)
         {
             this.tvm = tvm;
-            if (tvm.Type == Data.PageType.Tree) isTreeOpened = true;
+            if (tvm.Type == PageType.Tree) isTreeOpened = true;
         }
 
-        public ICommand TurnPersonal => new RelayCommand(obj => Turn(Data.PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(Data.PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(Data.PageType.Company));
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
+        public ICommand TurnCompany => new RelayCommand(obj => Turn(PageType.Company));
         public ICommand OpenTree=>new RelayCommand(obj =>
         {
             isTreeOpened = true;
-            Turn(Data.PageType.Tree);
+            Turn(PageType.Tree);
         });
 
         public ICommand HideTaskMenu => new RelayCommand(obj => 
@@ -58,7 +58,7 @@ namespace DodOKR.ViewModels
             CloseTaskMenu();
         });
 
-        private void Turn(Data.PageType type)
+        private void Turn(PageType type)
         {
             if (tvm.Type != type)
             {

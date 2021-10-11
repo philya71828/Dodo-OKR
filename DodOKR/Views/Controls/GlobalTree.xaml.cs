@@ -1,5 +1,4 @@
-﻿using DodOKR.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DodOKR.Views.Controls
+namespace DodOKR
 {
     public partial class GlobalTree : UserControl
     {
