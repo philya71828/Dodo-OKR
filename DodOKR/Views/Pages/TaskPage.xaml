@@ -285,21 +285,6 @@
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
                                                 <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
-                                                <DataGridTemplateColumn Width="*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Border BorderBrush="Black" BorderThickness="0.5" 
-                                                                    Background="{Binding PriorityColor}"
-                                                                    CornerRadius="20"
-                                                                    Width="80"
-                                                                    Height="30">
-                                                                <TextBlock Text="{Binding PriorityStr}" 
-                                                                           Style="{StaticResource BodyText}"
-                                                                           HorizontalAlignment="Center"/>
-                                                            </Border>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Expander.Content>

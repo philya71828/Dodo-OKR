@@ -10,7 +10,6 @@ namespace DodOKR
     {
         Personal,
         Team,
-        Company,
         Tree,
         Options
     }

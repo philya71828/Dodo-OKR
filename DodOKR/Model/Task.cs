@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,7 +11,7 @@ using System.Windows.Media;
 
 namespace DodOKR
 {
-    public class Task:INotifyPropertyChanged
+    public class Task : DbEntity, INotifyPropertyChanged
     {
         private string name;
         private string comment;
@@ -41,7 +43,8 @@ namespace DodOKR
             {Status.Good,new SolidColorBrush(Color.FromRgb(253, 211, 29))},
             {Status.Great,new SolidColorBrush(Color.FromRgb(62, 237, 34))}
         };
-
+        [Required]
+        [MaxLength(50)]
         public string Name
         {
             get => name;
@@ -60,7 +63,7 @@ namespace DodOKR
                 OnPropertyChanged("Comment");
             }
         }
-
+        [Required]
         public int Current
         {
             get => current;
@@ -70,6 +73,7 @@ namespace DodOKR
                 OnPropertyChanged("Current");
             }
         }
+        [Required]
         public int Target
         {
             get => target;
@@ -79,7 +83,7 @@ namespace DodOKR
                 OnPropertyChanged("Target");
             }
         }
-
+        [NotMapped]
         public Status Status
         {
             get => status;
@@ -93,9 +97,11 @@ namespace DodOKR
                 OnPropertyChanged("StatusColor");
             }
         }
+        [NotMapped]
         public string StatusStr => statusStr;
+        [NotMapped]
         public SolidColorBrush StatusColor => statusColor;
-
+        [Required]
         public int Progress
         {
             get => progress;
@@ -105,6 +111,7 @@ namespace DodOKR
                 OnPropertyChanged("Progress");
             }
         }
+        [Required]
         public DateTime StartDate
         {
             get => startDate;
@@ -114,6 +121,7 @@ namespace DodOKR
                 OnPropertyChanged("StartDate");
             }
         }
+        [Required]
         public DateTime FinishDate
         {
             get => finishDate;
@@ -123,6 +131,7 @@ namespace DodOKR
                 OnPropertyChanged("FinishDate");
             }
         }
+        [NotMapped]
         public string Date
         {
             get
@@ -130,8 +139,10 @@ namespace DodOKR
                 return startDate.Day + " " + months[startDate.Month] + " - " + finishDate.Day + " " + months[finishDate.Month];
             }
         }
-
+        [Required]
         public int Index { get; set; }
+        [Required]
+        public Objective Objective { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -147,6 +147,11 @@ namespace DodOKR
         [Required]
         public int Index { get; set; }
 
+        public List<Task> Tasks { get; set; } = new List<Task>();
+        public Project Project { get; set; }
+        public User User { get; set; }
+        public Team Team { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

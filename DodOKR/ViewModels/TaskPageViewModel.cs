@@ -38,6 +38,7 @@ namespace DodOKR
             }
         }
 
+        private List<ObjectiveMask> masks;
         private User currentUser;
         private Team currentTeam;
         private Company currentCompany;
@@ -76,7 +77,7 @@ namespace DodOKR
                 type = value;
                 switch (type)
                 {
-                    case PageType.Personal: Objectives = currentUser.Objectives; break;
+                    case PageType.Personal: Objectives = new ObservableCollection<ObjectiveMask>(masks); break;
                     case PageType.Team: Objectives = currentTeam.Objectives; break;
                     default:break;
                     //Словарь!!!!
@@ -91,10 +92,13 @@ namespace DodOKR
             this.taskPage = taskPage;
             this.grid = grid;
 
-            currentUser = new User();
-            currentTeam = new Team();
-            currentCompany = new Company();
-            Create();
+            currentUser = DefaultDb.User;
+            var o = DefaultDb.Objectives;
+            currentTeam = currentUser.Team;
+            masks = new List<ObjectiveMask>();            
+            foreach (var obj in currentUser.Objectives)
+                masks.Add(new ObjectiveMask { Obj = new[] { obj }, Tasks = new ObservableCollection<Task>(obj.Tasks) });
+            Type = PageType.Personal;
             ChangeProgress();
         }
 
@@ -115,8 +119,7 @@ namespace DodOKR
         });        
 
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(PageType.Company));        
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));      
 
         public void AddNewTask(Task task)
         {
@@ -162,7 +165,7 @@ namespace DodOKR
                 sum += obj.Objective.Progress;
             Progress = sum / Objectives.Count;
         }
-
+            
         private void Turn(PageType type)
         {
             if (this.Type != type)
@@ -208,145 +211,6 @@ namespace DodOKR
         private void CloseTree(object sender, DependencyPropertyChangedEventArgs e)
         {
             grid.Children.RemoveAt(grid.Children.Count - 1);
-        }
-
-        private void Create()
-        {
-            currentUser.Objectives = new ObservableCollection<ObjectiveMask>();
-            currentUser.Objectives.Add(new ObjectiveMask()
-            {
-                Obj = new[]
-                {
-                    new Objective()
-                    {
-                        Name = "Objective 1",
-                        Comment = "Description 1",
-                        Status=Status.Good,
-                        Progress=80,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index = currentUser.Objectives.Count
-                    }
-                },
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task()
-                    {
-                        Name = "Task 1.1",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=0
-                    },
-                    new Task()
-                    {
-                        Name = "Task 1.2",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=1
-                    }
-                },
-
-            });
-            currentUser.Objectives.Add(new ObjectiveMask()
-            {
-                Obj = new[]
-                {
-                    new Objective()
-                    {
-                        Name = "Objective 2",
-                        Comment = "Description 2",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index = currentUser.Objectives.Count
-                    }
-                },
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task()
-                    {
-                        Name = "Task 2.1",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=0
-                    }
-                }
-                
-            });
-            currentTeam.Objectives = new ObservableCollection<ObjectiveMask>();
-            currentTeam.Objectives.Add(new ObjectiveMask()
-            {
-                Obj = new[]
-                {
-                    new Objective()
-                    {
-                        Name = "Team Objective 1",
-                        Comment = "Description 1",
-                        Status=Status.Good,
-                        Progress=80,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index = currentTeam.Objectives.Count
-                    }
-                },
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task()
-                    {
-                        Name = "Task 1.1",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=0
-                    },
-                    new Task()
-                    {
-                        Name = "Task 1.2",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index = 1
-                    }
-                }                
-            });
-            currentTeam.Objectives.Add(new ObjectiveMask()
-            {
-                Obj = new[]
-                {
-                    new Objective()
-                    {
-                        Name = "Team Objective 2",
-                        Comment = "Description 2",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=currentTeam.Objectives.Count
-                    }
-                },
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task()
-                    {
-                        Name = "Task 2.1",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=0
-                    }
-                }                
-            });
-            Type = PageType.Personal;
         }
     }
 }

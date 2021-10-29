@@ -39,7 +39,6 @@ namespace DodOKR
 
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
         public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
-        public ICommand TurnCompany => new RelayCommand(obj => Turn(PageType.Company));
         public ICommand OpenTree=>new RelayCommand(obj =>
         {
             isTreeOpened = true;
