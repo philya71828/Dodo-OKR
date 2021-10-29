@@ -226,7 +226,6 @@ namespace DodOKR
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.Low,
                         Index = currentUser.Objectives.Count
                     }
                 },
@@ -239,7 +238,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=0
                     },
                     new Task()
@@ -249,7 +247,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=1
                     }
                 },
@@ -267,7 +264,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index = currentUser.Objectives.Count
                     }
                 },
@@ -280,7 +276,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=0
                     }
                 }
@@ -299,7 +294,6 @@ namespace DodOKR
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.Low,
                         Index = currentTeam.Objectives.Count
                     }
                 },
@@ -312,7 +306,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=0
                     },
                     new Task()
@@ -322,7 +315,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index = 1
                     }
                 }                
@@ -339,7 +331,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=currentTeam.Objectives.Count
                     }
                 },
@@ -352,7 +343,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=0
                     }
                 }                
@@ -370,7 +360,6 @@ namespace DodOKR
                         Progress=80,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.Low,
                         Index = currentCompany.Objectives.Count
                     }
                 },
@@ -383,7 +372,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=0
                     },
                     new Task()
@@ -393,7 +381,6 @@ namespace DodOKR
                         Progress = 10,
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
-                        Priority = Priority.High,
                         Index=1
                     }
                 }                

@@ -19,7 +19,6 @@ namespace DodOKR
         private string target;
         private DateTime startDate;
         private DateTime finishDate;
-        private Priority priority;
 
         private Visibility visibility;
 
@@ -81,40 +80,6 @@ namespace DodOKR
             }
         }
 
-        public Priority Priority
-        {
-            get { return priority; }
-            set
-            {
-                if (priority == value)
-                    return;
-
-                priority = value;
-                OnPropertyChanged("Priority");
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsMiddlePriority");
-                OnPropertyChanged("IsHighPriority");
-            }
-        }
-
-        public bool IsLowPriority
-        {
-            get { return Priority == Priority.Low; }
-            set { Priority = value ? Priority.Low : Priority; }
-        }
-
-        public bool IsMiddlePriority
-        {
-            get { return Priority == Priority.Middle; }
-            set { Priority = value ? Priority.Middle : Priority; }
-        }
-
-        public bool IsHighPriority
-        {
-            get { return Priority == Priority.High; }
-            set { Priority = value ? Priority.High : Priority; }
-        }
-
         public Visibility Visibility
         {
             get => visibility;
@@ -135,7 +100,6 @@ namespace DodOKR
             name = "Задача";
             startDate = DateTime.Now;
             finishDate = DateTime.Now.AddMonths(1);
-            priority = Priority.Middle;
             this.objective = objective;
             tasks = objective.Tasks;
         }
@@ -153,7 +117,6 @@ namespace DodOKR
             Task.Comment = comment;
             Task.StartDate = startDate;
             Task.FinishDate = finishDate;
-            Task.Priority = priority;
             Task.Current = int.Parse(current);
             Task.Target = int.Parse(target);
             Task.Progress = (int)(double.Parse(current) / double.Parse(target) * 100);

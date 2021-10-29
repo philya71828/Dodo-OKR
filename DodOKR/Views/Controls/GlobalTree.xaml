@@ -52,15 +52,6 @@
                         </Button.Template>
                     </Button>
                     <Separator Opacity="0" Height="2"/>
-                    <Button Command="{Binding TurnCompany}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
-                                    <Image Source="Images/Company.png" Stretch="Fill"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <Separator Opacity="0" Height="40"/>
                     <Button Command="{Binding OpenTreeCommand}">
                         <Button.Template>

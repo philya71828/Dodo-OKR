@@ -14,41 +14,6 @@ namespace DodOKR
     public class ObjectiveEditorViewModel :ViewModel
     {
         private Visibility visibility;
-        private Priority priority;
-
-        public Priority Priority
-        {
-            get => priority;
-            set
-            {
-                if (priority == value)
-                    return;
-
-                priority = value;
-                OnPropertyChanged("Priority");
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsMiddlePriority");
-                OnPropertyChanged("IsHighPriority");
-            }
-        }
-
-        public bool IsLowPriority
-        {
-            get { return Priority == Priority.Low; }
-            set { Priority = value ? Priority.Low : Priority; }
-        }
-
-        public bool IsMiddlePriority
-        {
-            get { return Priority == Priority.Middle; }
-            set { Priority = value ? Priority.Middle : Priority; }
-        }
-
-        public bool IsHighPriority
-        {
-            get { return Priority == Priority.High; }
-            set { Priority = value ? Priority.High : Priority; }
-        }
         public Visibility Visibility
         {
             get => visibility;
@@ -67,7 +32,6 @@ namespace DodOKR
         {
             this.objectives = objectives;
             Mask = new ObjectiveMask { Obj=new[] { objective} };
-            Priority = objective.Priority;
         }
 
         public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
@@ -81,7 +45,6 @@ namespace DodOKR
         public ICommand EditObjective => new RelayCommand(obj =>
         {
             Mask.Objective.Status = SetStatus(Mask.Objective.StartDate, Mask.Objective.FinishDate, Mask.Objective.Progress);
-            Mask.Objective.Priority = Priority;
             Mask.Tasks = objectives[Mask.Objective.Index].Tasks;
             objectives[Mask.Objective.Index] = Mask;
             Visibility = Visibility.Hidden;

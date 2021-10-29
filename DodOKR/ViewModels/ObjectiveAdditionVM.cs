@@ -18,7 +18,6 @@ namespace DodOKR
         private string comment;
         private DateTime startDate;
         private DateTime finishDate;
-        private Priority priority;
 
         private Visibility visibility;
 
@@ -60,40 +59,6 @@ namespace DodOKR
             }
         }
 
-        public Priority Priority
-        {
-            get { return priority; }
-            set
-            {
-                if (priority == value)
-                    return;
-
-                priority = value;
-                OnPropertyChanged("Priority");
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsMiddlePriority");
-                OnPropertyChanged("IsHighPriority");
-            }
-        }
-
-        public bool IsLowPriority
-        {
-            get => Priority == Priority.Low;
-            set => Priority = value ? Priority.Low : Priority;
-        }
-
-        public bool IsMiddlePriority
-        {
-            get => Priority == Priority.Middle;
-            set => Priority = value ? Priority.Middle : Priority;
-        }
-
-        public bool IsHighPriority
-        {
-            get => Priority == Priority.High;
-            set => Priority = value ? Priority.High : Priority;
-        }
-
         public Visibility Visibility
         {
             get => visibility;
@@ -113,7 +78,6 @@ namespace DodOKR
             name = "Цель";
             startDate = DateTime.Now;
             finishDate = DateTime.Now.AddMonths(1);
-            priority = Priority.Middle;
             this.objectives = objectives;
         }
 
@@ -130,7 +94,6 @@ namespace DodOKR
             Objective.Comment = comment;
             Objective.StartDate = startDate;
             Objective.FinishDate = finishDate;
-            Objective.Priority = priority;
             Objective.Progress = 0;
             Objective.Index = objectives.Count;
             Objective.Status = Status.Good;

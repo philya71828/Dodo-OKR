@@ -22,6 +22,7 @@ namespace DodOKR
     {
         public MainWindow()
         {
+
             InitializeComponent();
             MainFrame.Content = new JoinPage();
         }

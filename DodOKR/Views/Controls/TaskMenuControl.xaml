@@ -69,16 +69,6 @@
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
-                            </Button>                            
-                            <Separator Opacity="0" Height="2"/>
-                            <Button Command="{Binding TurnCompany}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Компании" Style="{StaticResource TextStyle}"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
                             </Button>
                             <Separator Opacity="0" Height="40"/>
                             <Button Command="{Binding OpenTree}">

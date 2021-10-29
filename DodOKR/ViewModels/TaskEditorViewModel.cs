@@ -13,41 +13,6 @@ namespace DodOKR
     public class TaskEditorViewModel:ViewModel
     {
         private Visibility visibility;
-        private Priority priority;
-
-        public Priority Priority
-        {
-            get => priority;
-            set
-            {
-                if (priority == value)
-                    return;
-
-                priority = value;
-                OnPropertyChanged("Priority");
-                OnPropertyChanged("IsLowPriority");
-                OnPropertyChanged("IsMiddlePriority");
-                OnPropertyChanged("IsHighPriority");
-            }
-        }
-
-        public bool IsLowPriority
-        {
-            get { return Priority == Priority.Low; }
-            set { Priority = value ? Priority.Low : Priority; }
-        }
-
-        public bool IsMiddlePriority
-        {
-            get { return Priority == Priority.Middle; }
-            set { Priority = value ? Priority.Middle : Priority; }
-        }
-
-        public bool IsHighPriority
-        {
-            get { return Priority == Priority.High; }
-            set { Priority = value ? Priority.High : Priority; }
-        }
 
         public Visibility Visibility
         {
@@ -73,8 +38,6 @@ namespace DodOKR
             Task.StartDate = task.StartDate;
             Task.FinishDate = task.FinishDate;
             Task.Status = task.Status;
-            Task.Priority = task.Priority;
-            Priority = task.Priority;
             Task.Progress = task.Progress;
             Task.Index = task.Index;
         }
@@ -94,7 +57,6 @@ namespace DodOKR
         {
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
             Task.Status = SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
-            Task.Priority = Priority;
             objective.Tasks[Task.Index] = Task;
             var _obj = objective.Objective;
             _obj.Progress = ChangeProgress();

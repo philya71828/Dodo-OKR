@@ -53,16 +53,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Separator Opacity="0" Height="2"/>
-                    <Button Command="{Binding TurnCompany}">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
-                                    <Image Source="Images/Company.png" Stretch="Fill"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <Separator Opacity="0" Height="40"/>
                     <Button Command="{Binding OpenTreeCommand}">
                         <Button.Template>
@@ -144,7 +134,6 @@
                     <TextBlock Grid.Column="1" Text="Статус" Style="{StaticResource HeaderText}"/>
                     <TextBlock Grid.Column="2" Text="Прогресс" Style="{StaticResource HeaderText}"/>
                     <TextBlock Grid.Column="3" Text="Даты" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Grid.Column="4" Text="Приоритет" Style="{StaticResource HeaderText}"/>
                 </Grid>
                 <Border Grid.Row="2" CornerRadius="20">
                     <ItemsControl ItemsSource="{Binding Objectives}" x:Name="objectiveGrid">
@@ -236,22 +225,7 @@
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
-                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
-                                                <DataGridTemplateColumn Width="*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Border BorderBrush="Black" BorderThickness="0.5" 
-                                                                    Background="{Binding PriorityColor}"
-                                                                    CornerRadius="20"
-                                                                    Width="80"
-                                                                    Height="30">
-                                                                <TextBlock Text="{Binding PriorityStr}" 
-                                                                           Style="{StaticResource BodyText}"
-                                                                           HorizontalAlignment="Center"/>
-                                                            </Border>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
+                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>                                                
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Expander.Header>

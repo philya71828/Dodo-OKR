@@ -25,10 +25,6 @@ namespace DodOKR
         private DateTime startDate;
         private DateTime finishDate;
 
-        private Priority priority;
-        private string priorityStr;
-        private SolidColorBrush priorityColor;
-
         private Dictionary<int, string> months = new Dictionary<int, string>
         {
             { 1,"Янв" },{ 2,"Фев" },{ 3,"Март" },{ 4,"Апр" },{ 5,"Мая" },{ 6,"Июня" },
@@ -44,17 +40,6 @@ namespace DodOKR
             {Status.Bad,new SolidColorBrush(Color.FromRgb(189, 57, 51))},
             {Status.Good,new SolidColorBrush(Color.FromRgb(253, 211, 29))},
             {Status.Great,new SolidColorBrush(Color.FromRgb(62, 237, 34))}
-        };
-
-        private Dictionary<Priority, string> priorityNames = new Dictionary<Priority, string>
-        {
-            {Priority.Low,"Низкий" },{Priority.Middle,"Средний" },{Priority.High,"Высокий" }
-        };
-        private Dictionary<Priority, SolidColorBrush> priorityColors = new Dictionary<Priority, SolidColorBrush>
-        {
-            {Priority.Low,new SolidColorBrush(Color.FromRgb(254, 208, 29))},
-            {Priority.Middle,new SolidColorBrush(Color.FromRgb(238, 144, 22))},
-            {Priority.High,new SolidColorBrush(Color.FromRgb(189, 57, 51))}
         };
 
         public string Name
@@ -143,36 +128,6 @@ namespace DodOKR
             get
             {
                 return startDate.Day + " " + months[startDate.Month] + " - " + finishDate.Day + " " + months[finishDate.Month];
-            }
-        }
-
-        public Priority Priority
-        {
-            get => priority;
-            set
-            {
-                priority = value;
-                priorityStr = priorityNames[priority];
-                priorityColor = priorityColors[priority];
-                OnPropertyChanged("Priority");
-            }
-        }
-        public string PriorityStr
-        {
-            get => priorityStr;
-            set
-            {
-                priorityStr = value;
-                OnPropertyChanged("PriorityStr");
-            }
-        }
-        public SolidColorBrush PriorityColor
-        {
-            get => priorityColor;
-            set
-            {
-                priorityColor = value;
-                OnPropertyChanged("PriorityColor");
             }
         }
 
