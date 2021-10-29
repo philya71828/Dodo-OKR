@@ -78,7 +78,6 @@ namespace DodOKR
                 {
                     case PageType.Personal: Objectives = currentUser.Objectives; break;
                     case PageType.Team: Objectives = currentTeam.Objectives; break;
-                    case PageType.Company: Objectives = currentCompany.Objectives; break;
                     default:break;
                     //Словарь!!!!
                 }
@@ -148,7 +147,7 @@ namespace DodOKR
             element.IsVisibleChanged += Destroy;
         }
 
-        public void EditObjective(Task obj)
+        public void EditObjective(Objective obj)
         {
             var objectives = this.Objectives;
             var element = new ObjectiveEditorControl(obj, objectives);
@@ -218,7 +217,7 @@ namespace DodOKR
             {
                 Obj = new[]
                 {
-                    new Task()
+                    new Objective()
                     {
                         Name = "Objective 1",
                         Comment = "Description 1",
@@ -256,7 +255,7 @@ namespace DodOKR
             {
                 Obj = new[]
                 {
-                    new Task()
+                    new Objective()
                     {
                         Name = "Objective 2",
                         Comment = "Description 2",
@@ -286,7 +285,7 @@ namespace DodOKR
             {
                 Obj = new[]
                 {
-                    new Task()
+                    new Objective()
                     {
                         Name = "Team Objective 1",
                         Comment = "Description 1",
@@ -323,7 +322,7 @@ namespace DodOKR
             {
                 Obj = new[]
                 {
-                    new Task()
+                    new Objective()
                     {
                         Name = "Team Objective 2",
                         Comment = "Description 2",
@@ -344,44 +343,6 @@ namespace DodOKR
                         StartDate = new DateTime(2021, 2, 1),
                         FinishDate = new DateTime(2021, 5, 10),
                         Index=0
-                    }
-                }                
-            });
-            currentCompany.Objectives = new ObservableCollection<ObjectiveMask>();
-            currentCompany.Objectives.Add(new ObjectiveMask()
-            {
-                Obj = new[]
-                {
-                    new Task()
-                    {
-                        Name = "Company Objective 1",
-                        Comment = "Description 1",
-                        Status=Status.Good,
-                        Progress=80,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index = currentCompany.Objectives.Count
-                    }
-                },
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task()
-                    {
-                        Name = "Task 1.1",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=0
-                    },
-                    new Task()
-                    {
-                        Name = "Task 1.2",
-                        Status = Status.Bad,
-                        Progress = 10,
-                        StartDate = new DateTime(2021, 2, 1),
-                        FinishDate = new DateTime(2021, 5, 10),
-                        Index=1
                     }
                 }                
             });

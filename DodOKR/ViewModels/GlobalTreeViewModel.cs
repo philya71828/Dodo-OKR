@@ -96,7 +96,7 @@ namespace DodOKR
                     var objs = new ObservableCollection<ObjectiveMask>();
                     for (var i = 0; i < size; i++)
                     {
-                        var obj = new Task() { Progress = rand.Next(100) };
+                        var obj = new Objective() { Progress = rand.Next(100) };
                         objs.Add(new ObjectiveMask() { Obj = new[] { obj } });
                     }
                     team.Objectives = objs;

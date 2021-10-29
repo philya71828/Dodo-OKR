@@ -70,7 +70,7 @@ namespace DodOKR
         }
         #endregion
 
-        public Task Objective { get; set; }        
+        public Objective Objective { get; set; }        
         private ObservableCollection<ObjectiveMask> objectives;
 
         public ObjectiveAdditionVM(ObservableCollection<ObjectiveMask> objectives)
@@ -89,7 +89,7 @@ namespace DodOKR
         {
             if (!CheckAllFields(name, comment,startDate, finishDate))
                 return;
-            Objective = new Task();
+            Objective = new Objective();
             Objective.Name = name;
             Objective.Comment = comment;
             Objective.StartDate = startDate;

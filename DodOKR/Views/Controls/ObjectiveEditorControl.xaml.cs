@@ -21,7 +21,7 @@ namespace DodOKR
     /// </summary>
     public partial class ObjectiveEditorControl : UserControl
     {
-        public ObjectiveEditorControl(Task objective,ObservableCollection<ObjectiveMask>objectives)
+        public ObjectiveEditorControl(Objective objective,ObservableCollection<ObjectiveMask>objectives)
         {
             InitializeComponent();
             DataContext = new ObjectiveEditorViewModel(objective, objectives);

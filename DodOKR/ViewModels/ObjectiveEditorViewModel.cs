@@ -28,7 +28,7 @@ namespace DodOKR
         private ObservableCollection<ObjectiveMask> objectives;
         
 
-        public ObjectiveEditorViewModel(Task objective, ObservableCollection<ObjectiveMask> objectives)
+        public ObjectiveEditorViewModel(Objective objective, ObservableCollection<ObjectiveMask> objectives)
         {
             this.objectives = objectives;
             Mask = new ObjectiveMask { Obj=new[] { objective} };

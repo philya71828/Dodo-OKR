@@ -13,8 +13,8 @@ namespace DodOKR
 {
     public class ObjectiveMask
     {        
-        public Task Objective { get => Obj[0]; }
-        public Task[] Obj { get; set; }
+        public Objective Objective { get => Obj[0]; }
+        public Objective[] Obj { get; set; }
         public ObservableCollection<Task> Tasks { get; set; }        
     }
 }

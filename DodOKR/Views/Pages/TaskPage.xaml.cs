@@ -28,7 +28,7 @@ namespace DodOKR
         }
 
         private void EditObjective(object sender, MouseButtonEventArgs e) 
-            => (DataContext as TaskPageViewModel).EditObjective((Task)((DataGridRow)e.Source).DataContext);
+            => (DataContext as TaskPageViewModel).EditObjective((Objective)((DataGridRow)e.Source).DataContext);
 
         private void AddNewTask(object sender, RoutedEventArgs e) 
             => (DataContext as TaskPageViewModel).AddNewTask((Task)((Button)e.Source).DataContext);
