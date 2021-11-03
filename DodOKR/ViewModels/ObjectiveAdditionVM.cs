@@ -81,6 +81,7 @@ namespace DodOKR
             this.objectives = objectives;
         }
 
+        //Поправить иерархию (мб добавить делегирование)
         public ICommand AddObjective => new RelayCommand(obj => CreateNewObjective());
 
         public ICommand CloseControl => new RelayCommand(obj => Visibility=Visibility.Hidden);
@@ -102,6 +103,7 @@ namespace DodOKR
             Visibility = Visibility.Hidden;
         }
 
+        //Инкапсулировать
         private bool CheckAllFields(string name, string comment, DateTime? start, DateTime? finish)
         {
             var a = name != "";

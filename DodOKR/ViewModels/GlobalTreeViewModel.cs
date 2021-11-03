@@ -57,6 +57,7 @@ namespace DodOKR
             taskMenu.IsVisibleChanged += CloseTaskMenu;
         });
 
+        //Сделать общий переключатель
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
         public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
 
@@ -68,6 +69,7 @@ namespace DodOKR
                 Visibility = Visibility.Hidden;
             }                
         }
+        //
 
         private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
         {

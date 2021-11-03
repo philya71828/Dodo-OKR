@@ -104,6 +104,7 @@ namespace DodOKR
             tasks = objective.Tasks;
         }
 
+        //Поправить иерархию (мб добавить делегирование)
         public ICommand AddTask => new RelayCommand(obj => CreateNewTask());
 
         public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
@@ -129,6 +130,7 @@ namespace DodOKR
             Visibility = Visibility.Hidden;
         }
 
+        //Инкапсулировать
         private bool CheckAllFields(string name, string comment, string target, string current,
                                     DateTime? start, DateTime? finish)
         {
@@ -143,6 +145,7 @@ namespace DodOKR
             return a && b && c && d && g && h;
         }
 
+        //Инкапсулировать
         private Status SetStatus(DateTime start, DateTime finish, int progress)
         {
             double a = DateTime.Now.Subtract(start).Days; 
@@ -155,6 +158,7 @@ namespace DodOKR
             return Status.Great;
         }
 
+        //Инкапсулировать
         private int ChangeProgress()
         {
             var sum = 0;

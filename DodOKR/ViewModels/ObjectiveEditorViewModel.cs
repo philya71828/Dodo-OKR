@@ -50,6 +50,7 @@ namespace DodOKR
             Visibility = Visibility.Hidden;
         });
 
+        //Инкапсулировать
         private Status SetStatus(DateTime start, DateTime finish, int progress)
         {
             double a = DateTime.Now.Subtract(start).Days;

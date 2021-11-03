@@ -11,13 +11,11 @@ using System.Windows.Media;
 
 namespace DodOKR
 {
+    //У цели не должно быть current и target
     public class Objective : DbEntity, INotifyPropertyChanged
     {
         private string name;
         private string comment;
-
-        private int current;
-        private int target;
 
         private Status status;
         private string statusStr;
@@ -62,28 +60,6 @@ namespace DodOKR
             {
                 comment = value;
                 OnPropertyChanged("Comment");
-            }
-        }
-
-        [Required]
-        public int Current
-        {
-            get => current;
-            set
-            {
-                current = value;
-                OnPropertyChanged("Current");
-            }
-        }
-
-        [Required]
-        public int Target
-        {
-            get => target;
-            set
-            {
-                target = value;
-                OnPropertyChanged("Target");
             }
         }
 

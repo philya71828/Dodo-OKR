@@ -37,6 +37,7 @@ namespace DodOKR
             if (tvm.Type == PageType.Tree) isTreeOpened = true;
         }
 
+        //Переключатель
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
         public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
         public ICommand OpenTree=>new RelayCommand(obj =>

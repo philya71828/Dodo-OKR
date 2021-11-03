@@ -41,7 +41,6 @@ namespace DodOKR
         private List<ObjectiveMask> masks;
         private User currentUser;
         private Team currentTeam;
-        private Company currentCompany;
         private PageType type;
         private int progress;
         private ObservableCollection<ObjectiveMask> objectives;
@@ -93,11 +92,17 @@ namespace DodOKR
             this.grid = grid;
 
             currentUser = DefaultDb.User;
-            var o = DefaultDb.Objectives;
             currentTeam = currentUser.Team;
-            masks = new List<ObjectiveMask>();            
+            masks = new List<ObjectiveMask>();
+            //Исправить
             foreach (var obj in currentUser.Objectives)
+            {
+                obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);
+                foreach(var task in obj.Tasks)
+                    task.Status = SetStatus(task.StartDate, task.FinishDate, task.Progress);
                 masks.Add(new ObjectiveMask { Obj = new[] { obj }, Tasks = new ObservableCollection<Task>(obj.Tasks) });
+            }
+            //
             Type = PageType.Personal;
             ChangeProgress();
         }
@@ -144,7 +149,6 @@ namespace DodOKR
                     }
 
             }
-
             var element = new TaskEditorControl(task, objective);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
@@ -158,6 +162,7 @@ namespace DodOKR
             element.IsVisibleChanged += Destroy;
         }
 
+        //Инкапсулировать
         private void ChangeProgress()
         {
             var sum = 0;
@@ -211,6 +216,19 @@ namespace DodOKR
         private void CloseTree(object sender, DependencyPropertyChangedEventArgs e)
         {
             grid.Children.RemoveAt(grid.Children.Count - 1);
+        }
+
+        //Убрать
+        private Status SetStatus(DateTime start, DateTime finish, int progress)
+        {
+            double a = DateTime.Now.Subtract(start).Days;
+            double b = finish.Subtract(start).Days;
+            var res = progress - (a / b * 100);
+            if (res < -20)
+                return Status.Bad;
+            if (res < 20)
+                return Status.Good;
+            return Status.Great;
         }
     }
 }

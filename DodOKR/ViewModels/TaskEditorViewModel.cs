@@ -76,6 +76,7 @@ namespace DodOKR
             return Status.Great;
         }
 
+        //Инкапсулировать
         private int ChangeProgress()
         {
             var sum = 0;

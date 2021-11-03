@@ -80,10 +80,9 @@ namespace DodOKR
                 {
                     Name = "Objective 1",
                     Comment = "Objective 1",
-                    Current = 1,
-                    Target = 10,
                     StartDate = new DateTime(2001, 6, 28),
                     FinishDate = new DateTime(2021, 10, 19),
+                    Progress = 10,
                     User = user1,
                     Index = 1
                 };
@@ -91,10 +90,9 @@ namespace DodOKR
                 {
                     Name = "Objective 1",
                     Comment = "Objective 1",
-                    Current = 1,
-                    Target = 10,
                     StartDate = new DateTime(2001, 8, 28),
                     FinishDate = new DateTime(2025, 10, 11),
+                    Progress = 10,
                     User = user1,
                     Index = 2
                 };
@@ -107,6 +105,7 @@ namespace DodOKR
                     StartDate = new DateTime(2001, 6, 28),
                     FinishDate = new DateTime(2021, 10, 19),
                     Objective = objective1,
+                    Progress = 10,
                     Index = 1
                 };
                 Task task2 = new Task
@@ -118,6 +117,7 @@ namespace DodOKR
                     StartDate = new DateTime(2001, 8, 28),
                     FinishDate = new DateTime(2025, 10, 11),
                     Objective = objective2,
+                    Progress = 10,
                     Index = 1
                 };
                 Task task3 = new Task
@@ -129,6 +129,7 @@ namespace DodOKR
                     StartDate = new DateTime(2001, 6, 28),
                     FinishDate = new DateTime(2005, 10, 19),
                     Objective = objective2,
+                    Progress = 10,
                     Index = 2
                 };
                 db.Objectives.AddRange(objective1, objective2);
