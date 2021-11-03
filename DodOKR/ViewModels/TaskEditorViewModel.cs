@@ -49,41 +49,19 @@ namespace DodOKR
             for (var i = Task.Index; i < objective.Tasks.Count; i++)
                 objective.Tasks[i].Index--;
             var _obj = objective.Objective;
-            _obj.Progress = ChangeProgress();
-            _obj.Status = SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
+            _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
+            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
             Visibility = Visibility.Hidden;
         });
         public ICommand EditTask => new RelayCommand(obj =>
         {
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
-            Task.Status = SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
+            Task.Status = DataChanger.SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
             objective.Tasks[Task.Index] = Task;
             var _obj = objective.Objective;
-            _obj.Progress = ChangeProgress();
-            _obj.Status = SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
+            _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
+            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
             Visibility = Visibility.Hidden;
         });
-
-        private Status SetStatus(DateTime start, DateTime finish, int progress)
-        {
-            double a = DateTime.Now.Subtract(start).Days;
-            double b = finish.Subtract(start).Days;
-            var res = progress - (a / b * 100);
-            if (res < -20)
-                return Status.Bad;
-            if (res < 20)
-                return Status.Good;
-            return Status.Great;
-        }
-
-        //Инкапсулировать
-        private int ChangeProgress()
-        {
-            var sum = 0;
-            var tasks = objective.Tasks;
-            foreach (var task in tasks)
-                sum += task.Progress;
-            return tasks.Count == 0 ? 0 : sum / tasks.Count;
-        }
     }
 }

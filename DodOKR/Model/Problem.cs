@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace DodOKR
 {
-    public abstract class Problem : DbEntity
+    public abstract class Problem : DbEntity, INotifyPropertyChanged
     {
         private string name;
         private string comment;

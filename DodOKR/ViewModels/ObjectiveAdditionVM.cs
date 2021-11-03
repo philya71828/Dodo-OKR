@@ -88,7 +88,7 @@ namespace DodOKR
 
         private void CreateNewObjective()
         {
-            if (!CheckAllFields(name, comment,startDate, finishDate))
+            if (!DataChanger.CheckObjectiveField(name, comment,startDate, finishDate))
                 return;
             Objective = new Objective();
             Objective.Name = name;
@@ -101,17 +101,6 @@ namespace DodOKR
             objectives.Add(new ObjectiveMask() { Obj = new[] { Objective }});
             objectives.Last().Tasks = new ObservableCollection<Task>();
             Visibility = Visibility.Hidden;
-        }
-
-        //Инкапсулировать
-        private bool CheckAllFields(string name, string comment, DateTime? start, DateTime? finish)
-        {
-            var a = name != "";
-            var b = comment != "";
-            var c = start != null;
-            var d = finish != null;
-
-            return a & b & c & d;
         }
     }
 }

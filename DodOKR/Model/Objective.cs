@@ -12,7 +12,7 @@ using System.Windows.Media;
 namespace DodOKR
 {
     //У цели не должно быть current и target
-    public class Objective : Problem, INotifyPropertyChanged
+    public class Objective : Problem
     {
         public List<Task> Tasks { get; set; } = new List<Task>();
         public Project Project { get; set; }

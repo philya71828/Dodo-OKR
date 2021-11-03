@@ -111,7 +111,7 @@ namespace DodOKR
 
         private void CreateNewTask()
         {
-            if (!CheckAllFields(name, comment, current, target, startDate, finishDate))
+            if (!DataChanger.CheckTaskField(name, comment, current, target, startDate, finishDate))
                 return;
             Task = new Task();
             Task.Name = name;
@@ -121,50 +121,13 @@ namespace DodOKR
             Task.Current = int.Parse(current);
             Task.Target = int.Parse(target);
             Task.Progress = (int)(double.Parse(current) / double.Parse(target) * 100);
-            Task.Status = SetStatus(startDate, finishDate, Task.Progress);
+            Task.Status = DataChanger.SetStatus(startDate, finishDate, Task.Progress);
             Task.Index = objective.Tasks.Count;
             tasks.Add(Task);
             var obj = objective.Objective;
-            obj.Progress = ChangeProgress();
-            obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            
+            obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
+            obj.Status = DataChanger.SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            
             Visibility = Visibility.Hidden;
-        }
-
-        //Инкапсулировать
-        private bool CheckAllFields(string name, string comment, string target, string current,
-                                    DateTime? start, DateTime? finish)
-        {
-            int num;
-            var a = name != "";
-            var b = comment != "";
-            var c = start != null;
-            var d = finish != null;
-            var g = target != "" && int.TryParse(target, out num);
-            var h = current != "" && int.TryParse(current, out num);
-
-            return a && b && c && d && g && h;
-        }
-
-        //Инкапсулировать
-        private Status SetStatus(DateTime start, DateTime finish, int progress)
-        {
-            double a = DateTime.Now.Subtract(start).Days; 
-            double b = finish.Subtract(start).Days;
-            var res = progress - (a / b * 100);
-            if (res < -20)
-                return Status.Bad;
-            if (res < 20)
-                return Status.Good;
-            return Status.Great;
-        }
-
-        //Инкапсулировать
-        private int ChangeProgress()
-        {
-            var sum = 0;
-            foreach (var task in objective.Tasks)
-                sum += task.Progress;
-            return sum / objective.Tasks.Count;
         }
     }
 }

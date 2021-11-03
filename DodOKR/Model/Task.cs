@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace DodOKR
 {
-    public class Task : Problem, INotifyPropertyChanged
+    public class Task : Problem
     {
 
         private int current;

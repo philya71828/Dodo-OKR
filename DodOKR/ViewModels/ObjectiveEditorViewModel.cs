@@ -44,23 +44,10 @@ namespace DodOKR
         });
         public ICommand EditObjective => new RelayCommand(obj =>
         {
-            Mask.Objective.Status = SetStatus(Mask.Objective.StartDate, Mask.Objective.FinishDate, Mask.Objective.Progress);
+            Mask.Objective.Status = DataChanger.SetStatus(Mask.Objective.StartDate, Mask.Objective.FinishDate, Mask.Objective.Progress);
             Mask.Tasks = objectives[Mask.Objective.Index].Tasks;
             objectives[Mask.Objective.Index] = Mask;
             Visibility = Visibility.Hidden;
         });
-
-        //Инкапсулировать
-        private Status SetStatus(DateTime start, DateTime finish, int progress)
-        {
-            double a = DateTime.Now.Subtract(start).Days;
-            double b = finish.Subtract(start).Days;
-            var res = progress - (a / b * 100);
-            if (res < -20)
-                return Status.Bad;
-            if (res < 20)
-                return Status.Good;
-            return Status.Great;
-        }
     }
 }
