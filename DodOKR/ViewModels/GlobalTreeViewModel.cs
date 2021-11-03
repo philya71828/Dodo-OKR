@@ -100,7 +100,7 @@ namespace DodOKR
                         var obj = new Objective() { Progress = rand.Next(100) };
                         objs.Add(new ObjectiveMask() { Obj = new[] { obj } });
                     }
-                    team.Objectives = objs;
+                    team.Objectives = objs.Select(o=>o.Obj[0]).ToList();
                     teams.Add(team);
                 }
                 project.Teams = teams;

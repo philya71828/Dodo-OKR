@@ -9,7 +9,7 @@ namespace DodOKR
     public static class DefaultDb
     {
         public static User User { get; set; }
-        public static Objective[] Objectives { get; set; }
+        public static Team Team { get; set; }
         public static void ResetDb()
         {
             using (ApplicationContext db = new ApplicationContext(Connector.Options))
@@ -84,7 +84,7 @@ namespace DodOKR
                     FinishDate = new DateTime(2021, 10, 19),
                     Progress = 10,
                     User = user1,
-                    Index = 1
+                    Index = 0
                 };
                 Objective objective2 = new Objective
                 {
@@ -94,7 +94,7 @@ namespace DodOKR
                     FinishDate = new DateTime(2025, 10, 11),
                     Progress = 10,
                     User = user1,
-                    Index = 2
+                    Index = 1
                 };
                 Task task1 = new Task
                 {
@@ -106,7 +106,7 @@ namespace DodOKR
                     FinishDate = new DateTime(2021, 10, 19),
                     Objective = objective1,
                     Progress = 10,
-                    Index = 1
+                    Index = 0
                 };
                 Task task2 = new Task
                 {
@@ -118,7 +118,7 @@ namespace DodOKR
                     FinishDate = new DateTime(2025, 10, 11),
                     Objective = objective2,
                     Progress = 10,
-                    Index = 1
+                    Index = 0
                 };
                 Task task3 = new Task
                 {
@@ -130,12 +130,45 @@ namespace DodOKR
                     FinishDate = new DateTime(2005, 10, 19),
                     Objective = objective2,
                     Progress = 10,
-                    Index = 2
+                    Index = 1
+                };
+                Objective teamObjective1 = new Objective
+                {
+                    Name = "Objective 1",
+                    Comment = "Objective 1",
+                    StartDate = new DateTime(2001, 6, 28),
+                    FinishDate = new DateTime(2021, 10, 19),
+                    Progress = 10,
+                    Team = team1,
+                    Index = 0
+                };
+                Task teamTask1 = new Task
+                {
+                    Name = "Заказы",
+                    Comment = "Заказы",
+                    Current = 1,
+                    Target = 10,
+                    StartDate = new DateTime(2001, 6, 28),
+                    FinishDate = new DateTime(2021, 10, 19),
+                    Objective = objective1,
+                    Progress = 10,
+                    Index = 0
+                };
+                Task teamTask2 = new Task
+                {
+                    Name = "Пицца",
+                    Comment = "Делайте много пиццы",
+                    Current = 1,
+                    Target = 10,
+                    StartDate = new DateTime(2001, 8, 28),
+                    FinishDate = new DateTime(2025, 10, 11),
+                    Objective = objective2,
+                    Progress = 10,
+                    Index = 0
                 };
                 db.Objectives.AddRange(objective1, objective2);
                 db.Tasks.AddRange(task1, task2, task3);
                 User = user1;
-                Objectives = new[] { objective1, objective2 };
 
                 db.SaveChanges();
             }

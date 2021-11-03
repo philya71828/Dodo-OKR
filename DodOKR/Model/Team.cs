@@ -15,8 +15,7 @@ namespace DodOKR
         public string Name { get; set; }
         [Required]
         public List<User> Users { get; set; } = new List<User>();
-        [Required]
-        public ObservableCollection<ObjectiveMask> Objectives { get; set; } = new ObservableCollection<ObjectiveMask>();
+        public List<Objective> Objectives { get; set; } = new List<Objective>();
         [Required]
         public Company Company { get; set; }
         public Project Project { get; set; }
@@ -26,7 +25,7 @@ namespace DodOKR
             {
                 var result = 0;
                 foreach (var e in Objectives)
-                    result += e.Objective.Progress;
+                    result += e.Progress;
                 return result / Objectives.Count;
             }
         }

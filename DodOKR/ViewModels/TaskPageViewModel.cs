@@ -38,7 +38,9 @@ namespace DodOKR
             }
         }
 
-        private List<ObjectiveMask> masks;
+        private List<ObjectiveMask> uMasks;
+        private List<ObjectiveMask> objMasks;
+
         private User currentUser;
         private Team currentTeam;
         private PageType type;
@@ -74,13 +76,8 @@ namespace DodOKR
             set
             {
                 type = value;
-                switch (type)
-                {
-                    case PageType.Personal: Objectives = new ObservableCollection<ObjectiveMask>(masks); break;
-                    case PageType.Team: Objectives = currentTeam.Objectives; break;
-                    default:break;
-                    //Словарь!!!!
-                }
+                var mask = type == PageType.Personal ? uMasks : objMasks;
+                Objectives = new ObservableCollection<ObjectiveMask>(mask);
                 OnPropertyChanged("Type");
             }
         }
@@ -92,19 +89,24 @@ namespace DodOKR
             this.grid = grid;
 
             currentUser = DefaultDb.User;
-            currentTeam = currentUser.Team;
-            masks = new List<ObjectiveMask>();
-            //Исправить
-            foreach (var obj in currentUser.Objectives)
-            {
-                obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);
-                foreach(var task in obj.Tasks)
-                    task.Status = SetStatus(task.StartDate, task.FinishDate, task.Progress);
-                masks.Add(new ObjectiveMask { Obj = new[] { obj }, Tasks = new ObservableCollection<Task>(obj.Tasks) });
-            }
-            //
+            currentTeam = DefaultDb.User.Team;
+            uMasks = FillMask(currentUser.Objectives);
+            objMasks = FillMask(currentTeam.Objectives);
             Type = PageType.Personal;
             ChangeProgress();
+        }
+
+        private List<ObjectiveMask> FillMask(List<Objective> objectives)
+        {
+            var mask = new List<ObjectiveMask>();
+            foreach (var obj in objectives)
+            {
+                obj.Status = SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);
+                foreach (var task in obj.Tasks)
+                    task.Status = SetStatus(task.StartDate, task.FinishDate, task.Progress);
+                mask.Add(new ObjectiveMask { Obj = new[] { obj }, Tasks = new ObservableCollection<Task>(obj.Tasks) });
+            }
+            return mask;
         }
 
         public ICommand ShowTaskMenu => new RelayCommand(obj =>

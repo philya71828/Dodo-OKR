@@ -27,9 +27,6 @@ namespace DodOKR
         [MaxLength(50)]
         public string Password { get; set; }
         public Team Team { get; set; }
-        [Column("Objectives")]
         public List<Objective> Objectives { get; set; } = new List<Objective>();
-        //[NotMapped]
-        //public ObservableCollection<ObjectiveMask> Objectives { get; set; }
     }
 }
