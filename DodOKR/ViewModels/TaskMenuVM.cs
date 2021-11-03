@@ -62,9 +62,9 @@ namespace DodOKR
         {
             if (tvm.Type != type)
             {
-                tvm.Type = type;
-                CloseTaskMenu();
+                tvm.Type = type;                
             }
+            CloseTaskMenu();
         }
 
         private void CloseTaskMenu() => Visibility = Visibility.Hidden;

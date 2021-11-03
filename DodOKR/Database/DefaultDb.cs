@@ -169,6 +169,9 @@ namespace DodOKR
                 db.Objectives.AddRange(objective1, objective2);
                 db.Tasks.AddRange(task1, task2, task3);
                 User = user1;
+                teamObjective1.Tasks.Add(teamTask1);
+                teamObjective1.Tasks.Add(teamTask2);
+                User.Team.Objectives.Add(teamObjective1);
 
                 db.SaveChanges();
             }

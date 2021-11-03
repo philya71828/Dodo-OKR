@@ -63,10 +63,10 @@ namespace DodOKR
 
         private void Turn(PageType type)
         {
+            Visibility = Visibility.Hidden;
             if (tvm.Type != type)
             {
-                tvm.Type = type;
-                Visibility = Visibility.Hidden;
+                tvm.Type = type;                
             }                
         }
         //

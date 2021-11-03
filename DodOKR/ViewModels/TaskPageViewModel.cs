@@ -39,7 +39,7 @@ namespace DodOKR
         }
 
         private List<ObjectiveMask> uMasks;
-        private List<ObjectiveMask> objMasks;
+        private List<ObjectiveMask> tMasks;
 
         private User currentUser;
         private Team currentTeam;
@@ -76,7 +76,7 @@ namespace DodOKR
             set
             {
                 type = value;
-                var mask = type == PageType.Personal ? uMasks : objMasks;
+                var mask = type == PageType.Personal ? uMasks : tMasks;
                 Objectives = new ObservableCollection<ObjectiveMask>(mask);
                 OnPropertyChanged("Type");
             }
@@ -91,7 +91,7 @@ namespace DodOKR
             currentUser = DefaultDb.User;
             currentTeam = DefaultDb.User.Team;
             uMasks = FillMask(currentUser.Objectives);
-            objMasks = FillMask(currentTeam.Objectives);
+            tMasks = FillMask(currentTeam.Objectives);
             Type = PageType.Personal;
             Progress = DataChanger.ChangeProgress(Objectives.Select(o => o.Obj[0]).ToList());
         }
@@ -149,7 +149,6 @@ namespace DodOKR
                         objective = e;
                         break;
                     }
-
             }
             var element = new TaskEditorControl(task, objective);
             grid.Children.Add(element);
@@ -166,8 +165,8 @@ namespace DodOKR
             
         private void Turn(PageType type)
         {
-            if (this.Type != type)
-                this.Type = type;
+            if (Type != type)
+                Type = type;
         }
 
         private void CloseTaskMenu(object sender, DependencyPropertyChangedEventArgs e)
