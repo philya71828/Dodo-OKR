@@ -117,7 +117,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Width="150" Command="{Binding DeleteTask}" Grid.Column="1" HorizontalAlignment="Center">
+                    <Button Width="150" Command="{Binding Delete}" Grid.Column="1" HorizontalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border CornerRadius="10" Height="30">
@@ -137,7 +137,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Width="150" Command="{Binding EditTask}" Grid.Column="2" HorizontalAlignment="Center">
+                    <Button Width="150" Command="{Binding Edit}" Grid.Column="2" HorizontalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border CornerRadius="10" Height="30">

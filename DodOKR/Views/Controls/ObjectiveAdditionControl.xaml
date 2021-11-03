@@ -118,7 +118,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Width="170" Command="{Binding AddObjective}" Grid.Column="1" HorizontalAlignment="Center">
+                        <Button Width="170" Command="{Binding Add}" Grid.Column="1" HorizontalAlignment="Center">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Border CornerRadius="10" Height="30">

@@ -10,20 +10,8 @@ using System.Windows.Input;
 
 namespace DodOKR
 {
-    public class TaskEditorViewModel:ViewModel
+    public class TaskEditorViewModel : ControlViewModel
     {
-        private Visibility visibility;
-
-        public Visibility Visibility
-        {
-            get => visibility;
-            set
-            {
-                visibility = value;
-                OnPropertyChanged("Visibility");
-            }
-        }
-
         public Task Task { get; private set; }
         private ObjectiveMask objective;
 
@@ -42,26 +30,26 @@ namespace DodOKR
             Task.Index = task.Index;
         }
 
-        public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
-        public ICommand DeleteTask => new RelayCommand(obj => 
+        protected override void DeleteProblem()
         {
             objective.Tasks.RemoveAt(Task.Index);
             for (var i = Task.Index; i < objective.Tasks.Count; i++)
                 objective.Tasks[i].Index--;
             var _obj = objective.Objective;
             _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
-            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
+            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);
             Visibility = Visibility.Hidden;
-        });
-        public ICommand EditTask => new RelayCommand(obj =>
+        }
+
+        protected override void EditProblem()
         {
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
             Task.Status = DataChanger.SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
             objective.Tasks[Task.Index] = Task;
             var _obj = objective.Objective;
             _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
-            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);            
+            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);
             Visibility = Visibility.Hidden;
-        });
+        }
     }
 }

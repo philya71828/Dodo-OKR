@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace DodOKR
 {
-    public class TaskAdditionVM:ViewModel
+    public class TaskAdditionVM : ControlViewModel
     {
         private string name;
         private string comment;
@@ -19,8 +19,6 @@ namespace DodOKR
         private string target;
         private DateTime startDate;
         private DateTime finishDate;
-
-        private Visibility visibility;
 
         #region
         public string Name
@@ -79,16 +77,6 @@ namespace DodOKR
                 OnPropertyChanged("FinishDate");
             }
         }
-
-        public Visibility Visibility
-        {
-            get => visibility;
-            set
-            {
-                visibility = value;
-                OnPropertyChanged("Visibility");
-            }
-        }
         #endregion
 
         public Task Task { get; set; }
@@ -104,12 +92,7 @@ namespace DodOKR
             tasks = objective.Tasks;
         }
 
-        //Поправить иерархию (мб добавить делегирование)
-        public ICommand AddTask => new RelayCommand(obj => CreateNewTask());
-
-        public ICommand CloseControl => new RelayCommand(obj => Visibility = Visibility.Hidden);
-
-        private void CreateNewTask()
+        protected override void Create()
         {
             if (!DataChanger.CheckTaskField(name, comment, current, target, startDate, finishDate))
                 return;

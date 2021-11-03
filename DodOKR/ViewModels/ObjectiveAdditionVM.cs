@@ -12,14 +12,12 @@ using System.Windows.Input;
 
 namespace DodOKR
 {
-    public class ObjectiveAdditionVM : ViewModel
+    public class ObjectiveAdditionVM : ControlViewModel
     {
         private string name;
         private string comment;
         private DateTime startDate;
         private DateTime finishDate;
-
-        private Visibility visibility;
 
         #region
         public string Name
@@ -58,16 +56,6 @@ namespace DodOKR
                 OnPropertyChanged("FinishDate");
             }
         }
-
-        public Visibility Visibility
-        {
-            get => visibility;
-            set
-            {
-                visibility = value;
-                OnPropertyChanged("Visibility");
-            }
-        }
         #endregion
 
         public Objective Objective { get; set; }        
@@ -81,12 +69,7 @@ namespace DodOKR
             this.objectives = objectives;
         }
 
-        //Поправить иерархию (мб добавить делегирование)
-        public ICommand AddObjective => new RelayCommand(obj => CreateNewObjective());
-
-        public ICommand CloseControl => new RelayCommand(obj => Visibility=Visibility.Hidden);
-
-        private void CreateNewObjective()
+        protected override void Create()
         {
             if (!DataChanger.CheckObjectiveField(name, comment,startDate, finishDate))
                 return;

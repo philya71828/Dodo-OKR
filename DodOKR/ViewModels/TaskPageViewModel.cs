@@ -128,9 +128,9 @@ namespace DodOKR
         public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
         public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));      
 
-        public void AddNewTask(Task task)
+        public void AddNewTask(Objective obj)
         {
-            var objective = this.Objectives[task.Index];
+            var objective = this.Objectives[obj.Index];
             var element = new TaskAdditionControl(objective);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
