@@ -13,9 +13,11 @@ namespace DodOKR
         [MaxLength(50)]
         public string Name { get; set; }
         public Company Company { get; set; }
+        public int? CompanyId { get; set; }
         public List<Team> Teams { get; set; } = new List<Team>();
         [Required]
         public User Head { get; set; }
+        public int? HeadId { get; set; }
         public int Progress
         {
             get

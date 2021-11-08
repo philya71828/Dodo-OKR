@@ -19,6 +19,8 @@ namespace DodOKR
         private DateTime startDate;
         private DateTime finishDate;
 
+        private DbEntity currentTable;
+
         #region
         public string Name
         {
@@ -61,26 +63,29 @@ namespace DodOKR
         public Objective Objective { get; set; }        
         private ObservableCollection<ObjectiveMask> objectives;
 
-        public ObjectiveAdditionVM(ObservableCollection<ObjectiveMask> objectives)
+        public ObjectiveAdditionVM(ObservableCollection<ObjectiveMask> objectives, DbEntity entity)
         {
             name = "Цель";
             startDate = DateTime.Now;
             finishDate = DateTime.Now.AddMonths(1);
             this.objectives = objectives;
+            currentTable = entity;
         }
 
         protected override void Create()
         {
             if (!DataChanger.CheckObjectiveField(name, comment,startDate, finishDate))
                 return;
-            Objective = new Objective();
-            Objective.Name = name;
-            Objective.Comment = comment;
-            Objective.StartDate = startDate;
-            Objective.FinishDate = finishDate;
-            Objective.Progress = 0;
-            Objective.Index = objectives.Count;
-            Objective.Status = Status.Good;
+            Objective = new Objective(name, comment, startDate, finishDate, objectives.Count);
+            if (currentTable is User)
+                Objective.UserId = currentTable.Id;
+            else
+                Objective.TeamId = currentTable.Id;
+            using (ApplicationContext db=new ApplicationContext(Connector.Options))
+            {
+                db.Objectives.Add(Objective);
+                db.SaveChanges();
+            }
             objectives.Add(new ObjectiveMask() { Obj = new[] { Objective }});
             objectives.Last().Tasks = new ObservableCollection<Task>();
             Visibility = Visibility.Hidden;

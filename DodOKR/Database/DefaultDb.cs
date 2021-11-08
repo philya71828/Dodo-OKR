@@ -62,7 +62,7 @@ namespace DodOKR
 
                 Team team1 = new Team { Name = "team1", Company = company1, Project = project1 };
                 Team team2 = new Team { Name = "team2", Company = company1, Project = project3 };
-                Team team3 = new Team { Name = "team3", Project = project2 };
+                Team team3 = new Team { Name = "team3", Company = company1, Project = project2 };
                 db.Teams.AddRange(team1, team2, team3);
 
                 User user1 = new User 
@@ -74,7 +74,7 @@ namespace DodOKR
                     Password = "123586",
                     Team = team1
                 };                
-                db.Users.AddRange(user1);
+                
 
                 Objective objective1 = new Objective
                 {
@@ -166,6 +166,8 @@ namespace DodOKR
                     Progress = 10,
                     Index = 0
                 };
+                user1.Objectives.AddRange(new[] { objective1, objective2 });
+                db.Users.AddRange(user1);
                 db.Objectives.AddRange(objective1, objective2);
                 db.Tasks.AddRange(task1, task2, task3);
                 User = user1;

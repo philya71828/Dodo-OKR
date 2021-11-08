@@ -18,36 +18,15 @@ namespace DodOKR
         private TaskPage taskPage;
         private Grid grid;
 
-        public Task SelectedObjective
-        {
-            get => selectedObjective;
-            set
-            {
-                selectedObjective = value;
-                OnPropertyChanged("SelectedObjective");
-            }
-        }
-
-        public Task SelectedTask
-        {
-            get => selectedTask;
-            set
-            {
-                selectedTask = value;
-                OnPropertyChanged("SelectedTask");
-            }
-        }
-
         private List<ObjectiveMask> uMasks;
         private List<ObjectiveMask> tMasks;
+        private DbEntity currentTable;
 
         private User currentUser;
         private Team currentTeam;
         private PageType type;
         private int progress;
         private ObservableCollection<ObjectiveMask> objectives;
-        private Task selectedObjective;
-        private Task selectedTask;
 
         #region
         public ObservableCollection<ObjectiveMask> Objectives 
@@ -77,6 +56,7 @@ namespace DodOKR
             {
                 type = value;
                 var mask = type == PageType.Personal ? uMasks : tMasks;
+                currentTable = type == PageType.Personal ? currentUser : currentTeam;
                 Objectives = new ObservableCollection<ObjectiveMask>(mask);
                 OnPropertyChanged("Type");
             }
@@ -88,8 +68,11 @@ namespace DodOKR
             this.taskPage = taskPage;
             this.grid = grid;
 
-            currentUser = DefaultDb.User;
-            currentTeam = DefaultDb.User.Team;
+            using (ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                currentUser = db.GetUserInfo(4);
+                currentTeam = currentUser.Team;
+            }
             uMasks = FillMask(currentUser.Objectives);
             tMasks = FillMask(currentTeam.Objectives);
             Type = PageType.Personal;
@@ -120,7 +103,7 @@ namespace DodOKR
 
         public ICommand AddNewObjective => new RelayCommand(obj =>
         {
-            var element = new ObjectiveAdditionControl(this.Objectives);
+            var element = new ObjectiveAdditionControl(this.Objectives, currentTable);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
         });        

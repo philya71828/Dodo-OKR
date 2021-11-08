@@ -22,10 +22,10 @@ namespace DodOKR
     /// </summary>
     public partial class ObjectiveAdditionControl : UserControl
     {
-        public ObjectiveAdditionControl(ObservableCollection<ObjectiveMask> objectives)
+        public ObjectiveAdditionControl(ObservableCollection<ObjectiveMask> objectives, DbEntity entity)
         {
             InitializeComponent();
-            DataContext = new ObjectiveAdditionVM(objectives);
+            DataContext = new ObjectiveAdditionVM(objectives, entity);
         }
     }
 }

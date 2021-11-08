@@ -37,5 +37,6 @@ namespace DodOKR
         }
         [Required]
         public Objective Objective { get; set; }
+        public int? ObjectiveId { get; set; }
     }
 }

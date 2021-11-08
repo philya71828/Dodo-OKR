@@ -18,5 +18,21 @@ namespace DodOKR
         public Project Project { get; set; }
         public User User { get; set; }
         public Team Team { get; set; }
+        public int? ProjectId { get; set; }
+        public int? UserId { get; set; }
+        public int? TeamId { get; set; }
+
+        public Objective() { }
+
+        public Objective(string name, string comment, DateTime startDate, DateTime finishDate, int count)
+        {
+            Name = name;
+            Comment = comment;
+            StartDate = startDate;
+            FinishDate = finishDate;
+            Progress = 0;
+            Index = count;
+            Status = Status.Good;
+        }
     }
 }

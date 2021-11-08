@@ -21,5 +21,19 @@ namespace DodOKR
         {
             Database.EnsureCreated();
         }
+
+        public User GetUserInfo(int id)
+        {
+            var user = Users.Where(u => u.Id == id).FirstOrDefault();
+            var team = Teams.Where(t => user.TeamId == t.Id).FirstOrDefault();
+            var objectives = Objectives.Where(o => o.UserId == id).ToList();
+            List<Task> tasks;
+            foreach (var obj in objectives)
+                tasks = Tasks.Where(t => t.ObjectiveId == obj.Id).ToList();
+            objectives = Objectives.Where(o => o.TeamId == team.Id).ToList();
+            foreach (var obj in objectives)
+                tasks = Tasks.Where(t => t.ObjectiveId == obj.Id).ToList();
+            return user;
+        }
     }
 }
