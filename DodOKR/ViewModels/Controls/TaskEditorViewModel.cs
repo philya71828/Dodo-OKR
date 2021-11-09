@@ -17,21 +17,17 @@ namespace DodOKR
 
         public TaskEditorViewModel(Task task, ObjectiveMask objective)
         {
-            Task = new Task();
-            this.objective = objective;            
-            Task.Name = task.Name;
-            Task.Comment = task.Comment;
-            Task.Current = task.Current;
-            Task.Target = task.Target;
-            Task.StartDate = task.StartDate;
-            Task.FinishDate = task.FinishDate;
-            Task.Status = task.Status;
-            Task.Progress = task.Progress;
-            Task.Index = task.Index;
+            Task = task;
+            this.objective = objective;
         }
 
         protected override void DeleteProblem()
-        {
+        {            
+            using (ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                db.Tasks.Remove(Task);
+                db.SaveChanges();
+            }
             objective.Tasks.RemoveAt(Task.Index);
             for (var i = Task.Index; i < objective.Tasks.Count; i++)
                 objective.Tasks[i].Index--;
@@ -46,6 +42,11 @@ namespace DodOKR
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
             Task.Status = DataChanger.SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
             objective.Tasks[Task.Index] = Task;
+            using (ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                db.Tasks.Update(Task);
+                db.SaveChanges();
+            }
             var _obj = objective.Objective;
             _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
             _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);

@@ -96,17 +96,18 @@ namespace DodOKR
         {
             if (!DataChanger.CheckTaskField(name, comment, current, target, startDate, finishDate))
                 return;
-            Task = new Task();
-            Task.Name = name;
-            Task.Comment = comment;
-            Task.StartDate = startDate;
-            Task.FinishDate = finishDate;
-            Task.Current = int.Parse(current);
-            Task.Target = int.Parse(target);
+            Task = new Task(name, comment,
+                startDate, finishDate,
+                int.Parse(current), int.Parse(current),
+                objective.Tasks.Count, objective.Objective.Id);
             Task.Progress = (int)(double.Parse(current) / double.Parse(target) * 100);
             Task.Status = DataChanger.SetStatus(startDate, finishDate, Task.Progress);
-            Task.Index = objective.Tasks.Count;
             tasks.Add(Task);
+            using (ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                db.Tasks.Add(Task);
+                db.SaveChanges();
+            }
             var obj = objective.Objective;
             obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
             obj.Status = DataChanger.SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            

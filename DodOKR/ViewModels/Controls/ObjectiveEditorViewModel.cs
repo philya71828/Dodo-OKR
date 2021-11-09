@@ -25,7 +25,13 @@ namespace DodOKR
 
         protected override void DeleteProblem()
         {
-            objectives.RemoveAt(Mask.Objective.Index);
+            var index = Mask.Objective.Index;
+            using (ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                db.Objectives.Remove(objectives[index].Objective);
+                db.SaveChanges();
+            }
+            objectives.RemoveAt(index);
             for (var i = Mask.Objective.Index; i < objectives.Count; i++)
                 objectives[i].Objective.Index--;
             Visibility = Visibility.Hidden;
@@ -35,7 +41,14 @@ namespace DodOKR
         {
             Mask.Objective.Status = DataChanger.SetStatus(Mask.Objective.StartDate, Mask.Objective.FinishDate, Mask.Objective.Progress);
             Mask.Tasks = objectives[Mask.Objective.Index].Tasks;
-            objectives[Mask.Objective.Index] = Mask;
+            var index = Mask.Objective.Index;
+            objectives[index] = Mask;
+            var objective = Mask.Objective;
+            using(ApplicationContext db=new ApplicationContext(Connector.Options))
+            {
+                db.Objectives.Update(objective);
+                db.SaveChanges();
+            }
             Visibility = Visibility.Hidden;
         }
     }

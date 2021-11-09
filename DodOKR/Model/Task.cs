@@ -17,6 +17,20 @@ namespace DodOKR
         private int current;
         private int target;
 
+        public Task() { }
+
+        public Task(string name, string comment, DateTime startDate, DateTime finishDate, int current, int target, int index, int objectiveId)
+        {
+            Name = name;
+            Comment = comment;
+            StartDate = startDate;
+            FinishDate = finishDate;
+            Current = current;
+            Target = target;
+            Index = index;
+            ObjectiveId = objectiveId;
+        }
+
         public int Current
         {
             get => current;

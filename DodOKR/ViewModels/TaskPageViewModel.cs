@@ -100,16 +100,15 @@ namespace DodOKR
         });
 
         public ICommand OpenTreeCommand => new RelayCommand(obj => OpenTree());
+        public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
+        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));
 
         public ICommand AddNewObjective => new RelayCommand(obj =>
         {
             var element = new ObjectiveAdditionControl(this.Objectives, currentTable);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
-        });        
-
-        public ICommand TurnPersonal => new RelayCommand(obj => Turn(PageType.Personal));
-        public ICommand TurnTeam => new RelayCommand(obj => Turn(PageType.Team));      
+        });
 
         public void AddNewTask(Objective obj)
         {
@@ -121,7 +120,7 @@ namespace DodOKR
 
         public void EditTask(Task task)
         {
-            var objectives = this.Objectives;
+            var objectives = Objectives;
             var objective = new ObjectiveMask();
             var i = task.Index;
             foreach (var e in objectives)
@@ -140,12 +139,21 @@ namespace DodOKR
 
         public void EditObjective(Objective obj)
         {
-            var objectives = this.Objectives;
-            var element = new ObjectiveEditorControl(obj, objectives);
+            var mask = currentTable is User ? uMasks : tMasks;
+            var element = new ObjectiveEditorControl(obj, Objectives);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
+            element.IsVisibleChanged += UpdatePageMask;
         }
-            
+
+        private void UpdatePageMask(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (currentTable is User)
+                uMasks = new List<ObjectiveMask>(Objectives);
+            else
+                tMasks = new List<ObjectiveMask>(Objectives);
+        }
+
         private void Turn(PageType type)
         {
             if (Type != type)
