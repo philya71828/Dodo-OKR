@@ -35,5 +35,15 @@ namespace DodOKR
         protected virtual void EditProblem() { }
 
         protected virtual void Create() { }
+
+        protected void SetObjectiveProgress(ObjectiveMask mask, Objective objective)
+        {
+            using(ApplicationContext db = new ApplicationContext(Connector.Options))
+            {
+                objective.Progress = DataChanger.ChangeProgress(mask.Tasks.ToList());
+                db.Objectives.Update(objective);
+                db.SaveChanges();
+            }            
+        }
     }
 }

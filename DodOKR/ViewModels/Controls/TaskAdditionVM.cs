@@ -81,14 +81,14 @@ namespace DodOKR
 
         public Task Task { get; set; }
         private ObservableCollection<Task> tasks;
-        private ObjectiveMask objective;
+        private ObjectiveMask mask;
 
         public TaskAdditionVM(ObjectiveMask objective)
         {
             name = "Задача";
             startDate = DateTime.Now;
             finishDate = DateTime.Now.AddMonths(1);
-            this.objective = objective;
+            this.mask = objective;
             tasks = objective.Tasks;
         }
 
@@ -99,7 +99,7 @@ namespace DodOKR
             Task = new Task(name, comment,
                 startDate, finishDate,
                 int.Parse(current), int.Parse(current),
-                objective.Tasks.Count, objective.Objective.Id);
+                mask.Tasks.Count, mask.Objective.Id);
             Task.Progress = (int)(double.Parse(current) / double.Parse(target) * 100);
             Task.Status = DataChanger.SetStatus(startDate, finishDate, Task.Progress);
             tasks.Add(Task);
@@ -108,9 +108,9 @@ namespace DodOKR
                 db.Tasks.Add(Task);
                 db.SaveChanges();
             }
-            var obj = objective.Objective;
-            obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
-            obj.Status = DataChanger.SetStatus(obj.StartDate, obj.FinishDate, obj.Progress);            
+            var objective = mask.Objective;
+            SetObjectiveProgress(mask, objective);
+            objective.Status = DataChanger.SetStatus(objective.StartDate, objective.FinishDate, objective.Progress);            
             Visibility = Visibility.Hidden;
         }
     }

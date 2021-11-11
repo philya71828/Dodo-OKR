@@ -108,6 +108,7 @@ namespace DodOKR
             var element = new ObjectiveAdditionControl(this.Objectives, currentTable);
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
+            element.IsVisibleChanged += UpdatePageMask;
         });
 
         public void AddNewTask(Objective obj)

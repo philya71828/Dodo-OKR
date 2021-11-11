@@ -13,12 +13,12 @@ namespace DodOKR
     public class TaskEditorViewModel : ControlViewModel
     {
         public Task Task { get; private set; }
-        private ObjectiveMask objective;
+        private ObjectiveMask mask;
 
         public TaskEditorViewModel(Task task, ObjectiveMask objective)
         {
             Task = task;
-            this.objective = objective;
+            this.mask = objective;
         }
 
         protected override void DeleteProblem()
@@ -28,12 +28,12 @@ namespace DodOKR
                 db.Tasks.Remove(Task);
                 db.SaveChanges();
             }
-            objective.Tasks.RemoveAt(Task.Index);
-            for (var i = Task.Index; i < objective.Tasks.Count; i++)
-                objective.Tasks[i].Index--;
-            var _obj = objective.Objective;
-            _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
-            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);
+            mask.Tasks.RemoveAt(Task.Index);
+            for (var i = Task.Index; i < mask.Tasks.Count; i++)
+                mask.Tasks[i].Index--;
+            var objective = mask.Objective;
+            SetObjectiveProgress(mask, objective);
+            objective.Status = DataChanger.SetStatus(objective.StartDate, objective.FinishDate, objective.Progress);
             Visibility = Visibility.Hidden;
         }
 
@@ -41,15 +41,15 @@ namespace DodOKR
         {
             Task.Progress = (int)((double)Task.Current / (double)Task.Target * 100);
             Task.Status = DataChanger.SetStatus(Task.StartDate, Task.FinishDate, Task.Progress);
-            objective.Tasks[Task.Index] = Task;
+            mask.Tasks[Task.Index] = Task;
             using (ApplicationContext db = new ApplicationContext(Connector.Options))
             {
                 db.Tasks.Update(Task);
                 db.SaveChanges();
             }
-            var _obj = objective.Objective;
-            _obj.Progress = DataChanger.ChangeProgress(objective.Tasks.ToList());
-            _obj.Status = DataChanger.SetStatus(_obj.StartDate, _obj.FinishDate, _obj.Progress);
+            var objective = mask.Objective;
+            SetObjectiveProgress(mask, objective);
+            objective.Status = DataChanger.SetStatus(objective.StartDate, objective.FinishDate, objective.Progress);
             Visibility = Visibility.Hidden;
         }
     }
