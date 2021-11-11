@@ -61,11 +61,11 @@ namespace DodOKR
                 db.Projects.AddRange(project1, project2, project3);
 
                 Team team1 = new Team { Name = "team1", Company = company1, Project = project1 };
-                Team team2 = new Team { Name = "team2", Company = company1, Project = project3 };
-                Team team3 = new Team { Name = "team3", Company = company1, Project = project2 };
+                Team team2 = new Team { Name = "team2", Company = company1, Project = project2 };
+                Team team3 = new Team { Name = "team3", Company = company1, Project = project3 };
                 db.Teams.AddRange(team1, team2, team3);
 
-                User user1 = new User 
+                User user1 = new User
                 {
                     FirstName = "User",
                     SurName = "User",
@@ -73,8 +73,8 @@ namespace DodOKR
                     Email = "user@user.ru",
                     Password = "123586",
                     Team = team1
-                };                
-                
+                };
+
 
                 Objective objective1 = new Objective
                 {
@@ -131,53 +131,59 @@ namespace DodOKR
                     Objective = objective2,
                     Progress = 10,
                     Index = 1
-                };
-                Objective teamObjective1 = new Objective
-                {
-                    Name = "Objective 1",
-                    Comment = "Objective 1",
-                    StartDate = new DateTime(2001, 6, 28),
-                    FinishDate = new DateTime(2021, 10, 19),
-                    Progress = 10,
-                    Team = team1,
-                    Index = 0
-                };
-                Task teamTask1 = new Task
-                {
-                    Name = "Заказы",
-                    Comment = "Заказы",
-                    Current = 1,
-                    Target = 10,
-                    StartDate = new DateTime(2001, 6, 28),
-                    FinishDate = new DateTime(2021, 10, 19),
-                    Objective = objective1,
-                    Progress = 10,
-                    Index = 0
-                };
-                Task teamTask2 = new Task
-                {
-                    Name = "Пицца",
-                    Comment = "Делайте много пиццы",
-                    Current = 1,
-                    Target = 10,
-                    StartDate = new DateTime(2001, 8, 28),
-                    FinishDate = new DateTime(2025, 10, 11),
-                    Objective = objective2,
-                    Progress = 10,
-                    Index = 0
-                };
+                };                
                 user1.Objectives.AddRange(new[] { objective1, objective2 });
                 db.Users.AddRange(user1);
                 db.Objectives.AddRange(objective1, objective2);
                 db.Tasks.AddRange(task1, task2, task3);
                 User = user1;
-                teamObjective1.Tasks.Add(teamTask1);
-                teamObjective1.Tasks.Add(teamTask2);
-                User.Team.Objectives.Add(teamObjective1);
+                AddTeamObjective(team1,db);
+                AddTeamObjective(team1, db);
+                AddTeamObjective(team2, db);
 
                 db.SaveChanges();
             }
-            
+
+        }
+
+        private static void AddTeamObjective(Team team, ApplicationContext db)
+        {
+            Objective teamObjective1 = new Objective
+            {
+                Name = "Objective 1",
+                Comment = "Objective 1",
+                StartDate = new DateTime(2001, 6, 28),
+                FinishDate = new DateTime(2021, 10, 19),
+                Progress = 10,
+                Team = team,
+                Index = 0
+            };
+            Task teamTask1 = new Task
+            {
+                Name = "Заказы",
+                Comment = "Заказы",
+                Current = 1,
+                Target = 10,
+                StartDate = new DateTime(2001, 6, 28),
+                FinishDate = new DateTime(2021, 10, 19),
+                Objective = teamObjective1,
+                Progress = 10,
+                Index = 0
+            };
+            Task teamTask2 = new Task
+            {
+                Name = "Пицца",
+                Comment = "Делайте много пиццы",
+                Current = 1,
+                Target = 10,
+                StartDate = new DateTime(2001, 8, 28),
+                FinishDate = new DateTime(2025, 10, 11),
+                Objective = teamObjective1,
+                Progress = 10,
+                Index = 1
+            };
+            db.Tasks.AddRange(teamTask1, teamTask2);
+            db.Objectives.Add(teamObjective1);
         }
     }
 }

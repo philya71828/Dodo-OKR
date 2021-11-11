@@ -126,7 +126,7 @@ namespace DodOKR
             var i = task.Index;
             foreach (var e in objectives)
             {
-                if (e.Tasks.Count >= i && e.Tasks.Count > 0)
+                if (e.Tasks.Count >= i + 1 && e.Tasks.Count > 0)
                     if (e.Tasks[i] == task)
                     {
                         objective = e;

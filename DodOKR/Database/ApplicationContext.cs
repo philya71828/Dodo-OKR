@@ -16,6 +16,8 @@ namespace DodOKR
         public DbSet<Objective> Objectives { get; set; }
         public DbSet<Project> Projects { get; set; }
 
+        public static User User { get; private set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
@@ -24,8 +26,8 @@ namespace DodOKR
 
         public User GetUserInfo(int id)
         {
-            var user = Users.Where(u => u.Id == id).FirstOrDefault();
-            var team = Teams.Where(t => user.TeamId == t.Id).FirstOrDefault();
+            User = Users.Where(u => u.Id == id).FirstOrDefault();
+            var team = Teams.Where(t => User.TeamId == t.Id).FirstOrDefault();
             var objectives = Objectives.Where(o => o.UserId == id).ToList();
             List<Task> tasks;
             foreach (var obj in objectives)
@@ -33,7 +35,7 @@ namespace DodOKR
             objectives = Objectives.Where(o => o.TeamId == team.Id).ToList();
             foreach (var obj in objectives)
                 tasks = Tasks.Where(t => t.ObjectiveId == obj.Id).ToList();
-            return user;
+            return User;
         }
     }
 }
