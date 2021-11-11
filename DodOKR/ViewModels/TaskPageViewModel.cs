@@ -121,19 +121,7 @@ namespace DodOKR
 
         public void EditTask(Task task)
         {
-            var objectives = Objectives;
-            var objective = new ObjectiveMask();
-            var i = task.Index;
-            foreach (var e in objectives)
-            {
-                if (e.Tasks.Count >= i + 1 && e.Tasks.Count > 0)
-                    if (e.Tasks[i] == task)
-                    {
-                        objective = e;
-                        break;
-                    }
-            }
-            var element = new TaskEditorControl(task, objective);
+            var element = new TaskEditorControl(task, Objectives.Where(m => m.Tasks.Contains(task)).FirstOrDefault());
             grid.Children.Add(element);
             element.IsVisibleChanged += Destroy;
         }
@@ -175,11 +163,7 @@ namespace DodOKR
             var objSum = 0;
             foreach (var obj in element.Objectives)
             {
-                var taskSum = 0;
-                foreach (var task in obj.Tasks)
-                {
-                    taskSum += task.Progress;
-                }
+                var taskSum = obj.Tasks.Sum(t => t.Progress);
                 objSum += obj.Tasks.Count == 0 ? 0 : taskSum / obj.Tasks.Count;
             }
 
