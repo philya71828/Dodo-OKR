@@ -21,45 +21,6 @@ namespace DodOKR
 
         private DbEntity currentTable;
 
-        #region
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        public string Comment
-        {
-            get => comment;
-            set
-            {
-                comment = value;
-                OnPropertyChanged("Comment");
-            }
-        }
-        public DateTime StartDate
-        {
-            get => startDate;
-            set
-            {
-                startDate = value;
-                OnPropertyChanged("StartDate");
-            }
-        }
-        public DateTime FinishDate
-        {
-            get => finishDate;
-            set
-            {
-                finishDate = value;
-                OnPropertyChanged("FinishDate");
-            }
-        }
-        #endregion
-
         public Objective Objective { get; set; }        
         private ObservableCollection<ObjectiveMask> objectives;
 

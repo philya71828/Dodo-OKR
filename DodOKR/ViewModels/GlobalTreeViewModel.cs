@@ -47,7 +47,7 @@ namespace DodOKR
             this.grid = grid;
             this.tree = tree;
             this.tree.PreviewKeyDown += delegate (object obj, KeyEventArgs args) { args.Handled = true; };
-            this.PopulateTreeView();
+            this.CreateTreeView();
         }
 
         public ICommand ShowTaskMenu => new RelayCommand(obj =>
@@ -66,7 +66,7 @@ namespace DodOKR
             Visibility = Visibility.Hidden;
             if (tvm.Type != type)
             {
-                tvm.Type = type;                
+                tvm.Type = type;             
             }                
         }
         //
@@ -77,69 +77,41 @@ namespace DodOKR
                 Visibility = Visibility.Hidden;
         }
 
-        private void PopulateTreeView()
+        private void CreateTreeView()
         {
             var companyTarget = new Node("Цель Компании");
             List<Project> projects;
-            using(ApplicationContext db=new ApplicationContext(Connector.Options))
+            using (ApplicationContext db=new ApplicationContext(Connector.Options))
+                projects = db.LoadTreeData();
+            PopulateTree(companyTarget, projects);
+
+            Node dummy = FillProgress(companyTarget, projects);
+
+            this.tree.ItemsSource = dummy.ChildNodes;
+        }
+
+        private static void PopulateTree(Node companyTarget, List<Project> projects)
+        {
+            foreach (var project in projects)
             {
-                var company = db.Companies.Where(c => c.Id == ApplicationContext.User.Team.CompanyId).FirstOrDefault();
-                projects = db.Projects.Where(p => p.CompanyId == company.Id).ToList();
-                foreach(var project in projects)
+                companyTarget.ChildNodes.Add(new Node(project));
+                var root = companyTarget.ChildNodes[companyTarget.ChildNodes.Count - 1];
+                foreach (var task in project.Teams)
                 {
-                    var head = db.Users.Where(u => u.Id == project.HeadId).FirstOrDefault();
-                    var teams = db.Teams.Where(t => t.ProjectId == project.Id).ToList();
-                    foreach(var team in teams)
-                    {
-                        var objective=db.Objectives.Where(obj => obj.TeamId == team.Id).ToList();
-                    }
+                    root.ChildNodes.Add(new Node(task));
                 }
             }
+        }
 
-
-            //var rand = new Random();
-            //var projectCount = rand.Next(5)+1;
-            //var projects = new List<Project>();
-            //for(var k = 0; k < projectCount; k++)
-            //{
-            //    var project = new Project() { Name = "Project "+(k+1), Head = new User() { FirstName = "Name", SurName = "SurName" } };
-            //    var teamCount = rand.Next(5)+1;
-            //    var teams = new List<Team>();
-            //    for (var j = 0; j < teamCount; j++)
-            //    {
-            //        var team = new Team() { Name = "Team " + (k + 1)+"."+(j+1) };
-            //        var size = rand.Next(5)+1;
-            //        var objs = new ObservableCollection<ObjectiveMask>();
-            //        for (var i = 0; i < size; i++)
-            //        {
-            //            var obj = new Objective() { Progress = rand.Next(100) };
-            //            objs.Add(new ObjectiveMask() { Obj = new[] { obj } });
-            //        }
-            //        team.Objectives = objs.Select(o=>o.Obj[0]).ToList();
-            //        teams.Add(team);
-            //    }
-            //    project.Teams = teams;
-            //    projects.Add(project);
-            //}
-
-            foreach (var proj in projects)
-            {
-                companyTarget.ChildNodes.Add(new Node(proj));
-                var r = companyTarget.ChildNodes[companyTarget.ChildNodes.Count - 1];
-                foreach (var t in proj.Teams)
-                {
-                    r.ChildNodes.Add(new Node(t));
-                }
-            }
-
+        private Node FillProgress(Node companyTarget, List<Project> projects)
+        {
             Node dummy = new Node();
             dummy.ChildNodes.Add(companyTarget);
             Progress = 0;
             foreach (var e in projects)
                 Progress += e.Progress;
             Progress /= projects.Count;
-
-            this.tree.ItemsSource = dummy.ChildNodes;
-        }
+            return dummy;
+        }        
     }
 }

@@ -37,5 +37,22 @@ namespace DodOKR
                 tasks = Tasks.Where(t => t.ObjectiveId == obj.Id).ToList();
             return User;
         }
+
+        public List<Project> LoadTreeData()
+        {
+            var company = Companies.Where(c => c.Id == ApplicationContext.User.Team.CompanyId).FirstOrDefault();
+            var projects = Projects.Where(p => p.CompanyId == company.Id).ToList();
+            foreach (var project in projects)
+            {
+                var head = Users.Where(u => u.Id == project.HeadId).FirstOrDefault();
+                var teams = Teams.Where(t => t.ProjectId == project.Id).ToList();
+                foreach (var team in teams)
+                {
+                    var objective = Objectives.Where(obj => obj.TeamId == team.Id).ToList();
+                }
+            }
+
+            return projects;
+        }
     }
 }

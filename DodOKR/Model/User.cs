@@ -26,6 +26,7 @@ namespace DodOKR
         [Required]
         [MaxLength(50)]
         public string Password { get; set; }
+        public bool IsTeamAdmin { get; set; } = false;
         public int? TeamId { get; set; }
         public Team Team { get; set; }
         public List<Objective> Objectives { get; set; } = new List<Objective>();
