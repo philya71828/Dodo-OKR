@@ -33,25 +33,36 @@
                         <ColumnDefinition Width="160"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5" Height="685">
-                        <StackPanel HorizontalAlignment="Center">
-                            <Button Command="{Binding HideTaskMenu}">
+                    <Border Grid.Column="0" Background="#fef0e5" Height="685">
+                        <StackPanel HorizontalAlignment="Center" Margin="5,5,5,5" VerticalAlignment="Center">
+                            <Button Cursor="Hand" Command="{Binding HideTaskMenu}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="150">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                                        <Border Width="150" HorizontalAlignment="Center" Height="30" CornerRadius="5" VerticalAlignment="Center">
+                                            <Label Content="Меню" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           Foreground="#ff6900"
+                                           FontSize="12"
+                                           FontFamily="Segoe UI Semibold"/>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="White"/>
+                                                    <Setter Property="BorderBrush" Value="#ff6900"/>
+                                                    <Setter Property="BorderThickness" Value="2"/>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
                             <Separator Opacity="0" Height="30"/>
-                            <Border Style="{StaticResource ButtonStyle}" Background="#fe6802">
-                                <Label Content="Задачи" Foreground="White" HorizontalContentAlignment="Center"/>
-                            </Border>
                             <Separator Opacity="0" Height="2"/>
                             <Button Command="{Binding TurnPersonal}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Личные" Style="{StaticResource TextStyle}"/>
+                                        <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Личные задачи" Style="{StaticResource TextStyle}" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>                                
@@ -60,8 +71,8 @@
                             <Button Command="{Binding TurnTeam}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Командные" Style="{StaticResource TextStyle}"/>
+                                        <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Командные задачи" Style="{StaticResource TextStyle}" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
@@ -70,8 +81,8 @@
                             <Button Command="{Binding TurnCompany}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Компании" Style="{StaticResource TextStyle}"/>
+                                        <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Компании" Style="{StaticResource TextStyle}" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
@@ -80,22 +91,22 @@
                             <Button Command="{Binding OpenTree}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Дерево" Style="{StaticResource TextStyle}"/>
+                                        <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Дерево" Style="{StaticResource TextStyle}" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            <Separator Opacity="0" Height="250"/>
-                            <Border Style="{StaticResource ButtonStyle}">
-                                <Label Content="Настройки" Style="{StaticResource TextStyle}"/>
+                            <Separator Opacity="0" Height="280"/>
+                            <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                <Label Content="Настройки" Style="{StaticResource TextStyle}" FontSize="14" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
                             </Border>
                             <Separator Opacity="0" Height="2"/>
                             <Button Command="{Binding OpenJoinPage}">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Border Style="{StaticResource ButtonStyle}">
-                                            <Label Content="Выход" Style="{StaticResource TextStyle}"/>
+                                        <Border CornerRadius="5" Style="{StaticResource ButtonStyle}">
+                                            <Label Content="Выход" Style="{StaticResource TextStyle}" FontSize="14" FontFamily="Segoe UI Semibold" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>                                

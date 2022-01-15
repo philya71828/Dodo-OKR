@@ -9,42 +9,64 @@
       Height="695" Width="1280"
       Title="JoinPage">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" 
-                    HorizontalAlignment="Center"
-                    Margin="50">
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,47">
             <Image Source="Images/DodoLogo.png"
-                   Width="300"/>
-            <Separator Opacity="0" Height="50"/>
-            <TextBlock Text="Почта"/>
-            <TextBox Style="{StaticResource TextBoxStyle}"/>
-            <Separator Opacity="0" Height="20"/>
-            <TextBlock Text="Пароль"/>
-            <PasswordBox Style="{StaticResource PasswordBoxStyle}"/>
-            <Separator Opacity="0" Height="20"/>
-            <Button Width="170" Click="Join">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Border CornerRadius="10" Height="30">
-                            <TextBlock Text="Войти" Style="{StaticResource ButtonText}"/>
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Setter Property="Background" Value="#ff6900"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="Orange"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+                   Width="300" Height="175"/>
+            <TextBlock Text="Почта" FontSize="14" FontFamily="Segoe UI" Margin="5,5,5,5"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" FontFamily="Segoe UI Light" Padding="5,5,5,5" FontSize="14"/>
             <Separator Opacity="0" Height="10"/>
-            <Button Content="Забыл пароль?">
+            <TextBlock Text="Пароль" FontSize="14" FontFamily="Segoe UI" Margin="5,5,5,5"/>
+            <PasswordBox Style="{StaticResource PasswordBoxStyle}" FontFamily="Segoe UI Light" Margin="0,0,0,0" Padding="5,5,5,5" FontSize="14"/>
+            <Separator Opacity="0" Height="30"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Cursor="Hand" Click="Join" Width="140" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,5,0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border Height="30" CornerRadius="5">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Background" Value="#FFFF6900"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Orange"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Text="Войти" Style="{StaticResource ButtonText}" FontFamily="Segoe UI Semibold" FontWeight="Bold"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Click="OpenRegistrationWindow" Cursor="Hand" Width="140" Margin="5,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border CornerRadius="5" Height="30" Background="White" BorderBrush="#FFFF6900" BorderThickness="2">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="orange"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Text="Регистрация" Style="{StaticResource ButtonText}" Foreground="#FFFF6900" FontFamily="Segoe UI Semibold"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <Button FontStyle="Normal" FontWeight="Light" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True" Margin="5,5,5,5">
                 <Button.Template>
                     <ControlTemplate>
-                        <Border Background="White">
+                        <Border>
                             <TextBlock Text="Забыли пароль?" 
                                        Foreground="Black" 
                                        FontSize="14" 
@@ -55,27 +77,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Separator Opacity="0" Height="100"/>
-            <Button Width="170" Click="OpenRegistrationWindow">
-                <Button.Template>
-                    <ControlTemplate>
-                        <Border CornerRadius="10"  Height="30">
-                            <TextBlock Text="Регистрация" Style="{StaticResource ButtonText}" Foreground="#cdae8d"/>
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Setter Property="Background" Value="Wheat"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#fef0e5"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
         </StackPanel>
-        <local:RegistrationControl x:Name="panel" Visibility="Hidden"/>
+        <local:RegistrationControl x:Name="panel" Visibility="Hidden" Margin="0,0,0,0"/>
     </Grid>
 </Page>

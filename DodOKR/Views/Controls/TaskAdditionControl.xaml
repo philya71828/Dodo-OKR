@@ -7,32 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="1280"
              Visibility="{Binding Path=Visibility,UpdateSourceTrigger=PropertyChanged}">
-    <Grid Background="#7f000000">
-        <Border Background="White" CornerRadius="20" Height="400" Width="710">
-            <Grid>
+    <Grid Background="#7f000000" Height="723">
+        <Border Background="White" Width="725" Height="592" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Margin="0,0,0,-51">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <Label Content="Новая задача" HorizontalAlignment="Center" FontSize="20" FontWeight="Medium"/>
-                    <TextBlock Text="Название задачи" Style="{StaticResource BodyText}"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,50,0,150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="Новая задача" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
+                    <TextBlock Text="Название задачи" Style="{StaticResource BodyText}" Margin="5,5,5,5" FontWeight="Normal" FontSize="14"/>
                     <TextBox Text="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource TextBoxStyle}"/>
-                    <TextBlock Text="Комментарий" Style="{StaticResource BodyText}"/>
+                             Style="{StaticResource TextBoxStyle}" FontSize="14" FontFamily="Segoe UI Light" Padding="5,5,5,5"/>
+                    <Separator Height="5" Visibility="Hidden"/>
+                    <TextBlock Text="Комментарий" Style="{StaticResource BodyText}" FontSize="14" FontWeight="Normal" Margin="5,5,5,5"/>
                     <TextBox Text="{Binding Path=Comment,UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource TextBoxStyle}"/>
-                    <TextBlock Text="Цель" Style="{StaticResource BodyText}"/>
+                             Style="{StaticResource TextBoxStyle}" FontFamily="Segoe UI Light" FontSize="14" Padding="5,5,5,5"/>
+                    <Separator Height="5" Visibility="Hidden"/>
+                    <TextBlock Text="Цель" Style="{StaticResource BodyText}" Margin="5,5,5,5" FontWeight="Normal" FontSize="14"/>
                     <TextBox Text="{Binding Path=Target,UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource TextBoxStyle}"/>
-                    <TextBlock Text="На текущий момент" Style="{StaticResource BodyText}"/>
+                             Style="{StaticResource TextBoxStyle}" FontFamily="Segoe UI Light" FontSize="14" Padding="5,5,5,5"/>
+                    <Separator Height="5" Visibility="Hidden"/>
+                    <TextBlock Text="На текущий момент" Style="{StaticResource BodyText}" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="5,5,5,5"/>
                     <TextBox Text="{Binding Path=Current,UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource TextBoxStyle}"/>
-                    <StackPanel Orientation="Horizontal">
+                             Style="{StaticResource TextBoxStyle}" FontFamily="Segoe UI Light" FontSize="14" Padding="5,5,5,5"/>
+                    <Separator Height="10" Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Выберите даты" Style="{StaticResource BodyText}"/>
-                            <Border CornerRadius="5" BorderBrush="Orange" BorderThickness="1" Height="30">
+                            <TextBlock Text="Выберите даты" Style="{StaticResource BodyText}" Margin="5,5,5,5" FontSize="14" FontWeight="Normal"/>
+                            <Border BorderBrush="Orange" BorderThickness="1" Height="30">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -43,7 +47,7 @@
                                                 SelectedDate="{Binding Path=StartDate,UpdateSourceTrigger=PropertyChanged}" 
                                                 Grid.Column="0"
                                                 BorderThickness="0"
-                                                Width="100"/>
+                                                Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="14" Padding="5,5,5,5"/>
                                     <Separator Grid.Column="1" Background="Orange">
                                         <Separator.LayoutTransform>
                                             <RotateTransform Angle="90" />
@@ -53,66 +57,66 @@
                                                 SelectedDate="{Binding Path=FinishDate,UpdateSourceTrigger=PropertyChanged}" 
                                                 Grid.Column="2"
                                                 BorderThickness="0"
-                                                Width="100"/>
+                                                Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="14" Padding="5,5,5,5"/>
                                 </Grid>
                             </Border>
                         </StackPanel>
                         <Separator Width="16.5" Visibility="Hidden"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Приоритет" Style="{StaticResource BodyText}"/>
-                            <Border CornerRadius="5" BorderBrush="Orange" BorderThickness="1" Height="30">
+                            <TextBlock Text="Приоритет" Style="{StaticResource BodyText}" Margin="5,5,5,5" FontSize="14" FontWeight="Normal"/>
+                            <Border BorderBrush="Orange" BorderThickness="1" Height="30">
                                 <StackPanel Orientation="Horizontal">
                                     <Separator Width="2" Visibility="Hidden"/>
                                     <Border BorderBrush="Black" BorderThickness="0.5" 
-                                            Background="#ffea98"
-                                            CornerRadius="10"
+                                            Background="#FFC8FF96"
+                                            CornerRadius="5,5,5,5"
                                             Width="80"
-                                            Height="20">
+                                            Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2">
                                         <RadioButton Content="Низкий" IsChecked="{Binding IsLowPriority}"
-                                                     VerticalAlignment="Center"/>
+                                                     VerticalAlignment="Center" FontSize="14" FontFamily="Segoe UI Light" HorizontalAlignment="Left" Padding="0,0,0,0" Margin="10,0,0,0"/>
                                     </Border>
                                     <Separator Width="2" Visibility="Hidden"/>
                                     <Border BorderBrush="Black" BorderThickness="0.5" 
-                                            Background="#fcc984"
-                                            CornerRadius="10"
+                                            Background="#FFFFFF96"
+                                            CornerRadius="5,5,5,5"
                                             Width="80"
-                                            Height="20">
+                                            Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2">
                                         <RadioButton Content="Средний" IsChecked="{Binding IsMiddlePriority}"
-                                                     VerticalAlignment="Center"/>
+                                                     VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="14" Padding="0,0,0,0" HorizontalAlignment="Left" Margin="5,0,0,0"/>
                                     </Border>
                                     <Separator Width="2" Visibility="Hidden"/>
                                     <Border BorderBrush="Black" BorderThickness="0.5" 
-                                            Background="#ff967b"
-                                            CornerRadius="10"
+                                            Background="#FFFFCB96"
+                                            CornerRadius="5,5,5,5"
                                             Width="80"
-                                            Height="20">
+                                            Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,2,2,2">
                                         <RadioButton Content="Высокий" IsChecked="{Binding IsHighPriority}" 
-                                                     VerticalAlignment="Center"/>
+                                                     VerticalAlignment="Center" FontFamily="Segoe UI Light" FontSize="14" Padding="0,0,0,0" HorizontalAlignment="Left"/>
                                     </Border>
                                     <Separator Width="2" Visibility="Hidden"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
                     </StackPanel>
-                    <Separator Height="40" Visibility="Hidden"/>
+                    <Separator Height="20" Visibility="Hidden"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="235"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Width="170" Command="{Binding CloseControl}" Grid.Column="0" HorizontalAlignment="Center">
+                        <Button Width="170" Command="{Binding CloseControl}" Grid.Column="0" HorizontalAlignment="Center" Cursor="Hand">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Border CornerRadius="10" Height="30">
+                                    <Border CornerRadius="5" Height="30" BorderBrush="#FF646463" BorderThickness="2">
                                         <Grid>
                                             <TextBlock Text="&lt;" Style="{StaticResource ButtonText}" 
-                                                           HorizontalAlignment="Left" Foreground="Gray" Margin="10"/>
-                                            <TextBlock Text="Назад" Style="{StaticResource ButtonText}" Foreground="Gray"
-                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                           HorizontalAlignment="Left" Foreground="#FF646464" Margin="10" FontFamily="Segoe UI Semibold" FontSize="12"/>
+                                            <TextBlock Text="Назад" Style="{StaticResource ButtonText}" Foreground="#FF646464"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semibold"/>
                                         </Grid>
                                         <Border.Style>
                                             <Style TargetType="Border">
-                                                <Setter Property="Background" Value="#c8c8c8"/>
+                                                <Setter Property="Background" Value="White"/>
                                                 <Style.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
                                                         <Setter Property="Background" Value="#cfcfcf"/>
@@ -124,7 +128,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button Width="170" Command="{Binding AddTask}" Grid.Column="1" HorizontalAlignment="Center">
+                        <Button Width="170" Command="{Binding AddTask}" Grid.Column="1" HorizontalAlignment="Center" Cursor="Hand">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Border CornerRadius="10" Height="30">

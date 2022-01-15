@@ -17,32 +17,45 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" CornerRadius="20" Background="#fef0e5">
-                <StackPanel>
-                    <Button Command="{Binding ShowTaskMenu}">
+            <Border Grid.Column="0" Background="#fef0e5">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Cursor="Hand" Command="{Binding ShowTaskMenu}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
                         <Button.Template>
                             <ControlTemplate>
-                                <Ellipse VerticalAlignment="Top" Fill="#ff9104" Width="50" Height="50" Margin="10"/>
+                                <Border Width="50" HorizontalAlignment="Left" Height="30" CornerRadius="5">
+                                    <Label Content="Меню" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center"
+                                           Foreground="#ff6900"
+                                           FontSize="12"
+                                           FontFamily="Segoe UI Semibold"/>
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="BorderBrush" Value="#ff6900"/>
+                                            <Setter Property="BorderThickness" Value="2"/>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Separator Opacity="0" Height="30"/>
-                    <Border Background="#fe6802" CornerRadius="15" Width="50" Height="35"/>
                     <Separator Opacity="0" Height="2"/>
                     <Button Command="{Binding TurnPersonal}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5" BorderBrush="#FFFFDCC1" BorderThickness="1">
                                     <Image Source="Images/Personal.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
-                    </Button>                    
+                    </Button>
                     <Separator Opacity="0" Height="2"/>
                     <Button Command="{Binding TurnTeam}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5,5,5,5" BorderBrush="#FFFFDCC1" BorderThickness="1">
                                     <Image Source="Images/Team.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
@@ -52,7 +65,7 @@
                     <Button Command="{Binding TurnCompany}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5,5,5,5" BorderBrush="#FFFFDCC1" BorderThickness="1">
                                     <Image Source="Images/Company.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
@@ -62,17 +75,17 @@
                     <Button Command="{Binding OpenTreeCommand}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5,5,5,5" BorderBrush="#FFFFDCC1" BorderThickness="1">
                                     <Image Source="Images/Tree.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Separator Opacity="0" Height="250"/>
+                    <Separator Opacity="0" Height="280"/>
                     <Button>
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}"/>
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5,5,5,5" BorderBrush="#FFFFDCC1" BorderThickness="1"/>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
@@ -80,7 +93,7 @@
                     <Button>
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Style="{StaticResource EdgeStyle}">
+                                <Border Style="{StaticResource EdgeStyle}" CornerRadius="5,5,5,5" BorderBrush="#FFFFDCC1" BorderThickness="1">
                                     <Image Source="Images/Exit.png" Stretch="Fill"/>
                                 </Border>
                             </ControlTemplate>
@@ -96,30 +109,30 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Border Background="#ff9104" CornerRadius="15" Height="50" Width="100" Margin="10"/>
                     <Separator Opacity="0" Width="10"/>
-                    <ProgressBar Height="50" Width="950" Value="{Binding Progress}"/>
+                    <ProgressBar Height="30" Width="1100" Value="{Binding Progress}" Background="#FFE6E6E6" Foreground="#FF157827"/>
                     <Separator Opacity="0" Width="5"/>
-                    <Label Content="{Binding Progress}" FontSize="45"/>
-                    <Label Content="%" FontSize="45"/>
+                    <Label Content="{Binding Progress}" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label Content="%" FontSize="20" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Margin="5,5,5,5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="600"/>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button Command="{Binding AddNewObjective}" Margin="10">
+                    <Button Cursor="Hand" Command="{Binding AddNewObjective}" Margin="5">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Width="160" HorizontalAlignment="Left" Height="30" CornerRadius="15">
+                                <Border Width="160" HorizontalAlignment="Left" Height="30" CornerRadius="5">
                                     <Label Content="Добавить цель" 
                                            HorizontalAlignment="Center" 
                                            VerticalAlignment="Center"
                                            Foreground="White"
-                                           FontSize="16"/>
+                                           FontSize="14"
+                                           FontFamily="Segoe UI Semibold"/>
                                     <Border.Style>
                                         <Style TargetType="Border">
                                             <Setter Property="Background" Value="#ff6900"/>
@@ -134,13 +147,13 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <TextBlock Grid.Column="1" Text="Статус" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Grid.Column="2" Text="Прогресс" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Grid.Column="3" Text="Даты" Style="{StaticResource HeaderText}"/>
-                    <TextBlock Grid.Column="4" Text="Приоритет" Style="{StaticResource HeaderText}"/>
+                    <TextBlock Grid.Column="1" Text="Статус" Style="{StaticResource HeaderText}" FontWeight="Normal" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="Прогресс" Style="{StaticResource HeaderText}" FontWeight="Normal" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Text="Даты" Style="{StaticResource HeaderText}" FontWeight="Normal" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Text="Приоритет" Style="{StaticResource HeaderText}" FontWeight="Normal" FontFamily="Segoe UI Semibold" Margin="35,0,0,0"/>
                 </Grid>
                 <Border Grid.Row="2" CornerRadius="20">
-                    <ItemsControl ItemsSource="{Binding Objectives}" x:Name="objectiveGrid">
+                    <ItemsControl ItemsSource="{Binding Objectives}" x:Name="objectiveGrid" Margin="10,10,10,10">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Expander>
@@ -162,13 +175,13 @@
                                                 <DataGridTemplateColumn Width="535">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Vertical">
+                                                            <StackPanel Orientation="Vertical" Margin="5,5,5,5">
                                                                 <TextBlock Text="{Binding Name}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           FontSize="14"/>
+                                                                           FontSize="14" Margin="5,5,5,5" FontFamily="Segoe UI Semibold"/>
                                                                 <TextBlock Text="{Binding Comment}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           Foreground="#9b9da2"/>
+                                                                           Foreground="#9b9da2" FontFamily="Segoe UI" FontWeight="Normal" Margin="5,5,5,5"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -179,14 +192,14 @@
                                                             <Button Click="AddNewTask">
                                                                 <Button.Template>
                                                                     <ControlTemplate>
-                                                                        <Border HorizontalAlignment="Left"
-                                                                                CornerRadius="10"
-                                                                                Width="35">
+                                                                        <Border HorizontalAlignment="Center"
+                                                                                CornerRadius="5"
+                                                                                Width="28" Margin="5,5,5,5" VerticalAlignment="Center" Height="28" Cursor="Hand">
                                                                             <Label Content="+" 
                                                                                    HorizontalAlignment="Center" 
                                                                                    VerticalAlignment="Center"
                                                                                    Foreground="White"
-                                                                                   FontSize="16"/>
+                                                                                   FontSize="14" FontFamily="Segoe UI Semibold"/>
                                                                             <Border.Style>
                                                                                 <Style TargetType="Border">
                                                                                     <Setter Property="Background" Value="#ff6900"/>
@@ -207,12 +220,12 @@
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5">
                                                                 <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding StatusColor}" 
                                                                          StrokeThickness="0.5" 
                                                                          Stroke="Black"/>
                                                                 <Separator Visibility="Hidden" Width="5"/>
-                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Normal" FontSize="14"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -220,11 +233,11 @@
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
+                                                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                                 <ProgressBar Height="20" Width="100" Value="{Binding Progress}"/>
-                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Bold" FontSize="14"/>
                                                                 <Separator Visibility="Hidden" Width="5"/>
-                                                                <TextBlock Text="%" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="%" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Normal" FontSize="14"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -235,12 +248,12 @@
                                                         <DataTemplate>
                                                             <Border BorderBrush="Black" BorderThickness="0.5" 
                                                                     Background="{Binding PriorityColor}"
-                                                                    CornerRadius="20"
+                                                                    CornerRadius="5"
                                                                     Width="80"
-                                                                    Height="30">
+                                                                    Height="30" Margin="5,5,5,5">
                                                                 <TextBlock Text="{Binding PriorityStr}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           HorizontalAlignment="Center"/>
+                                                                           HorizontalAlignment="Center" FontFamily="Segoe UI Light" FontSize="14"/>
                                                             </Border>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -266,14 +279,14 @@
                                                 <DataGridTemplateColumn Width="600">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
+                                                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
                                                                 <TextBlock Text="{Binding Name}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           FontSize="14"/>
+                                                                           FontSize="12"/>
                                                                 <TextBlock Text=": " Style="{StaticResource BodyText}"/>
                                                                 <TextBlock Text="{Binding Comment}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           Foreground="#9b9da2"/>
+                                                                           Foreground="#9b9da2" FontFamily="Segoe UI Light" FontWeight="Normal" Margin="5,5,5,5"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -281,12 +294,12 @@
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5">
                                                                 <Ellipse x:Name="ellipse" Width="15" Height="15" Fill="{Binding StatusColor}" 
                                                                          StrokeThickness="0.5" 
                                                                          Stroke="Black"/>
                                                                 <Separator Visibility="Hidden" Width="5"/>
-                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="{Binding StatusStr}" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Normal"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
@@ -294,27 +307,27 @@
                                                 <DataGridTemplateColumn>
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
-                                                            <StackPanel Orientation="Horizontal">
+                                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5">
                                                                 <ProgressBar Height="20" Width="100" Value="{Binding Progress}"/>
-                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="{Binding Progress}" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Normal"/>
                                                                 <Separator Visibility="Hidden" Width="5"/>
-                                                                <TextBlock Text="%" Style="{StaticResource BodyText}"/>
+                                                                <TextBlock Text="%" Style="{StaticResource BodyText}" FontFamily="Segoe UI Light" FontWeight="Normal"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>
                                                 </DataGridTemplateColumn>
-                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}"/>
+                                                <DataGridTextColumn Binding="{Binding Date}" ElementStyle="{StaticResource BodyText}" FontWeight="Normal"/>
                                                 <DataGridTemplateColumn Width="*">
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <Border BorderBrush="Black" BorderThickness="0.5" 
                                                                     Background="{Binding PriorityColor}"
-                                                                    CornerRadius="20"
+                                                                    CornerRadius="5"
                                                                     Width="80"
-                                                                    Height="30">
+                                                                    Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5">
                                                                 <TextBlock Text="{Binding PriorityStr}" 
                                                                            Style="{StaticResource BodyText}"
-                                                                           HorizontalAlignment="Center"/>
+                                                                           HorizontalAlignment="Center" FontFamily="Segoe UI Light"/>
                                                             </Border>
                                                         </DataTemplate>
                                                     </DataGridTemplateColumn.CellTemplate>

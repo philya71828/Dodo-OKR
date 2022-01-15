@@ -13,30 +13,29 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
-    <Border Background="White"
-            CornerRadius="20">
+    <Border Background="White" BorderBrush="#FFC8C8C8" BorderThickness="1">
         <StackPanel>
-            <Grid VerticalAlignment="Top" Name="TitleBar" Height="35">
+            <Grid VerticalAlignment="Top" Name="TitleBar" Height="40">
                 <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" 
                             VerticalAlignment="Center" 
                             HorizontalAlignment="Right" 
                             Orientation="Horizontal" 
                             Name="WindowControls"
                             Margin="5">
-                    <Button Name="MinimizeButton" Click="MinimizeButton_Click">
+                    <Button Name="MinimizeButton" Click="MinimizeButton_Click" Width="28">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border Background="White">
-                                    <Label Content="-"/>
+                                    <Label Cursor="Hand" Content="–" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" FontWeight="Bold" Margin="5,0,0,0"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button Name="CloseButton" Click="CloseButton_Click">
+                    <Button Name="CloseButton" Click="CloseButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border Background="White">
-                                    <Label Content="x"/>
+                                    <Label Cursor="Hand" Content="x" Foreground="Red" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" FontWeight="Bold" Margin="5,0,5,0"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>

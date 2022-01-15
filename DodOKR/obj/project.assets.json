@@ -3818,31 +3818,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lesha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Oleg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
+      "projectUniqueName": "C:\\Users\\Oleg\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
       "projectName": "DodOKR",
-      "projectPath": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
-      "packagesPath": "C:\\Users\\Lesha\\.nuget\\packages\\",
-      "outputPath": "C:\\Documents\\Programming\\C#\\WPF\\Dodo-OKR\\DodOKR\\obj\\",
+      "projectPath": "C:\\Users\\Oleg\\Dodo-OKR\\DodOKR\\DodOKR.csproj",
+      "packagesPath": "C:\\Users\\Oleg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Oleg\\Dodo-OKR\\DodOKR\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Lesha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Oleg\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3888,7 +3881,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
